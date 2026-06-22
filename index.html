@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1A160F">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Dhikr">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<title>Dhikr – Rappels du Cœur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --sand:#F2EDDF; --cream:#FBF8F2; --gold:#B8922A; --gold-lt:#D4AE5A;
+  --ink:#2A2218; --muted:#8A7D65; --border:#DED5C1; --night:#1A160F;
+}
+html { font-size:16px; scroll-behavior:smooth; }
+body {
+  background:var(--cream); color:var(--ink);
+  font-family:'Inter',sans-serif; font-weight:300;
+  min-height:100vh; min-height:100dvh;
+  padding-bottom:calc(60px + env(safe-area-inset-bottom));
+}
+
+/* ── HEADER ── */
+header {
+  background:var(--night); padding:calc(1.4rem + env(safe-area-inset-top)) 1.5rem 1.2rem;
+  text-align:center; position:relative; overflow:hidden;
+}
+header::before {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse 70% 60% at 50% 120%, #B8922A22 0%, transparent 70%);
+  pointer-events:none;
+}
+.bismillah { font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--gold); direction:rtl; margin-bottom:0.3rem; }
+header h1 { font-family:'Cormorant Garamond',serif; font-size:1.85rem; font-weight:300; color:var(--sand); letter-spacing:0.08em; }
+header p { color:var(--muted); font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; margin-top:0.2rem; }
+
+/* ── PRIÈRES DU JOUR — bande en haut ── */
+#prayer-strip {
+  background:#12100A; border-bottom:1px solid #2A2218;
+  padding:0.7rem 1rem; overflow-x:auto; display:flex; gap:0.6rem;
+  scrollbar-width:none;
+}
+#prayer-strip::-webkit-scrollbar { display:none; }
+.prayer-pill {
+  flex:0 0 auto; text-align:center; padding:0.45rem 0.85rem;
+  border-radius:2rem; border:1px solid #2A2218; min-width:72px;
+}
+.prayer-pill.next { border-color:var(--gold); background:#B8922A18; }
+.prayer-pill.passed { opacity:0.4; }
+.pp-name { font-size:0.68rem; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase; }
+.pp-time { font-size:0.95rem; font-weight:500; color:var(--sand); margin-top:0.1rem; }
+.pp-countdown { font-size:0.65rem; color:var(--gold); margin-top:0.1rem; }
+
+/* ── BANNER ── */
+#perm-banner { background:var(--gold); color:white; padding:0.7rem 1.1rem; display:flex; align-items:center; gap:0.8rem; font-size:0.83rem; }
+#perm-banner button { background:white; color:var(--gold); border:none; padding:0.32rem 0.85rem; border-radius:2rem; font-size:0.78rem; font-weight:500; cursor:pointer; }
+#perm-banner.hidden { display:none; }
+
+/* ── TABS ── */
+.tabs-bar { display:flex; background:var(--night); border-bottom:1px solid #2A2218; overflow-x:auto; scrollbar-width:none; }
+.tabs-bar::-webkit-scrollbar { display:none; }
+.tab-btn { flex:0 0 auto; padding:0.72rem 1rem; font-size:0.72rem; letter-spacing:0.07em; text-transform:uppercase; color:var(--muted); background:none; border:none; border-bottom:2px solid transparent; cursor:pointer; white-space:nowrap; transition:color 0.2s,border-color 0.2s; font-family:'Inter',sans-serif; }
+.tab-btn.active { color:var(--gold); border-bottom-color:var(--gold); }
+
+/* ── PANELS ── */
+.tab-panel { display:none; max-width:640px; margin:0 auto; padding:1.1rem 1rem; }
+.tab-panel.active { display:block; }
+
+/* ── SECTION TITLE ── */
+.section-title { font-family:'Cormorant Garamond',serif; font-size:1.12rem; font-weight:400; color:var(--gold); letter-spacing:0.04em; border-bottom:1px solid var(--border); padding-bottom:0.3rem; margin:1.7rem 0 0.85rem; }
+.section-title:first-child { margin-top:0; }
+
+/* ── CURRENT CARD ── */
+#current-card { background:var(--night); border-radius:1rem; padding:1.5rem 1.3rem; margin-bottom:1.3rem; position:relative; overflow:hidden; }
+#current-card::after { content:''; position:absolute; top:-20px; right:-20px; width:88px; height:88px; border-radius:50%; background:radial-gradient(circle, #B8922A33 0%, transparent 70%); }
+.moment-label { font-size:0.66rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:0.45rem; }
+.card-arabic { font-family:'Cormorant Garamond',serif; font-size:1.45rem; font-weight:300; color:var(--sand); direction:rtl; line-height:1.85; margin-bottom:0.65rem; }
+.card-translit { font-style:italic; font-size:0.79rem; color:var(--gold-lt); margin-bottom:0.45rem; line-height:1.6; }
+.card-trans { font-size:0.84rem; color:#C8BBA3; line-height:1.65; }
+.card-source { margin-top:0.85rem; font-size:0.68rem; color:var(--muted); letter-spacing:0.04em; }
+.btn-copy { margin-top:0.85rem; background:none; border:1px solid var(--gold); color:var(--gold); padding:0.32rem 0.85rem; border-radius:2rem; font-size:0.74rem; cursor:pointer; }
+
+/* ── TIMELINE ── */
+.timeline { display:flex; flex-direction:column; gap:0.5rem; }
+.tl-item { display:flex; align-items:flex-start; gap:0.85rem; background:white; border:1px solid var(--border); border-radius:0.75rem; padding:0.75rem 0.9rem; cursor:pointer; transition:border-color 0.2s,box-shadow 0.2s; }
+.tl-item:hover { border-color:var(--gold); box-shadow:0 2px 12px #B8922A18; }
+.tl-item.active { border-color:var(--gold); background:#FDFAF4; }
+.tl-item.past { opacity:0.45; }
+.tl-time { min-width:42px; text-align:center; font-size:0.7rem; color:var(--muted); padding-top:0.1rem; }
+.tl-time strong { display:block; font-size:0.88rem; color:var(--ink); font-weight:500; }
+.tl-dot { width:9px; height:9px; border-radius:50%; border:2px solid var(--border); margin-top:0.32rem; flex-shrink:0; background:white; }
+.tl-item.active .tl-dot { background:var(--gold); border-color:var(--gold); }
+.tl-item.past .tl-dot { background:var(--border); }
+.tl-content { flex:1; min-width:0; }
+.tl-title { font-size:0.84rem; font-weight:500; color:var(--ink); margin-bottom:0.15rem; }
+.tl-sub { font-size:0.73rem; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.tl-badge { font-size:0.63rem; padding:0.1rem 0.42rem; border-radius:2rem; font-weight:500; letter-spacing:0.03em; align-self:flex-start; white-space:nowrap; flex-shrink:0; }
+.badge-matin  { background:#FEF3C7; color:#92400E; }
+.badge-priere { background:#DBEAFE; color:#1E40AF; }
+.badge-dhikr  { background:#D1FAE5; color:#065F46; }
+.badge-coran  { background:#EDE9FE; color:#5B21B6; }
+.badge-soir   { background:#1A160F; color:var(--gold); }
+.badge-soutien{ background:#FFE4E6; color:#9F1239; }
+
+/* ── CONTENT CARDS ── */
+.content-grid { display:flex; flex-direction:column; gap:0.75rem; }
+.content-card { background:white; border:1px solid var(--border); border-radius:0.85rem; padding:0.95rem 1rem; cursor:pointer; transition:border-color 0.2s,box-shadow 0.2s; }
+.content-card:hover { border-color:var(--gold); box-shadow:0 2px 14px #B8922A18; }
+.cc-header { display:flex; justify-content:space-between; align-items:flex-start; gap:0.5rem; margin-bottom:0.55rem; }
+.cc-title { font-size:0.87rem; font-weight:500; color:var(--ink); }
+.cc-arabic { font-family:'Cormorant Garamond',serif; font-size:1.25rem; direction:rtl; color:var(--ink); line-height:1.85; margin-bottom:0.38rem; }
+.cc-translit { font-style:italic; font-size:0.76rem; color:var(--muted); line-height:1.6; margin-bottom:0.28rem; }
+.cc-trans { font-size:0.8rem; color:var(--ink); line-height:1.6; }
+.cc-source { font-size:0.68rem; color:var(--muted); margin-top:0.45rem; }
+
+/* ── ACTION CARDS ── */
+.action-card { background:white; border:1px solid var(--border); border-radius:0.85rem; padding:0.95rem 1rem; }
+.ac-icon { font-size:1.4rem; margin-bottom:0.35rem; }
+.ac-title { font-size:0.9rem; font-weight:500; color:var(--ink); margin-bottom:0.35rem; }
+.ac-body { font-size:0.82rem; color:var(--muted); line-height:1.65; }
+.ac-steps { margin-top:0.55rem; padding-left:1.1rem; }
+.ac-steps li { font-size:0.8rem; color:var(--ink); line-height:1.72; }
+
+/* ── TASBIH ── */
+#tasbih-panel { text-align:center; padding:2rem 1rem; }
+.tasbih-counter { font-family:'Cormorant Garamond',serif; font-size:5rem; font-weight:300; color:var(--ink); line-height:1; margin:1rem 0; }
+.tasbih-phrase { font-size:1.2rem; color:var(--gold); font-family:'Cormorant Garamond',serif; direction:rtl; margin-bottom:0.3rem; }
+.tasbih-fr { font-size:0.82rem; color:var(--muted); margin-bottom:2rem; }
+.tasbih-btn { width:140px; height:140px; border-radius:50%; background:var(--night); border:3px solid var(--gold); color:var(--sand); font-size:1rem; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; letter-spacing:0.04em; transition:transform 0.1s, background 0.1s; user-select:none; -webkit-user-select:none; }
+.tasbih-btn:active { transform:scale(0.95); background:#2A2218; }
+.tasbih-controls { display:flex; gap:0.8rem; justify-content:center; margin-top:1.5rem; }
+.tasbih-ctrl { background:none; border:1px solid var(--border); color:var(--muted); padding:0.4rem 1.1rem; border-radius:2rem; font-size:0.78rem; cursor:pointer; }
+.tasbih-phases { display:flex; gap:0.6rem; justify-content:center; margin-bottom:1.5rem; flex-wrap:wrap; }
+.phase-pill { padding:0.3rem 0.8rem; border-radius:2rem; border:1px solid var(--border); font-size:0.74rem; cursor:pointer; color:var(--muted); }
+.phase-pill.active-phase { border-color:var(--gold); color:var(--gold); background:#B8922A12; }
+
+/* ── TOGGLE ── */
+.toggle-row { display:flex; justify-content:space-between; align-items:center; padding:0.62rem 0; border-bottom:1px solid var(--border); font-size:0.82rem; }
+.toggle-row:last-child { border-bottom:none; }
+.toggle { position:relative; width:42px; height:23px; flex-shrink:0; }
+.toggle input { opacity:0; width:0; height:0; }
+.slider { position:absolute; inset:0; background:var(--border); border-radius:12px; cursor:pointer; transition:background 0.2s; }
+.slider::before { content:''; position:absolute; width:17px; height:17px; left:3px; top:3px; background:white; border-radius:50%; transition:transform 0.2s; }
+.toggle input:checked + .slider { background:var(--gold); }
+.toggle input:checked + .slider::before { transform:translateX(19px); }
+.settings-card { background:white; border:1px solid var(--border); border-radius:0.75rem; padding:0.85rem 1.05rem; }
+
+/* ── MODAL ── */
+#modal { display:none; position:fixed; inset:0; background:#00000099; z-index:200; align-items:flex-end; justify-content:center; }
+#modal.open { display:flex; }
+.modal-sheet { background:var(--cream); border-radius:1.2rem 1.2rem 0 0; padding:1.3rem 1.3rem calc(1.8rem + env(safe-area-inset-bottom)); width:100%; max-width:640px; max-height:88vh; overflow-y:auto; position:relative; }
+.modal-handle { width:36px; height:4px; background:var(--border); border-radius:2px; margin:0 auto 1rem; }
+.modal-title { font-family:'Cormorant Garamond',serif; font-size:1.05rem; color:var(--ink); margin-bottom:0.75rem; }
+.modal-arabic { font-family:'Cormorant Garamond',serif; font-size:1.6rem; direction:rtl; color:var(--ink); line-height:1.9; margin-bottom:0.75rem; border-bottom:1px solid var(--border); padding-bottom:0.75rem; }
+.modal-translit { font-style:italic; font-size:0.84rem; color:var(--muted); line-height:1.7; margin-bottom:0.65rem; }
+.modal-trans { font-size:0.88rem; color:var(--ink); line-height:1.7; margin-bottom:0.85rem; }
+.modal-source { font-size:0.72rem; color:var(--muted); }
+.modal-close { position:absolute; top:0.9rem; right:0.9rem; background:var(--border); border:none; border-radius:50%; width:27px; height:27px; font-size:0.85rem; cursor:pointer; color:var(--ink); display:flex; align-items:center; justify-content:center; }
+.modal-btn-copy { margin-top:0.9rem; background:none; border:1px solid var(--gold); color:var(--gold); padding:0.38rem 0.95rem; border-radius:2rem; font-size:0.76rem; cursor:pointer; }
+
+/* ── STATUS BAR ── */
+#status-bar { position:fixed; bottom:0; left:0; right:0; background:var(--night); color:var(--sand); padding:0.6rem 1.2rem calc(0.6rem + env(safe-area-inset-bottom)); font-size:0.74rem; display:flex; justify-content:space-between; align-items:center; letter-spacing:0.04em; z-index:100; }
+#status-bar span { color:var(--gold); font-weight:500; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+  <h1>Dhikr</h1>
+  <p>Rappels du Cœur · Issy-les-Moulineaux</p>
+</header>
+
+<!-- HORAIRES DES PRIÈRES -->
+<div id="prayer-strip">
+  <div class="prayer-pill" id="pp-fajr"><div class="pp-name">Fajr</div><div class="pp-time">–:–</div><div class="pp-countdown"></div></div>
+  <div class="prayer-pill" id="pp-sunrise"><div class="pp-name">Lever</div><div class="pp-time">–:–</div><div class="pp-countdown"></div></div>
+  <div class="prayer-pill" id="pp-dhuhr"><div class="pp-name">Dhuhr</div><div class="pp-time">–:–</div><div class="pp-countdown"></div></div>
+  <div class="prayer-pill" id="pp-asr"><div class="pp-name">ʿAṣr</div><div class="pp-time">–:–</div><div class="pp-countdown"></div></div>
+  <div class="prayer-pill" id="pp-maghrib"><div class="pp-name">Maghrib</div><div class="pp-time">–:–</div><div class="pp-countdown"></div></div>
+  <div class="prayer-pill" id="pp-isha"><div class="pp-name">ʿIshāʾ</div><div class="pp-time">–:–</div><div class="pp-countdown"></div></div>
+</div>
+
+<div id="perm-banner">
+  <span style="flex:1">Active les notifications pour tes rappels.</span>
+  <button onclick="requestNotifPermission()">Activer</button>
+</div>
+
+<nav class="tabs-bar">
+  <button class="tab-btn active" onclick="switchTab('planning',this)">Planning</button>
+  <button class="tab-btn" onclick="switchTab('matin',this)">Matin</button>
+  <button class="tab-btn" onclick="switchTab('soir',this)">Soir</button>
+  <button class="tab-btn" onclick="switchTab('soutien',this)">Soutien</button>
+  <button class="tab-btn" onclick="switchTab('sourates',this)">Sourates</button>
+  <button class="tab-btn" onclick="switchTab('actions',this)">Actions</button>
+  <button class="tab-btn" onclick="switchTab('tasbih',this)">Tasbīḥ</button>
+  <button class="tab-btn" onclick="switchTab('reglages',this)">Réglages</button>
+</nav>
+
+<!-- TAB PLANNING -->
+<div class="tab-panel active" id="tab-planning">
+  <div class="section-title">Moment présent</div>
+  <div id="current-card">
+    <div class="moment-label" id="current-moment-label">Chargement…</div>
+    <div class="card-arabic"   id="current-arabic"></div>
+    <div class="card-translit" id="current-translit"></div>
+    <div class="card-trans"    id="current-trans"></div>
+    <div class="card-source"   id="current-source"></div>
+    <button class="btn-copy" onclick="copyCurrentContent()">↑ Copier</button>
+  </div>
+  <div class="section-title">Planning du jour</div>
+  <div class="timeline" id="timeline"></div>
+</div>
+
+<!-- TAB MATIN -->
+<div class="tab-panel" id="tab-matin">
+  <div class="section-title">Adhkār al-Ṣabāḥ · Invocations du Matin</div>
+  <div class="content-grid" id="grid-matin"></div>
+</div>
+
+<!-- TAB SOIR -->
+<div class="tab-panel" id="tab-soir">
+  <div class="section-title">Adhkār al-Masāʾ · Invocations du Soir</div>
+  <div class="content-grid" id="grid-soir"></div>
+</div>
+
+<!-- TAB SOUTIEN -->
+<div class="tab-panel" id="tab-soutien">
+  <div class="section-title">Contre la tristesse &amp; l'anxiété</div>
+  <div class="content-grid" id="grid-soutien"></div>
+</div>
+
+<!-- TAB SOURATES -->
+<div class="tab-panel" id="tab-sourates">
+  <div class="section-title">Verset du Trône · Āyat al-Kursī</div>
+  <div class="content-grid" id="grid-ayat"></div>
+  <div class="section-title">Sourates Protectrices</div>
+  <div class="content-grid" id="grid-sourates"></div>
+</div>
+
+<!-- TAB ACTIONS -->
+<div class="tab-panel" id="tab-actions">
+  <div class="section-title">Actions anti-stress &amp; angoisse</div>
+  <div class="content-grid" id="grid-actions"></div>
+</div>
+
+<!-- TAB TASBIH -->
+<div class="tab-panel" id="tab-tasbih">
+  <div id="tasbih-panel">
+    <div class="tasbih-phases" id="tasbih-phases"></div>
+    <div class="tasbih-phrase" id="tasbih-phrase">سُبْحَانَ اللَّه</div>
+    <div class="tasbih-fr"    id="tasbih-fr">Gloire à Allah</div>
+    <div class="tasbih-counter" id="tasbih-count">0</div>
+    <div style="font-size:0.75rem;color:var(--muted);margin-bottom:1.5rem" id="tasbih-target"></div>
+    <button class="tasbih-btn" onclick="tasbihTap()">تَسْبِيح</button>
+    <div class="tasbih-controls">
+      <button class="tasbih-ctrl" onclick="tasbihReset()">Réinitialiser</button>
+      <button class="tasbih-ctrl" onclick="tasbihNext()">Suivant →</button>
+    </div>
+  </div>
+</div>
+
+<!-- TAB RÉGLAGES -->
+<div class="tab-panel" id="tab-reglages">
+  <div class="section-title">Rappels quotidiens</div>
+  <div class="settings-card" id="settings-list"></div>
+  <div class="section-title" style="margin-top:1.5rem">Méthode de calcul des prières</div>
+  <div class="settings-card">
+    <div class="toggle-row">
+      <span>Méthode de calcul<br><small style="color:var(--muted)">MWL (Muslim World League)</small></span>
+      <span style="color:var(--gold);font-size:0.8rem">Active</span>
+    </div>
+    <div class="toggle-row">
+      <span>École juridique<br><small style="color:var(--muted)">Shafi'i / Maliki / Hanbali</small></span>
+      <span style="color:var(--gold);font-size:0.8rem">Standard</span>
+    </div>
+  </div>
+  <p style="font-size:0.72rem;color:var(--muted);margin-top:1rem;line-height:1.6;">
+    Horaires calculés via <strong>Aladhan API</strong> pour Issy-les-Moulineaux (48.8236° N, 2.2700° E).
+    Mise à jour automatique chaque jour.
+  </p>
+</div>
+
+<!-- MODAL -->
+<div id="modal">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-title"   id="modal-title"></div>
+    <div class="modal-arabic"  id="modal-arabic"></div>
+    <div class="modal-translit" id="modal-translit"></div>
+    <div class="modal-trans"   id="modal-trans"></div>
+    <div class="modal-source"  id="modal-source"></div>
+    <button class="modal-btn-copy" onclick="copyModalContent()">↑ Copier</button>
+  </div>
+</div>
+
+<div id="status-bar">
+  <div>Prochain : <span id="next-reminder-time">–</span></div>
+  <div id="notif-status">🔔 –</div>
+</div>
+
+<script>
+// ════════════════════════════════════════════
+//  HORAIRES DE PRIÈRE — API Aladhan
+//  Coordonnées : Issy-les-Moulineaux
+// ════════════════════════════════════════════
+const LAT = 48.8236, LNG = 2.2700;
+const PRAYER_KEYS = ['Fajr','Sunrise','Dhuhr','Asr','Maghrib','Isha'];
+const PRAYER_IDS  = ['fajr','sunrise','dhuhr','asr','maghrib','isha'];
+let prayerTimes = {}; // { Fajr: "05:23", … }
+
+async function fetchPrayerTimes() {
+  try {
+    const today = new Date();
+    const d = today.getDate(), m = today.getMonth()+1, y = today.getFullYear();
+    const url = `https://api.aladhan.com/v1/timings/${d}-${m}-${y}?latitude=${LAT}&longitude=${LNG}&method=3`;
+    const res = await fetch(url);
+    const json = await res.json();
+    if (json.code === 200) {
+      const t = json.data.timings;
+      prayerTimes = { Fajr:t.Fajr, Sunrise:t.Sunrise, Dhuhr:t.Dhuhr, Asr:t.Asr, Maghrib:t.Maghrib, Isha:t.Isha };
+      renderPrayerStrip();
+      schedulePrayerNotifications();
+    }
+  } catch(e) {
+    console.warn('Impossible de charger les horaires:', e);
+  }
+}
+
+function renderPrayerStrip() {
+  const now = new Date();
+  const nowMins = now.getHours()*60 + now.getMinutes();
+  let nextIdx = -1;
+  PRAYER_KEYS.forEach((key, i) => {
+    const time = prayerTimes[key];
+    if (!time) return;
+    const [hh, mm] = time.split(':').map(Number);
+    const pMins = hh*60+mm;
+    const el = document.getElementById('pp-' + PRAYER_IDS[i]);
+    if (!el) return;
+    el.querySelector('.pp-time').textContent = time;
+    el.classList.remove('next','passed');
+    if (pMins < nowMins) { el.classList.add('passed'); el.querySelector('.pp-countdown').textContent = ''; }
+    else if (nextIdx === -1) {
+      nextIdx = i;
+      el.classList.add('next');
+      const diff = pMins - nowMins;
+      el.querySelector('.pp-countdown').textContent = diff < 60 ? `dans ${diff}min` : `dans ${Math.floor(diff/60)}h${String(diff%60).padStart(2,'0')}`;
+    } else { el.querySelector('.pp-countdown').textContent = ''; }
+  });
+}
+
+function schedulePrayerNotifications() {
+  if (Notification.permission !== 'granted') return;
+  const now = new Date();
+  const nowMins = now.getHours()*60 + now.getMinutes();
+  const LABELS = { Fajr:'🌅 Prière du Fajr', Dhuhr:'🕛 Prière du Dhuhr', Asr:'🌤 Prière du ʿAṣr', Maghrib:'🌆 Prière du Maghrib', Isha:'🌙 Prière de ʿIshāʾ' };
+  ['Fajr','Dhuhr','Asr','Maghrib','Isha'].forEach(key => {
+    const time = prayerTimes[key]; if (!time) return;
+    const [hh,mm] = time.split(':').map(Number);
+    const pMins = hh*60+mm;
+    if (pMins <= nowMins) return;
+    const delayMs = (pMins - nowMins) * 60000;
+    setTimeout(() => {
+      new Notification(LABELS[key] || key, {
+        body: 'الصَّلَاةُ خَيْرٌ مِنَ النَّوْمِ — La prière vaut mieux que le sommeil.',
+        icon: '/icons/icon-192.png', tag: 'prayer-' + key, vibrate:[300,100,300]
+      });
+    }, delayMs);
+  });
+}
+
+// ════════════════════════════════════════════
+//  PLANNING QUOTIDIEN
+// ════════════════════════════════════════════
+const SCHEDULE = [
+  { id:'fajr_inv', hour:5, minute:30, label:'Invocation du matin (Fajr)', type:'matin', defaultOn:true,
+    arabic:'اللّهُمَّ بِكَ أَصْبَحْنَا وَبِكَ أَمْسَيْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوتُ وَإِلَيْكَ النُّشُور',
+    translit:'Allāhumma bika aṣbaḥnā wa bika amsaynā wa bika naḥyā wa bika namūtu wa ilayka n-nushūr',
+    trans:'Ô Allah, c\'est par Toi que nous sommes entrés dans le matin, par Toi que nous entrons dans le soir, par Toi que nous vivons, par Toi que nous mourons, et c\'est vers Toi que sera la résurrection.',
+    source:'Abū Dāwūd 5068 · Tirmidhī 3391' },
+  { id:'ishraq', hour:7, minute:15, label:'Dhikr — Gloire à Allah (100×)', type:'dhikr', defaultOn:true,
+    arabic:'سُبْحَانَ اللّهِ وَبِحَمْدِهِ ۝ سُبْحَانَ اللّهِ الْعَظِيم',
+    translit:'Subḥāna Llāhi wa bi-ḥamdih · Subḥāna Llāhi l-ʿAẓīm',
+    trans:'Gloire à Allah et toute louange Lui appartient. Gloire à Allah, l\'Immense.',
+    source:'Muslim 2694 — 100× le matin' },
+  { id:'duha', hour:9, minute:0, label:'Invocation Ḍuḥā', type:'priere', defaultOn:true,
+    arabic:'اللّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا وَرِزْقًا طَيِّبًا وَعَمَلًا مُتَقَبَّلًا',
+    translit:'Allāhumma innī as\'aluka ʿilman nāfiʿan wa rizqan ṭayyiban wa ʿamalan mutaqabbalan',
+    trans:'Ô Allah, je Te demande une science utile, une subsistance pure et une action agréée.',
+    source:'Ibn Mājah 925' },
+  { id:'zawwal', hour:12, minute:0, label:'Rappel prière du Ẓuhr', type:'priere', defaultOn:true,
+    arabic:'رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِن ذُرِّيَّتِي رَبَّنَا وَتَقَبَّلْ دُعَاء',
+    translit:'Rabbi j\'alnī muqīma ṣ-ṣalāti wa min dhurriyyatī Rabbanā wa taqabbal duʿā\'',
+    trans:'Seigneur, fais que j\'accomplisse la prière ainsi que ma descendance. Notre Seigneur, accepte ma supplication.',
+    source:'Sourate Ibrāhīm 14:40' },
+  { id:'asr_inv', hour:15, minute:30, label:'Istighfār de l\'ʿAṣr (3×)', type:'dhikr', defaultOn:true,
+    arabic:'أَسْتَغْفِرُ اللَّهَ الْعَظِيمَ الَّذِي لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ وَأَتُوبُ إِلَيْهِ',
+    translit:'Astaghfiru Llāha l-ʿAẓīm alladhī lā ilāha illā Huwa l-Ḥayyu l-Qayyūmu wa atūbu ilayh',
+    trans:'Je demande pardon à Allah, le Très Grand, Lui en dehors de Qui il n\'y a pas de divinité, le Vivant, Celui qui subsiste par Lui-même, et je me repens à Lui.',
+    source:'Tirmidhī 3577 — 3× après chaque prière' },
+  { id:'maghrib_inv', hour:17, minute:45, label:'Avant le Maghrib', type:'soir', defaultOn:true,
+    arabic:'اللّهُمَّ هَذَا إِقْبَالُ لَيْلِكَ وَإِدْبَارُ نَهَارِكَ وَأَصْوَاتُ دُعَاتِكَ فَاغْفِرْ لِي',
+    translit:'Allāhumma hādhā iqbālu laylika wa idbāru nahārika wa aṣwātu duʿātika fa-ghfir lī',
+    trans:'Ô Allah, voici la venue de Ta nuit, le départ de Ton jour et les voix de Tes appelants — pardonne-moi.',
+    source:'Abū Dāwūd 5084' },
+  { id:'isha_inv', hour:21, minute:0, label:'Invocations du soir (Adhkār)', type:'soir', defaultOn:true,
+    arabic:'اللّهُمَّ بِكَ أَمْسَيْنَا وَبِكَ أَصْبَحْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوتُ وَإِلَيْكَ الْمَصِير',
+    translit:'Allāhumma bika amsaynā wa bika aṣbaḥnā wa bika naḥyā wa bika namūtu wa ilayka l-maṣīr',
+    trans:'Ô Allah, c\'est par Toi que nous entrons dans le soir, par Toi que nous entrons dans le matin, par Toi que nous vivons, par Toi que nous mourons, et c\'est à Toi que sera le retour.',
+    source:'Abū Dāwūd 5068' },
+  { id:'nawm', hour:22, minute:30, label:'Invocation avant le sommeil', type:'soir', defaultOn:true,
+    arabic:'بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا',
+    translit:'Bismi-ka Llāhumma amūtu wa aḥyā',
+    trans:'En Ton nom, ô Allah, je meurs et je vis.',
+    source:'Bukhārī 6324' },
+];
+
+const INVOC_MATIN = [
+  { id:'m1', title:'Entrée dans le matin', badge:'matin',
+    arabic:'أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِير',
+    translit:'Aṣbaḥnā wa aṣbaḥa l-mulku li-Llāh, wa l-ḥamdu li-Llāh, lā ilāha illa Llāhu waḥdahu lā sharīka lah, lahu l-mulku wa lahu l-ḥamdu wa Huwa ʿalā kulli shay\'in qadīr',
+    trans:'Nous sommes entrés dans le matin, et la souveraineté appartient à Allah. Toute louange est à Allah. Il n\'y a de divinité qu\'Allah, Seul, sans associé — à Lui la souveraineté, à Lui la louange, et Il est Puissant sur toute chose.',
+    source:'Muslim 2723' },
+  { id:'m2', title:'Sayyid al-Istighfār — Maître des demandes de pardon', badge:'matin',
+    arabic:'اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ خَلَقْتَنِي وَأَنَا عَبْدُكَ وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ',
+    translit:'Allāhumma Anta Rabbī lā ilāha illā Anta khalaqtanī wa anā ʿabduka wa anā ʿalā ʿahdika wa waʿdika ma staṭaʿtu aʿūdhu bika min sharri mā ṣanaʿtu abū\'u laka bi-niʿmatika ʿalayya wa abū\'u bi-dhanbī fa-ghfir lī fa-innahu lā yaghfiru dh-dhunūba illā Anta',
+    trans:'Ô Allah, Tu es mon Seigneur, il n\'y a de divinité que Toi. Tu m\'as créé et je suis Ton serviteur. Je m\'en tiens à mon engagement et à ma promesse envers Toi autant que je le peux. Je me réfugie auprès de Toi contre le mal de ce que j\'ai commis. Je reconnais Tes bienfaits sur moi et je reconnais mes péchés — pardonne-moi, car nul ne pardonne les péchés sinon Toi.',
+    source:'Bukhārī 6306 — 1× le matin, le Prophète ﷺ dit : si l\'on meurt ce jour, on entre au Paradis' },
+  { id:'m3', title:'Confier sa journée à Allah — Ḥasbiya Llāh', badge:'matin',
+    arabic:'حَسْبِيَ اللَّهُ لَا إِلَهَ إِلَّا هُوَ عَلَيْهِ تَوَكَّلْتُ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيم',
+    translit:'Ḥasbiya Llāhu lā ilāha illā Huwa ʿalayhi tawakkaltu wa Huwa Rabbu l-ʿarshi l-ʿAẓīm',
+    trans:'Allah me suffit, il n\'y a de divinité que Lui. C\'est en Lui que je place ma confiance, et Il est le Seigneur du Trône immense.',
+    source:'Sourate At-Tawbah 9:129 — 7× matin et soir (Abū Dāwūd 5081)' },
+  { id:'m4', title:'Protection du matin — Āyat al-Kursī', badge:'matin',
+    arabic:'اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ',
+    translit:'Allāhu lā ilāha illā Huwa l-Ḥayyu l-Qayyūm · lā ta\'khudhuhu sinatun wa lā nawm · lahu mā fī s-samāwāti wa mā fī l-arḍ…',
+    trans:'Allah — pas de divinité si ce n\'est Lui, le Vivant, Celui qui subsiste par Lui-même. Ni somnolence ni sommeil ne Le saisissent. À Lui tout ce qui est dans les cieux et sur la terre…',
+    source:'Coran 2:255 — 1× après Fajr : protège jusqu\'au soir (Nasāʾī)' },
+  { id:'m5', title:'Demande du bien de la journée', badge:'matin',
+    arabic:'اللّهُمَّ إِنِّي أَسْأَلُكَ خَيْرَ هَذَا الْيَوْمِ فَتْحَهُ وَنَصْرَهُ وَنُورَهُ وَبَرَكَتَهُ وَهُدَاهُ',
+    translit:'Allāhumma innī as\'aluka khayra hādhā l-yawm fatḥahu wa naṣrahu wa nūrahu wa barakatahu wa hudāh',
+    trans:'Ô Allah, je Te demande le bien de ce jour : son ouverture, son secours, sa lumière, sa bénédiction et sa guidance.',
+    source:'Abū Dāwūd 5084' },
+  { id:'m6', title:'Préservation du corps', badge:'matin',
+    arabic:'اللَّهُمَّ عَافِنِي فِي بَدَنِي اللَّهُمَّ عَافِنِي فِي سَمْعِي اللَّهُمَّ عَافِنِي فِي بَصَرِي لَا إِلَهَ إِلَّا أَنتَ',
+    translit:'Allāhumma ʿāfinī fī badanī, Allāhumma ʿāfinī fī samʿī, Allāhumma ʿāfinī fī baṣarī, lā ilāha illā Anta',
+    trans:'Ô Allah, préserve-moi dans mon corps. Ô Allah, préserve-moi dans mon ouïe. Ô Allah, préserve-moi dans ma vue. Il n\'y a de divinité que Toi.',
+    source:'Abū Dāwūd 5090 — 3×' },
+];
+
+const INVOC_SOIR = [
+  { id:'s1', title:'Entrée dans le soir', badge:'soir',
+    arabic:'أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ',
+    translit:'Amsaynā wa amsa l-mulku li-Llāh, wa l-ḥamdu li-Llāh, lā ilāha illa Llāhu waḥdahu lā sharīka lah',
+    trans:'Nous sommes entrés dans le soir, et la souveraineté appartient à Allah. Toute louange est à Allah. Il n\'y a de divinité qu\'Allah, Seul, sans associé.',
+    source:'Muslim 2723' },
+  { id:'s2', title:'Sayyid al-Istighfār du soir', badge:'soir',
+    arabic:'اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ خَلَقْتَنِي وَأَنَا عَبْدُكَ وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ',
+    translit:'Allāhumma Anta Rabbī lā ilāha illā Anta khalaqtanī wa anā ʿabduka…',
+    trans:'Ô Allah, Tu es mon Seigneur, il n\'y a de divinité que Toi. Tu m\'as créé, je suis Ton serviteur… pardonne-moi, car nul ne pardonne les péchés sinon Toi.',
+    source:'Bukhārī 6306 — 1× le soir' },
+  { id:'s3', title:'Protection de la nuit contre l\'angoisse', badge:'soir',
+    arabic:'اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ وَأَعُوذُ بِكَ مِنَ الْعَجْزِ وَالْكَسَلِ',
+    translit:'Allāhumma innī aʿūdhu bika mina l-hammi wa l-ḥazani wa aʿūdhu bika mina l-ʿajzi wa l-kasal',
+    trans:'Ô Allah, je me réfugie auprès de Toi contre l\'inquiétude et la tristesse, contre l\'incapacité et la paresse.',
+    source:'Bukhārī 6369' },
+  { id:'s4', title:'Remise de soi à Allah avant de dormir', badge:'soir',
+    arabic:'اللَّهُمَّ إِلَيْكَ أَسْلَمْتُ نَفْسِي وَإِلَيْكَ وَجَّهْتُ وَجْهِي وَإِلَيْكَ فَوَّضْتُ أَمْرِي',
+    translit:'Allāhumma ilayka aslamtu nafsī wa ilayka wajjahtu wajhī wa ilayka fawwaḍtu amrī',
+    trans:'Ô Allah, je Te remets mon âme, je tourne mon visage vers Toi et je confie toute mon affaire à Toi.',
+    source:'Bukhārī 247 — avant de s\'endormir' },
+  { id:'s5', title:'Les trois Quls — protection totale', badge:'soir',
+    arabic:'قُلْ هُوَ اللَّهُ أَحَدٌ ۝ قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ ۝ قُلْ أَعُوذُ بِرَبِّ النَّاسِ',
+    translit:'Qul Huwa Llāhu Aḥad · Qul aʿūdhu bi-Rabbi l-falaq · Qul aʿūdhu bi-Rabbi n-nās',
+    trans:'Al-Ikhlāṣ, Al-Falaq, An-Nās — souffler dans ses mains et les passer sur le corps.',
+    source:'Bukhārī 5017 — 3× avant de dormir, passage sur le corps' },
+  { id:'s6', title:'Āyat al-Kursī avant le sommeil', badge:'soir',
+    arabic:'اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ…',
+    translit:'Allāhu lā ilāha illā Huwa l-Ḥayyu l-Qayyūm…',
+    trans:'Allah — pas de divinité si ce n\'est Lui, le Vivant… Son Trône embrasse les cieux et la terre.',
+    source:'Bukhārī 2311 — un ange te protège toute la nuit' },
+];
+
+const INVOC_SOUTIEN = [
+  { id:'t1', title:'Grande invocation contre l\'angoisse et la tristesse', badge:'soutien',
+    arabic:'اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ وَالْعَجْزِ وَالْكَسَلِ وَالْبُخْلِ وَالْجُبْنِ وَضَلَعِ الدَّيْنِ وَغَلَبَةِ الرِّجَالِ',
+    translit:'Allāhumma innī aʿūdhu bika mina l-hammi wa l-ḥazani wa l-ʿajzi wa l-kasali wa l-bukhli wa l-jubni wa ḍalaʿi d-dayni wa ghalabati r-rijāl',
+    trans:'Ô Allah, je me réfugie auprès de Toi contre l\'anxiété et la tristesse, contre l\'incapacité et la paresse, contre l\'avarice et la lâcheté, contre le fardeau des dettes et la domination des hommes.',
+    source:'Bukhārī 6369 — à répéter plusieurs fois' },
+  { id:'t2', title:'Duʿāʾ du Prophète ﷺ dans l\'épreuve', badge:'soutien',
+    arabic:'لَا إِلَهَ إِلَّا اللَّهُ الْعَظِيمُ الْحَلِيمُ لَا إِلَهَ إِلَّا اللَّهُ رَبُّ الْعَرْشِ الْعَظِيمِ لَا إِلَهَ إِلَّا اللَّهُ رَبُّ السَّمَاوَاتِ وَرَبُّ الْأَرْضِ وَرَبُّ الْعَرْشِ الْكَرِيم',
+    translit:'Lā ilāha illa Llāhu l-ʿAẓīmu l-Ḥalīm · lā ilāha illa Llāhu Rabbu l-ʿarshi l-ʿAẓīm · lā ilāha illa Llāhu Rabbu s-samāwāti wa Rabbu l-arḍi wa Rabbu l-ʿarshi l-Karīm',
+    trans:'Il n\'y a de divinité qu\'Allah, le Grand, le Clément. Il n\'y a de divinité qu\'Allah, le Seigneur du Trône immense. Il n\'y a de divinité qu\'Allah, Seigneur des cieux, Seigneur de la terre, Seigneur du Trône noble.',
+    source:'Bukhārī 6346 · Muslim 2730 — récité par le Prophète ﷺ dans la détresse' },
+  { id:'t3', title:'Invocation de Yūnus ﷺ — dans les ténèbres', badge:'soutien',
+    arabic:'لَا إِلَهَ إِلَّا أَنتَ سُبْحَانَكَ إِنِّي كُنتُ مِنَ الظَّالِمِين',
+    translit:'Lā ilāha illā Anta subḥānaka innī kuntu mina ẓ-ẓālimīn',
+    trans:'Il n\'y a de divinité que Toi, gloire à Toi, j\'ai été du nombre des injustes.',
+    source:'Coran 21:87 — Tirmidhī 3505 : quiconque la dit dans l\'épreuve, Allah l\'exaucera' },
+  { id:'t4', title:'Ḥasbunā Llāh — Allah nous suffit', badge:'soutien',
+    arabic:'حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيل',
+    translit:'Ḥasbunā Llāhu wa niʿma l-wakīl',
+    trans:'Allah nous suffit et Il est l\'excellent Garant.',
+    source:'Coran 3:173 — dit par Ibrāhīm ﷺ dans le feu · Muslim 2952 : 7× matin & soir' },
+  { id:'t5', title:'Contre les pensées envahissantes', badge:'soutien',
+    arabic:'أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيم',
+    translit:'Aʿūdhu bi-Llāhi mina sh-shayṭāni r-rajīm',
+    trans:'Je me réfugie auprès d\'Allah contre Satan le maudit.',
+    source:'Coran 16:98 — à réciter dès que des pensées oppressantes surgissent' },
+  { id:'t6', title:'Tawakkul — Confiance totale', badge:'soutien',
+    arabic:'تَوَكَّلْتُ عَلَى اللَّهِ لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّه',
+    translit:'Tawakkaltu ʿala Llāh · lā ḥawla wa lā quwwata illā bi-Llāh',
+    trans:'Je place ma confiance en Allah. Il n\'y a de puissance ni de force qu\'en Allah.',
+    source:'Abū Dāwūd 5095 — à répéter en cas d\'anxiété' },
+];
+
+const AYAT = [
+  { id:'ak1', title:'Āyat al-Kursī · Verset du Trône — Coran 2:255', badge:'coran',
+    arabic:'اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيم',
+    translit:'Allāhu lā ilāha illā Huwa l-Ḥayyu l-Qayyūm · lā ta\'khudhuhu sinatun wa lā nawm · lahu mā fī s-samāwāti wa mā fī l-arḍ · man dhā lladhī yashfaʿu ʿindahu illā bi-idhnih · yaʿlamu mā bayna aydīhim wa mā khalfahum · wa lā yuḥīṭūna bi-shay\'in min ʿilmihi illā bi-mā shā\' · wasiʿa kursiyyuhu s-samāwāti wa l-arḍ · wa lā ya\'ūduhu ḥifẓuhumā · wa Huwa l-ʿAliyyu l-ʿAẓīm',
+    trans:'Allah — pas de divinité si ce n\'est Lui, le Vivant, Celui qui subsiste par Lui-même. Ni somnolence ni sommeil ne Le saisissent. À Lui appartient tout ce qui est dans les cieux et sur la terre. Qui peut intercéder auprès de Lui sans Sa permission ? Il sait ce qui est devant eux et ce qui est derrière eux. Ils n\'embrassent de Sa science que ce qu\'Il veut. Son Trône embrasse les cieux et la terre ; leur garde ne Lui est pas difficile. Il est le Très-Haut, l\'Immense.',
+    source:'Coran 2:255 — Bukhārī 2311 : après chaque prière & avant le sommeil · protège toute la nuit' },
+];
+
+const SOURATES = [
+  { id:'sr1', title:'Al-Fātiḥa — L\'Ouverture', badge:'coran',
+    arabic:'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ ۝ الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ ۝ الرَّحْمَٰنِ الرَّحِيمِ ۝ مَالِكِ يَوْمِ الدِّينِ ۝ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ ۝ اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ ۝ صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّين',
+    translit:'Bismi Llāhi r-Raḥmāni r-Raḥīm · Al-ḥamdu li-Llāhi Rabbi l-ʿālamīn · Ar-Raḥmāni r-Raḥīm · Māliki yawmi d-dīn · Iyyāka naʿbudu wa iyyāka nastaʿīn · Ihdinā ṣ-ṣirāṭa l-mustaqīm · ṣirāṭa lladhīna anʿamta ʿalayhim ghayri l-maghḍūbi ʿalayhim wa lā ḍ-ḍāllīn',
+    trans:'Au nom d\'Allah, le Tout Miséricordieux, le Très Miséricordieux. Toute louange est à Allah, Seigneur de l\'univers, le Tout Miséricordieux, le Très Miséricordieux, Maître du Jour de la rétribution. C\'est Toi seul que nous adorons, c\'est Toi seul dont nous implorons le secours. Guide-nous dans le droit chemin, le chemin de ceux que Tu as comblés de bienfaits, non pas de ceux qui ont encouru Ta colère, ni des égarés.',
+    source:'Coran 1:1-7 — récitée dans chaque rakʿa' },
+  { id:'sr2', title:'Al-Ikhlāṣ — Le Monothéisme pur', badge:'coran',
+    arabic:'قُلْ هُوَ اللَّهُ أَحَدٌ ۝ اللَّهُ الصَّمَدُ ۝ لَمْ يَلِدْ وَلَمْ يُولَدْ ۝ وَلَمْ يَكُن لَّهُ كُفُوًا أَحَد',
+    translit:'Qul Huwa Llāhu Aḥad · Allāhu ṣ-ṣamad · lam yalid wa lam yūlad · wa lam yakun lahu kufuwan aḥad',
+    trans:'Dis : « Il est Allah, l\'Unique. Allah, l\'Absolu. Il n\'a pas engendré, Il n\'a pas été engendré. Et rien n\'est comparable à Lui. »',
+    source:'Coran 112 — équivaut au tiers du Coran (Muslim 811) — 3× matin & soir' },
+  { id:'sr3', title:'Al-Falaq — L\'Aube', badge:'coran',
+    arabic:'قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ ۝ مِن شَرِّ مَا خَلَقَ ۝ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ ۝ وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ ۝ وَمِن شَرِّ حَاسِدٍ إِذَا حَسَد',
+    translit:'Qul aʿūdhu bi-Rabbi l-falaq · min sharri mā khalaq · wa min sharri ghāsiqin idhā waqab · wa min sharri n-naffāthāti fī l-ʿuqad · wa min sharri ḥāsidin idhā ḥasad',
+    trans:'Dis : « Je cherche refuge auprès du Seigneur de l\'aube naissante, contre le mal de ce qu\'Il a créé, contre le mal de la nuit quand elle tombe, contre le mal des sorcières qui soufflent dans les nœuds, contre le mal de l\'envieux quand il envie. »',
+    source:'Coran 113 — 3× matin & soir' },
+  { id:'sr4', title:'An-Nās — Les Hommes', badge:'coran',
+    arabic:'قُلْ أَعُوذُ بِرَبِّ النَّاسِ ۝ مَلِكِ النَّاسِ ۝ إِلَٰهِ النَّاسِ ۝ مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۝ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ۝ مِنَ الْجِنَّةِ وَالنَّاسِ',
+    translit:'Qul aʿūdhu bi-Rabbi n-nās · maliki n-nās · ilāhi n-nās · min sharri l-waswāsi l-khannās · alladhī yuwaswisu fī ṣudūri n-nās · mina l-jinnati wa n-nās',
+    trans:'Dis : « Je cherche refuge auprès du Seigneur des hommes, du Roi des hommes, du Dieu des hommes, contre le mal du tentateur sournois, celui qui souffle le mal dans les cœurs des hommes, qu\'il soit djinn ou être humain. »',
+    source:'Coran 114 — 3× matin & soir' },
+  { id:'sr5', title:'Al-Kāfirūn — Les Mécréants', badge:'coran',
+    arabic:'قُلْ يَا أَيُّهَا الْكَافِرُونَ ۝ لَا أَعْبُدُ مَا تَعْبُدُونَ ۝ وَلَا أَنتُمْ عَابِدُونَ مَا أَعْبُدُ ۝ وَلَا أَنَا عَابِدٌ مَّا عَبَدتُّمْ ۝ وَلَا أَنتُمْ عَابِدُونَ مَا أَعْبُدُ ۝ لَكُمْ دِينُكُمْ وَلِيَ دِين',
+    translit:'Qul yā ayyuha l-kāfirūn · lā aʿbudu mā taʿbudūn · wa lā antum ʿābidūna mā aʿbud · wa lā anā ʿābidun mā ʿabadtum · wa lā antum ʿābidūna mā aʿbud · lakum dīnukum wa liya dīn',
+    trans:'Dis : « Ô vous les mécréants ! Je n\'adore pas ce que vous adorez. Et vous n\'adorez pas ce que j\'adore. Je ne suis pas adorateur de ce que vous adorez. À vous votre religion, à moi ma religion. »',
+    source:'Coran 109 — récitée avant de dormir (Abū Dāwūd 5055)' },
+  { id:'sr6', title:'Al-Baqarah 285-286 — Les deux derniers versets', badge:'coran',
+    arabic:'آمَنَ الرَّسُولُ بِمَا أُنزِلَ إِلَيْهِ مِن رَّبِّهِ وَالْمُؤْمِنُونَ… رَبَّنَا لَا تُؤَاخِذْنَا إِن نَّسِينَا أَوْ أَخْطَأْنَا',
+    translit:'Āmana r-rasūlu bi-mā unzila ilayhi min Rabbih… Rabbanā lā tu\'ākhidhnā in nasīnā aw akhṭa\'nā',
+    trans:'Le Messager a cru en ce qui lui a été révélé par son Seigneur, ainsi que les croyants… Seigneur, ne nous châtie pas si nous oublions ou commettons une erreur.',
+    source:'Coran 2:285-286 — Muslim 808 : protège de tout mal la nuit' },
+];
+
+const ACTIONS = [
+  { icon:'🫁', title:'Respiration 4-7-8 avec Bismillah',
+    body:'Technique efficace contre l\'angoisse aiguë — active le système nerveux parasympathique.',
+    steps:['Inspire doucement 4 secondes en disant mentalement : بِسْمِ اللَّه','Retiens 7 secondes en récitant اللَّهُ dans ton cœur','Expire lentement 8 secondes : الْحَمْدُ لِلَّه','Répète 4 à 8 cycles'] },
+  { icon:'📿', title:'Tasbīḥ manuel sur les doigts',
+    body:'Le Prophète ﷺ comptait sur ses doigts. 33× Subḥān Allāh, 33× Alḥamdulillāh, 33× Allāhu Akbar.',
+    steps:['Chaque doigt a 3 phalanges = 15 par main','Subḥān Allāh 33 fois','Alḥamdulillāh 33 fois','Allāhu Akbar 33 fois · complète avec Lā ilāha illā Llāh waḥdahu…'] },
+  { icon:'💧', title:'Ablutions (Wuḍū) apaisantes',
+    body:'L\'eau froide et le rituel du wuḍū activent le nerf vague et calment instantanément.',
+    steps:['Intention calme : Bismillāh','Lave chaque membre lentement, 3 fois','Sens l\'eau froide sur ton visage — laisse les tensions se dissoudre','Après : Ashhadu an lā ilāha illā Llāh — reste un instant en silence'] },
+  { icon:'🕌', title:'Deux rakʿas de prière facultative',
+    body:'Le Prophète ﷺ se tournait vers la prière dès qu\'une difficulté survenait (Abū Dāwūd 1319).',
+    steps:['Fais le wuḍū','Prie deux rakʿas tranquillement','Lis Al-Fātiḥa lentement, goûte chaque mot','Reste en sujūd (prosternation) et confie ton souci à Allah en français'] },
+  { icon:'📖', title:'Lecture du Coran — 10 minutes',
+    body:'« Et par le rappel d\'Allah les cœurs se tranquillisent. » (Coran 13:28)',
+    steps:['Ouvre à Sourate Ar-Raḥmān ou Al-Wāqiʿah','Lis à voix basse en savourant le sens','Ne va pas vite — arrête-toi sur ce qui touche','Termine par : اللَّهُمَّ اجْعَلِ الْقُرْآنَ رَبِيعَ قَلْبِي'] },
+  { icon:'🌅', title:'Marche de contemplation (Tafakkur)',
+    body:'La méditation sur la création est une ibādah. « Ils contemplent la création des cieux et de la terre. » (Coran 3:191)',
+    steps:['Sors 10-15 min à l\'air libre — sans écran','À chaque chose belle, dis : سُبْحَانَ اللَّه','Observe le ciel, les arbres, la lumière avec gratitude','Rentre avec : Alḥamdu li-Llāh ʿalā kulli ḥāl'] },
+  { icon:'🤲', title:'Duʿāʾ libre — parler à Allah',
+    body:'Le duʿāʾ est l\'essence du culte (Tirmidhī 2969). Allah aime t\'entendre dans ta propre langue.',
+    steps:['Assieds-toi en direction de la Qibla','Commence par : Al-ḥamdu li-Llāh wa ṣ-ṣalātu ʿalā n-Nabī','Parle librement à Allah — en français — tout ce qui pèse','Termine par Āmīn et reste un moment en silence'] },
+  { icon:'🌙', title:'Programme adhkār complet du soir',
+    body:'Réserver 10 min chaque soir après ʿIshāʾ pour les Adhkār complets est une armure quotidienne.',
+    steps:['Āyat al-Kursī 1×','Al-Ikhlāṣ, Al-Falaq, An-Nās 3×','Sayyid al-Istighfār 1×','Subḥān Allāh 33× · Alḥamdulillāh 33× · Allāhu Akbar 34×'] },
+];
+
+// ════════════════════════════════════════════
+//  TASBIH
+// ════════════════════════════════════════════
+const TASBIH_PHASES = [
+  { arabic:'سُبْحَانَ اللَّه', fr:'Gloire à Allah', target:33 },
+  { arabic:'الْحَمْدُ لِلَّه', fr:'Louange à Allah', target:33 },
+  { arabic:'اللَّهُ أَكْبَر', fr:'Allah est le plus Grand', target:33 },
+  { arabic:'لَا إِلَهَ إِلَّا اللَّه', fr:'Il n\'y a de divinité qu\'Allah', target:100 },
+];
+let tasbihPhase = 0, tasbihCount = 0;
+
+function buildTasbihPhases() {
+  const c = document.getElementById('tasbih-phases'); c.innerHTML = '';
+  TASBIH_PHASES.forEach((p,i) => {
+    const btn = document.createElement('button');
+    btn.className = 'phase-pill' + (i===0?' active-phase':'');
+    btn.textContent = p.fr;
+    btn.onclick = () => { tasbihPhase=i; tasbihCount=0; updateTasbih(); document.querySelectorAll('.phase-pill').forEach((b,j)=>b.classList.toggle('active-phase',j===i)); };
+    c.appendChild(btn);
+  });
+  updateTasbih();
+}
+function updateTasbih() {
+  const p = TASBIH_PHASES[tasbihPhase];
+  document.getElementById('tasbih-phrase').textContent = p.arabic;
+  document.getElementById('tasbih-fr').textContent = p.fr;
+  document.getElementById('tasbih-count').textContent = tasbihCount;
+  document.getElementById('tasbih-target').textContent = tasbihCount >= p.target ? '✅ Terminé ! Allāhu Akbar' : `${p.target - tasbihCount} restants`;
+}
+function tasbihTap() {
+  const p = TASBIH_PHASES[tasbihPhase];
+  if (tasbihCount < p.target) {
+    tasbihCount++;
+    if (navigator.vibrate) navigator.vibrate(30);
+    updateTasbih();
+    if (tasbihCount === p.target && navigator.vibrate) navigator.vibrate([100,50,100]);
+  }
+}
+function tasbihReset() { tasbihCount=0; updateTasbih(); }
+function tasbihNext() {
+  tasbihPhase = (tasbihPhase+1) % TASBIH_PHASES.length;
+  tasbihCount = 0;
+  document.querySelectorAll('.phase-pill').forEach((b,i)=>b.classList.toggle('active-phase',i===tasbihPhase));
+  updateTasbih();
+}
+
+// ════════════════════════════════════════════
+//  STATE
+// ════════════════════════════════════════════
+let enabledMap = {}, scheduledTimers = [];
+function loadState() {
+  try { const s=JSON.parse(localStorage.getItem('dhikr_enabled')||'{}'); SCHEDULE.forEach(i=>{enabledMap[i.id]=(i.id in s)?s[i.id]:i.defaultOn;}); }
+  catch { SCHEDULE.forEach(i=>{enabledMap[i.id]=i.defaultOn;}); }
+}
+function saveState(){ try{localStorage.setItem('dhikr_enabled',JSON.stringify(enabledMap));}catch{} }
+
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ════════════════════════════════════════════
+//  NOTIFICATIONS
+// ════════════════════════════════════════════
+async function requestNotifPermission(){
+  if(!('Notification' in window)){alert('Ton navigateur ne supporte pas les notifications.');return;}
+  const perm=await Notification.requestPermission();
+  updatePermBanner(perm);
+  if(perm==='granted'){scheduleAllNotifications();schedulePrayerNotifications();}
+}
+function updatePermBanner(perm){
+  const b=document.getElementById('perm-banner'),ns=document.getElementById('notif-status');
+  if(perm==='granted'){b.classList.add('hidden');ns.textContent='🔔 Actif';}
+  else if(perm==='denied'){b.innerHTML='<span style="flex:1">Notifications bloquées — réglages du navigateur.</span>';ns.textContent='🔕 Bloqué';}
+}
+function scheduleAllNotifications(){
+  scheduledTimers.forEach(clearTimeout);scheduledTimers=[];
+  const now=new Date();
+  SCHEDULE.forEach(item=>{
+    if(!enabledMap[item.id])return;
+    const next=new Date();next.setHours(item.hour,item.minute,0,0);
+    if(next<=now)next.setDate(next.getDate()+1);
+    const t=setTimeout(()=>{sendNotification(item);setTimeout(scheduleAllNotifications,1000);},next-now);
+    scheduledTimers.push(t);
+  });
+  updateNextReminder();
+}
+function sendNotification(item){
+  if(Notification.permission!=='granted')return;
+  new Notification('🌙 '+item.label,{body:item.trans,icon:'/icons/icon-192.png',tag:item.id,vibrate:[200,100,200]});
+}
+
+// ════════════════════════════════════════════
+//  UI
+// ════════════════════════════════════════════
+function updateCurrentCard(){
+  const mins=new Date().getHours()*60+new Date().getMinutes();
+  let cur=SCHEDULE[0];
+  for(const i of SCHEDULE){if(i.hour*60+i.minute<=mins)cur=i;}
+  document.getElementById('current-moment-label').textContent=cur.label.toUpperCase();
+  document.getElementById('current-arabic').textContent=cur.arabic;
+  document.getElementById('current-translit').textContent=cur.translit;
+  document.getElementById('current-trans').textContent=cur.trans;
+  document.getElementById('current-source').textContent=cur.source;
+}
+const BC={matin:'badge-matin',priere:'badge-priere',dhikr:'badge-dhikr',coran:'badge-coran',soir:'badge-soir',soutien:'badge-soutien'};
+const BL={matin:'Matin',priere:'Prière',dhikr:'Dhikr',coran:'Coran',soir:'Soir',soutien:'Soutien'};
+function buildTimeline(){
+  const mins=new Date().getHours()*60+new Date().getMinutes();
+  const c=document.getElementById('timeline');c.innerHTML='';
+  SCHEDULE.forEach(item=>{
+    const m=item.hour*60+item.minute,isPast=m<mins,isActive=!isPast&&m-mins<30;
+    const div=document.createElement('div');
+    div.className='tl-item'+(isActive?' active':'')+(isPast?' past':'');
+    div.onclick=()=>openModal(item.label,item.arabic,item.translit,item.trans,item.source,BC[item.type],BL[item.type]);
+    const hh=String(item.hour).padStart(2,'0'),mm=String(item.minute).padStart(2,'0');
+    div.innerHTML=`<div class="tl-time"><strong>${hh}:${mm}</strong></div><div class="tl-dot"></div><div class="tl-content"><div class="tl-title">${item.label}</div><div class="tl-sub" dir="rtl">${item.arabic.substring(0,36)}…</div></div><span class="tl-badge ${BC[item.type]}">${BL[item.type]}</span>`;
+    c.appendChild(div);
+  });
+}
+const BM={matin:'badge-matin',soir:'badge-soir',soutien:'badge-soutien',coran:'badge-coran',priere:'badge-priere'};
+const BT={matin:'Matin',soir:'Soir',soutien:'Soutien',coran:'Coran',priere:'Prière'};
+function buildGrid(id,items){
+  const c=document.getElementById(id);c.innerHTML='';
+  items.forEach(item=>{
+    const card=document.createElement('div');card.className='content-card';
+    card.innerHTML=`<div class="cc-header"><div class="cc-title">${item.title}</div>${item.badge?`<span class="tl-badge ${BM[item.badge]}">${BT[item.badge]}</span>`:''}</div><div class="cc-arabic">${item.arabic}</div><div class="cc-translit">${item.translit}</div><div class="cc-trans">${item.trans}</div><div class="cc-source">${item.source}</div>`;
+    card.onclick=()=>openModal(item.title,item.arabic,item.translit,item.trans,item.source,item.badge?BM[item.badge]:'',item.badge?BT[item.badge]:'');
+    c.appendChild(card);
+  });
+}
+function buildActions(){
+  const c=document.getElementById('grid-actions');c.innerHTML='';
+  ACTIONS.forEach(a=>{
+    const card=document.createElement('div');card.className='action-card';
+    card.innerHTML=`<div class="ac-icon">${a.icon}</div><div class="ac-title">${a.title}</div><div class="ac-body">${a.body}</div><ul class="ac-steps">${a.steps.map(s=>`<li>${s}</li>`).join('')}</ul>`;
+    c.appendChild(card);
+  });
+}
+function buildSettings(){
+  const c=document.getElementById('settings-list');c.innerHTML='';
+  SCHEDULE.forEach(item=>{
+    const row=document.createElement('div');row.className='toggle-row';
+    const hh=String(item.hour).padStart(2,'0'),mm=String(item.minute).padStart(2,'0');
+    row.innerHTML=`<span>${item.label}<br><small style="color:var(--muted)">${hh}:${mm}</small></span><label class="toggle"><input type="checkbox" ${enabledMap[item.id]?'checked':''} data-id="${item.id}"><span class="slider"></span></label>`;
+    c.appendChild(row);
+  });
+  c.querySelectorAll('input[type=checkbox]').forEach(cb=>{
+    cb.addEventListener('change',()=>{enabledMap[cb.dataset.id]=cb.checked;saveState();if(Notification.permission==='granted')scheduleAllNotifications();updateNextReminder();});
+  });
+}
+function updateNextReminder(){
+  const mins=new Date().getHours()*60+new Date().getMinutes();
+  let next=SCHEDULE.find(i=>enabledMap[i.id]&&i.hour*60+i.minute>mins);
+  if(!next)next=SCHEDULE.find(i=>enabledMap[i.id]);
+  document.getElementById('next-reminder-time').textContent=next?String(next.hour).padStart(2,'0')+':'+String(next.minute).padStart(2,'0')+' — '+next.label:'Aucun rappel actif';
+}
+
+// ════════════════════════════════════════════
+//  MODAL
+// ════════════════════════════════════════════
+function openModal(title,arabic,translit,trans,source,badgeClass,badgeLabel){
+  document.getElementById('modal-title').textContent=title;
+  document.getElementById('modal-arabic').textContent=arabic;
+  document.getElementById('modal-translit').textContent=translit;
+  document.getElementById('modal-trans').textContent=trans;
+  document.getElementById('modal-source').textContent=source;
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal(){document.getElementById('modal').classList.remove('open');}
+document.getElementById('modal').addEventListener('click',e=>{if(e.target===document.getElementById('modal'))closeModal();});
+function copyCurrentContent(){
+  const t=document.getElementById('current-arabic').textContent+'\n\n'+document.getElementById('current-trans').textContent+'\n\n— '+document.getElementById('current-source').textContent;
+  navigator.clipboard.writeText(t).then(()=>alert('✅ Copié !')).catch(()=>alert('Copie manuelle nécessaire.'));
+}
+function copyModalContent(){
+  const t=document.getElementById('modal-arabic').textContent+'\n\n'+document.getElementById('modal-trans').textContent+'\n\n— '+document.getElementById('modal-source').textContent;
+  navigator.clipboard.writeText(t).then(()=>alert('✅ Copié !')).catch(()=>alert('Copie manuelle nécessaire.'));
+}
+
+// ════════════════════════════════════════════
+//  SERVICE WORKER
+// ════════════════════════════════════════════
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('/sw.js').then(reg=>{
+      console.log('SW enregistré :', reg.scope);
+    }).catch(err=>console.warn('SW échec :', err));
+  });
+}
+
+// ════════════════════════════════════════════
+//  INIT
+// ════════════════════════════════════════════
+(async function init(){
+  loadState();
+  updateCurrentCard();
+  buildTimeline();
+  buildGrid('grid-matin',INVOC_MATIN);
+  buildGrid('grid-soir',INVOC_SOIR);
+  buildGrid('grid-soutien',INVOC_SOUTIEN);
+  buildGrid('grid-ayat',AYAT);
+  buildGrid('grid-sourates',SOURATES);
+  buildActions();
+  buildSettings();
+  buildTasbihPhases();
+  updateNextReminder();
+  await fetchPrayerTimes();
+  if('Notification' in window){
+    const perm=Notification.permission;
+    updatePermBanner(perm);
+    if(perm==='granted'){scheduleAllNotifications();schedulePrayerNotifications();}
+  }
+  setInterval(()=>{updateCurrentCard();buildTimeline();updateNextReminder();renderPrayerStrip();},60000);
+  // Rafraîchir les horaires chaque jour à minuit
+  const now=new Date(),msToMidnight=(new Date(now.getFullYear(),now.getMonth(),now.getDate()+1)-now);
+  setTimeout(()=>{fetchPrayerTimes();setInterval(fetchPrayerTimes,86400000);},msToMidnight);
+})();
+</script>
+</body>
+</html>
