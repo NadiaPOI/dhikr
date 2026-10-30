@@ -1,0 +1,61 @@
+name: Horaires Mawaqit
+on:
+  schedule:
+    - cron: "30 3 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  maj:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Récupérer les horaires de la mosquée
+        run: |
+          python3 - <<'PY'
+          import json, os, re, sys, datetime, urllib.request
+          URLS=["https://mawaqit.net/fr/ascmi-moulineaux","https://mawaqit.net/en/ascmi-moulineaux","https://mawaqit.net/fr/m/ascmi-moulineaux"]
+          def get(u):
+              if os.environ.get("MQ_HTML"): return open(os.environ["MQ_HTML"],encoding="utf-8").read()
+              r=urllib.request.Request(u,headers={"User-Agent":"Mozilla/5.0 (compatible; horaires-bot)"})
+              return urllib.request.urlopen(r,timeout=30).read().decode("utf-8")
+          conf=None
+          for u in URLS:
+              try:
+                  h=get(u); i=h.index("confData"); j=h.index("{",i)
+                  conf,_=json.JSONDecoder().raw_decode(h[j:])
+                  if "calendar" in conf: break
+              except Exception as e: print("échec",u,e)
+          if not conf or "calendar" not in conf: sys.exit("confData introuvable : la structure de Mawaqit a peut-être changé")
+          cal=conf["calendar"]; ic=conf.get("iqamaCalendar") or []
+          def mn(x): h,m=x.split(":"); return int(h)*60+int(m)
+          def fm(v): v%=1440; return "%02d:%02d"%(v//60,v%60)
+          def row(c,d):
+              try: return c[d.month-1][str(d.day)]
+              except Exception: return None
+          def off(s):
+              s=str(s).strip(); return int(s[1:]) if re.fullmatch(r"\+\d+",s) else 0
+          today=datetime.date.today(); sh=0; r0=row(cal,today); t5=conf.get("times")
+          if r0 and t5 and len(t5)==5:
+              ds={mn(t5[k])-mn(r0[[0,2,3,4,5][k]]) for k in range(5)}
+              if len(ds)==1 and list(ds)[0] in (-60,60): sh=ds.pop()
+              elif ds!={0}: print("Attention : écart inattendu entre calendrier et horaires du jour",ds)
+          days={}
+          for n in range(60):
+              d=today+datetime.timedelta(n); r=row(cal,d)
+              if not r or len(r)<6: continue
+              ir=row(ic,d) or []
+              i6=[0]*6
+              for k,p in enumerate([0,2,3,4,5]):
+                  if k<len(ir): i6[p]=off(ir[k])
+              days[d.isoformat()]={"t":[fm(mn(x)+sh) for x in r[:6]],"i":i6}
+          if not days: sys.exit("calendrier vide")
+          json.dump({"mosque":"CMI Issy-les-Moulineaux","source":"Mawaqit","maj":datetime.datetime.utcnow().isoformat()+"Z","decalage_min":sh,"jumua":[x for x in (conf.get("jumua"),conf.get("jumua2")) if x],"days":days},open("horaires.json","w",encoding="utf-8"),ensure_ascii=False,separators=(",",":"))
+          print(len(days),"jours écrits ; décalage",sh)
+          PY
+      - name: Enregistrer
+        run: |
+          git config user.name "horaires-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add horaires.json
+          git diff --cached --quiet || (git commit -m "Horaires Mawaqit" && git push)
