@@ -167,7 +167,7 @@ a.lnk{text-decoration:none}
 .obc{display:block;width:100%;text-align:left;background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:14px 16px;margin:10px 0}.obc b{display:block;font:600 16px Lora,serif}.obc small{color:var(--mut)}
 .obc.on{border-color:var(--acc);background:var(--accbg)}
 .obl{font-size:16px;line-height:1.7;padding-left:22px}
-</style></head><body><main id="app"></main><nav id="nv"></nav><script>
+.nm.lr{border-color:color-mix(in srgb,var(--acc) 45%,var(--line));background:linear-gradient(var(--card),color-mix(in srgb,var(--accbg) 60%,var(--card)))}.nm.lr small{color:var(--acc)}.nmn{display:inline-block;font-size:12px;font-weight:600;color:var(--gold);letter-spacing:.04em}</style></head><body><main id="app"></main><nav id="nv"></nav><script>
 var D=[
 {id:"fatiha",c:"s",t:"Al-Fātiḥa",n:1,v:[
 ["بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ","Bismillāhi r-raḥmāni r-raḥīm","Au nom d’Allah, le Tout Miséricordieux, le Très Miséricordieux."],
@@ -352,7 +352,120 @@ var EV=[[0,"Prière du Fajr","Il est l’heure de prier.",0],[2,"Prière du Dhuh
 function notify(t,b){try{navigator.serviceWorker.ready.then(function(r){r.showNotification(t,{body:b,icon:"icon-192.png",tag:t})})}catch(e){}}
 function sched(){TM.forEach(clearTimeout);TM=[];if(!S.rem||!window.Notification||Notification.permission!=="granted")return;var now=Date.now();[0,1].forEach(function(o){var t=P(new Date(now+o*864e5));EV.forEach(function(e){var at=t[e[0]][1].getTime()+e[3];if(at>now)TM.push(setTimeout(function(){notify(e[1],e[2])},at-now))})})}
 function rem(){if(S.rem){S.rem=false;save();sched();render();return}if(!window.Notification){alert("Les notifications ne sont pas disponibles ici. Sur iPhone, installe d’abord l’appli sur l’écran d’accueil.");return}Notification.requestPermission().then(function(p){S.rem=p==="granted";save();sched();render()})}
-function namesHtml(){return '<h1>Les 99 noms d’Allah</h1><p class="sub">Touche un nom pour l’écouter, puis répète-le à voix haute.</p><div class="g">'+N.map(function(s,i){var p=s.split("|");return '<button class="nm" onclick="say(\''+p[0]+'\')"><small>'+(i+1)+'</small><div class="a">'+p[0]+'</div>'+(S.tr?'<div class="t">'+p[1]+'</div>':'')+(S.fr?'<div class="f">'+p[2]+'</div>':'')+'</button>'}).join("")+'</div>'}
+
+var NI=[
+[1,3,3,0,"Sa miséricorde embrasse toute chose. Commence chaque action par Son nom : « Bismillâh ar-Raḥmân ar-Raḥîm »."],
+[2,163,163,0,"Sa miséricorde envers les croyants est durable. Demande-la pour toi et pour ceux que tu aimes."],
+[20,114,114,0,"Tout ce que tu possèdes Lui appartient. Ce qui t’inquiète est entre les mains du vrai Roi."],
+[62,1,1,0,"Il est pur de tout défaut. Purifie ton intention avant d’agir."],
+[59,23,23,0,"La paix vient de Lui. Après chaque prière, dis : « Allâhumma anta s-salâm wa minka s-salâm ».","Muslim 591"],
+[59,23,23,0,"Il donne la sécurité et confirme la vérité. Confie-Lui tes peurs."],
+[59,23,23,0,"Il veille sur toute chose. Rien de ta vie ne Lui échappe."],
+[3,6,6,0,"Sa puissance est sans limite. Cherche l’honneur dans l’obéissance à Allah, pas dans le regard des gens."],
+[59,23,23,0,"Son nom porte aussi l’idée de réparer ce qui est brisé. Confie-Lui ton cœur blessé."],
+[59,23,23,0,"La grandeur n’appartient qu’à Lui. L’humilité rapproche de Lui."],
+[59,24,24,0,"Il t’a créé avec soin. Regarde une chose de la création aujourd’hui et dis « Subḥân Allâh »."],
+[59,24,24,0,"Il fait exister ce qui n’était pas. Rien n’est trop difficile pour Lui."],
+[59,24,24,0,"Il t’a donné ta forme. Remercie-Le pour ton corps tel qu’il est."],
+[20,82,82,0,"Il pardonne encore et encore. Ne laisse jamais une faute t’éloigner de Lui."],
+[40,16,16,0,"Il domine toute chose. Aucune difficulté n’est plus forte que Lui."],
+[3,8,8,0,"Il donne sans compter et sans rien attendre en retour. Ose Lui demander beaucoup."],
+[51,58,58,0,"Fais ta part avec sérieux, puis laisse ton cœur se reposer : ta subsistance est entre Ses mains."],
+[34,26,26,0,"Il ouvre les portes fermées. Devant une impasse, demande-Lui une ouverture."],
+[2,32,32,0,"Il connaît ce que tu ne dis à personne. Tu peux tout Lui confier."],
+[2,245,245,1,"Il resserre parfois la subsistance ou le cœur, par sagesse. Patiente : cela ne dure pas."],
+[2,245,245,1,"Il élargit et met à l’aise. Après le resserrement vient l’ouverture."],
+[56,1,3,1,"Il abaisse les orgueilleux. Méfie-toi de l’arrogance, même discrète."],
+[3,55,55,0,"Il élève qui Il veut. L’humilité et la science élèvent auprès de Lui."],
+[3,26,26,1,"L’honneur vient de Lui. Ne le cherche pas en t’abaissant devant les gens."],
+[3,26,26,1,"Il humilie qui Il veut, avec justice. Demande-Lui de t’en préserver."],
+[42,11,11,0,"Il entend chaque invocation, même chuchotée. Parle-Lui."],
+[42,11,11,0,"Il voit tout, même ce que personne ne remarque. Tes efforts discrets ne sont pas perdus."],
+[6,114,114,0,"Il est le juge ultime. Quand on te fait du tort, remets ton affaire à Lui."],
+[6,115,115,1,"Il ne commet aucune injustice. Sois juste, même envers toi-même."],
+[67,14,14,0,"Ses bienfaits passent souvent par des chemins discrets. Lequel as-tu reçu cette semaine ?"],
+[6,18,18,0,"Il connaît le fond des choses. Ce que tu vis n’est pas ignoré."],
+[2,225,225,0,"Il est patient avec nous et ne se hâte pas de punir. Sois patient avec les autres."],
+[2,255,255,0,"Il est immense. Dans l’inclinaison, dis « Subḥâna rabbiya l-ʿaẓîm » en y pensant vraiment."],
+[15,49,49,0,"Il couvre les fautes et les pardonne. Demande pardon sans honte."],
+[35,34,34,0,"Il récompense largement le peu que tu fais. Aucun petit effort n’est perdu."],
+[4,34,34,0,"Il est au-dessus de tout. Penser à Lui remet les soucis d’ici-bas à leur juste taille."],
+[13,9,9,0,"Il est plus grand que tout. Chaque « Allâhu akbar » remet les choses à leur place."],
+[11,57,57,0,"Il préserve et protège. Récite le verset du Trône avant de dormir : un gardien d’Allah veille sur toi.","Bukhârî 2311"],
+[4,85,85,0,"Il nourrit les corps et les cœurs. Nourris aussi ton âme chaque jour."],
+[4,6,6,0,"Il suffit à celui qui s’en remet à Lui. Dis « Ḥasbiya Llâh » quand le cœur est lourd."],
+[55,78,78,1,"Majestueux, Il mérite le respect. Prie avec présence, comme devant un roi."],
+[82,6,6,0,"Il donne avant même qu’on demande. Sois généreux à ton tour."],
+[4,1,1,0,"Il observe chaque instant. Se savoir vu aide à bien agir, même seul."],
+[11,61,61,0,"Il répond à qui L’invoque. Invoque avec certitude."],
+[2,115,115,0,"Sa générosité et Sa science sont vastes. Ne rétrécis pas ce que tu Lui demandes."],
+[66,2,2,0,"Chacun de Ses décrets a une sagesse, même cachée. Fais-Lui confiance."],
+[11,90,90,0,"Il aime ceux qui reviennent vers Lui. Tu peux être aimé d’Allah, même après une faute."],
+[11,73,73,0,"Sa gloire est parfaite. Loue-Le par « Subḥân Allâh wa bi-ḥamdih »."],
+[22,7,7,1,"Il ressuscitera chacun. Vis aujourd’hui en pensant à ce jour-là."],
+[22,17,17,0,"Il est témoin de tout. Ce que tu fais en secret, Il le voit."],
+[22,6,6,0,"Il est la Vérité. Ce qui est vrai demeure, le faux disparaît."],
+[3,173,173,0,"Il est le meilleur garant. Après avoir fait ta part, remets-Lui le reste."],
+[22,40,40,0,"Sa force est sans faiblesse. Demande-Lui la force que tu n’as pas."],
+[51,58,58,0,"Il est inébranlable. Accroche-toi à Lui quand tout vacille."],
+[42,28,28,0,"Il est l’allié des croyants. Tu n’es jamais seul."],
+[31,26,26,0,"Il est digne de louange en toute situation. Dis « Al-ḥamdu lillâh », même dans l’épreuve."],
+[72,28,28,1,"Il compte toute chose, même tes plus petites bonnes actions."],
+[85,13,13,1,"Il a commencé la création. Chaque nouveau départ vient de Lui."],
+[85,13,13,1,"Il ramènera la création. Rien de ce qui compte ne se perd vraiment."],
+[30,50,50,0,"Il donne la vie, aux corps comme aux cœurs. Demande-Lui de raviver ta foi."],
+[57,2,2,1,"Il fixe le terme de chaque vie. Se souvenir de la mort aide à mieux vivre."],
+[25,58,58,0,"Il est le Vivant qui ne meurt pas. Confie-toi à Celui qui ne disparaîtra jamais."],
+[2,255,255,0,"Il subsiste par Lui-même et maintient tout. Invoque : « Yâ Ḥayyu yâ Qayyûm, bi-raḥmatika astaghîth ».","Tirmidhî 3524"],
+[93,6,6,1,"Il ne manque de rien, et rien ne Lui échappe. Il t’a trouvé dans ta difficulté."],
+[85,15,15,1,"Noble et généreux : Sa bonté dépasse ce qu’on imagine."],
+[38,65,65,0,"Il est Unique. Tourner son cœur vers Lui seul apaise la dispersion."],
+[112,1,1,0,"Il est l’Un, sans égal. Récite la sourate Al-Ikhlâṣ en pensant à ce nom."],
+[112,2,2,0,"Tout dépend de Lui, Il ne dépend de rien. C’est vers Lui que l’on se tourne en cas de besoin."],
+[6,65,65,0,"Il peut toute chose. Ne dis jamais d’une situation qu’elle est sans issue."],
+[54,55,55,0,"Sa puissance est totale. Ce qu’Il décide se réalise pleinement."],
+[0,0,0,0,"Il avance qui Il veut. Ce qui t’est destiné arrivera au bon moment.","Bukhârî 1120 : « Tu es Celui qui avance et Celui qui retarde »"],
+[0,0,0,0,"Il retarde par sagesse. Un retard n’est pas un refus.","Bukhârî 1120 : « Tu es Celui qui avance et Celui qui retarde »"],
+[57,3,3,0,"Il était avant toute chose. Rien ne Lui est antérieur."],
+[57,3,3,0,"Il restera après toute chose. Investis dans ce qui dure."],
+[57,3,3,0,"Ses signes sont partout. Ouvre les yeux sur la création."],
+[57,3,3,0,"Il est proche au-delà de ce qui se voit. Il connaît l’intérieur des cœurs."],
+[13,11,11,0,"Il gouverne toute chose. Aucune affaire ne Lui échappe."],
+[13,9,9,0,"Il est au-dessus de tout ce qu’on peut imaginer."],
+[52,28,28,0,"Il est bienfaisant. La bonté envers tes parents fait partie de ce qu’Il aime."],
+[110,3,3,0,"Il revient sans cesse vers celui qui revient vers Lui. Ta porte de retour reste ouverte."],
+[3,4,4,1,"Aucune injustice ne reste sans réponse auprès de Lui."],
+[4,99,99,0,"Il efface les fautes. Pour la nuit du Destin, le Prophète ﷺ a enseigné : « Allâhumma innaka ʿafuwwun tuḥibbu l-ʿafwa faʿfu ʿannî ».","Tirmidhî 3513"],
+[2,143,143,0,"Sa compassion est pleine de tendresse. Il ne t’impose rien au-delà de tes forces."],
+[3,26,26,0,"Il donne le pouvoir et le reprend. Ne t’attache pas à ce qui passe."],
+[55,27,27,0,"Majesté et générosité. Le Prophète ﷺ a recommandé de répéter souvent « Yâ Dhâ l-Jalâli wa l-Ikrâm ».","Tirmidhî 3525"],
+[3,18,18,1,"Il est parfaitement équitable. Sois juste dans tes paroles et tes jugements."],
+[3,9,9,0,"Il rassemblera les gens. Demande-Lui de te réunir au Paradis avec ceux que tu aimes."],
+[35,15,15,0,"Il n’a besoin de rien ; c’est nous qui avons besoin de Lui."],
+[93,8,8,1,"Il enrichit qui Il veut. « La vraie richesse est la richesse de l’âme. »","Bukhârî 6446"],
+[35,2,2,1,"Ce qu’Il retient, nul ne peut le donner. Parfois, ce qui t’est refusé te protège."],
+[10,107,107,1,"Le mal ne touche que par Sa permission, et Lui seul peut l’écarter."],
+[48,11,11,1,"Tout bien vient de Lui. Cherche auprès de Lui ce qui t’est utile."],
+[24,35,35,0,"Il est la lumière des cieux et de la terre. Demande-Lui d’éclairer ton cœur."],
+[25,31,31,0,"Il guide. Chaque jour, dans la Fâtiḥa, tu Lui demandes le droit chemin."],
+[2,117,117,0,"Il crée sans modèle. Contemple la beauté de Sa création."],
+[55,26,27,1,"Tout disparaît, Lui demeure. Attache ton cœur à ce qui reste."],
+[21,89,89,0,"Il hérite de tout. Ce que tu donnes pour Lui, tu le gardes vraiment."],
+[18,10,10,1,"Il guide vers la droiture. Invoque comme les gens de la Caverne : « Notre Seigneur, assure-nous la droiture dans notre affaire »."],
+[0,0,0,0,"« Nul n’est plus patient qu’Allah face à ce qu’Il entend de blessant. » Sois patient à ton tour.","Bukhârî 6099"]];
+var nmi=null;
+function nlT(i){S.nl=S.nl||{};S.nl[i]=!S.nl[i];save();if(S.nl[i])cheer();render()}
+function nmGo(d){nmi=Math.max(0,Math.min(98,nmi+d));render();window.scrollTo(0,0)}
+function nameHtml(){var i=nmi,p=N[i].split("|"),d=NI[i],h=bk("Les 99 noms");
+h+='<div class="phead"><span class="nmn">'+(i+1)+' sur 99</span><div class="par">'+p[0]+'</div><h1>'+p[1]+'</h1><p class="sub" style="margin-top:2px">'+p[2]+'</p>'+favBtn("n:"+i)+'</div>';
+h+='<button class="btn o" onclick="say(\''+p[0]+'\')">▶ Écouter le nom</button>';
+h+='<h2>À méditer</h2><div class="card gold"><p class="hq" style="margin:0">'+d[4]+'</p>'+(d[5]?'<div class="src">'+d[5]+'</div>':'')+'</div>';
+if(d[0])h+='<h2>'+(d[3]?'Le sens de ce nom dans le Coran':'Ce nom dans le Coran')+'</h2>'+vcard([d[0],d[1],d[2]])+(d[3]?'<p class="sub" style="font-size:13px;margin:-2px 2px 0">Ce nom ne figure pas tel quel dans le Coran : ce verset en exprime le sens.</p>':'');
+else h+='<h2>Dans la Sunna</h2><div class="card"><p style="margin:0">Ce nom ne figure pas tel quel dans le Coran : il vient des paroles du Prophète ﷺ (voir la source ci-dessus).</p></div>';
+h+='<button class="btn" style="margin-top:18px" onclick="nlT('+i+')">'+(S.nl&&S.nl[i]?'Je l’ai appris ✓':'Marquer comme appris')+'</button>';
+return h+'<div class="pn">'+(i>0?'<button class="btn o" onclick="nmGo(-1)">‹ '+N[i-1].split("|")[1]+'</button>':'')+(i<98?'<button class="btn o" onclick="nmGo(1)">'+N[i+1].split("|")[1]+' ›</button>':'')+'</div>'}
+
+function namesHtml(){return '<h1>Les 99 noms d’Allah</h1><p class="sub">Touche un nom pour découvrir son sens, un verset et une piste de réflexion.</p>'+(function(){var L=Object.keys(S.nl||{}).filter(function(k){return S.nl[k]}).length;return '<div class="card"><span class="big">'+L+'</span> / 99 appris<div class="bar"><i style="width:'+Math.round(L/99*100)+'%"></i></div></div>'})()+'<div class="g">'+N.map(function(s,i){var p=s.split("|"),lr=S.nl&&S.nl[i];return '<button class="nm'+(lr?' lr':'')+'" onclick="nav({tab:2,nm:'+i+'})"><small>'+(i+1)+(lr?' · appris ✓':'')+'</small><div class="a">'+p[0]+'</div>'+(S.tr?'<div class="t">'+p[1]+'</div>':'')+(S.fr?'<div class="f">'+p[2]+'</div>':'')+'</button>'}).join("")+'</div><p class="sub" style="font-size:13px;margin-top:16px">Liste rapportée par at-Tirmidhî (3507), la plus connue. Certains de ces noms sont tirés du sens des versets plutôt que de leur texte exact ; chaque fiche le précise.</p>'}
 var QN="Al-Fâtiḥa|L’Ouverture\nAl-Baqara|La Vache\nÂl ʿImrân|La Famille d’Imrân\nAn-Nisâʾ|Les Femmes\nAl-Mâʾida|La Table servie\nAl-Anʿâm|Les Bestiaux\nAl-Aʿrâf|Les Murailles\nAl-Anfâl|Le Butin\nAt-Tawba|Le Repentir\nYûnus|Jonas\nHûd|Hûd\nYûsuf|Joseph\nAr-Raʿd|Le Tonnerre\nIbrâhîm|Abraham\nAl-Ḥijr|Al-Ḥijr\nAn-Naḥl|Les Abeilles\nAl-Isrâʾ|Le Voyage nocturne\nAl-Kahf|La Caverne\nMaryam|Marie\nṬâ-Hâ|Ṭâ-Hâ\nAl-Anbiyâʾ|Les Prophètes\nAl-Ḥajj|Le Pèlerinage\nAl-Muʾminûn|Les Croyants\nAn-Nûr|La Lumière\nAl-Furqân|Le Discernement\nAsh-Shuʿarâʾ|Les Poètes\nAn-Naml|Les Fourmis\nAl-Qaṣaṣ|Le Récit\nAl-ʿAnkabût|L’Araignée\nAr-Rûm|Les Romains\nLuqmân|Luqmân\nAs-Sajda|La Prosternation\nAl-Aḥzâb|Les Coalisés\nSabaʾ|Saba\nFâṭir|Le Créateur\nYâ-Sîn|Yâ-Sîn\nAṣ-Ṣâffât|Les Rangés\nṢâd|Ṣâd\nAz-Zumar|Les Groupes\nGhâfir|Le Pardonneur\nFuṣṣilat|Les Versets détaillés\nAsh-Shûrâ|La Consultation\nAz-Zukhruf|L’Ornement\nAd-Dukhân|La Fumée\nAl-Jâthiya|L’Agenouillée\nAl-Aḥqâf|Al-Aḥqâf\nMuḥammad|Muḥammad\nAl-Fatḥ|La Victoire éclatante\nAl-Ḥujurât|Les Appartements\nQâf|Qâf\nAdh-Dhâriyât|Qui éparpillent\nAṭ-Ṭûr|Le Mont\nAn-Najm|L’Étoile\nAl-Qamar|La Lune\nAr-Raḥmân|Le Tout Miséricordieux\nAl-Wâqiʿa|L’Événement\nAl-Ḥadîd|Le Fer\nAl-Mujâdala|La Discussion\nAl-Ḥashr|L’Exode\nAl-Mumtaḥana|L’Éprouvée\nAṣ-Ṣaff|Le Rang\nAl-Jumuʿa|Le Vendredi\nAl-Munâfiqûn|Les Hypocrites\nAt-Taghâbun|La Grande Perte\nAṭ-Ṭalâq|Le Divorce\nAt-Taḥrîm|L’Interdiction\nAl-Mulk|La Royauté\nAl-Qalam|La Plume\nAl-Ḥâqqa|Celle qui montre la vérité\nAl-Maʿârij|Les Voies d’ascension\nNûḥ|Noé\nAl-Jinn|Les Djinns\nAl-Muzzammil|L’Enveloppé\nAl-Muddaththir|Le Revêtu d’un manteau\nAl-Qiyâma|La Résurrection\nAl-Insân|L’Homme\nAl-Mursalât|Les Envoyés\nAn-Nabaʾ|La Nouvelle\nAn-Nâziʿât|Ceux qui arrachent\nʿAbasa|Il s’est renfrogné\nAt-Takwîr|L’Obscurcissement\nAl-Infiṭâr|La Rupture\nAl-Muṭaffifîn|Les Fraudeurs\nAl-Inshiqâq|La Déchirure\nAl-Burûj|Les Constellations\nAṭ-Ṭâriq|L’Astre nocturne\nAl-Aʿlâ|Le Très-Haut\nAl-Ghâshiya|L’Enveloppante\nAl-Fajr|L’Aube\nAl-Balad|La Cité\nAsh-Shams|Le Soleil\nAl-Layl|La Nuit\nAḍ-Ḍuḥâ|Le Jour montant\nAsh-Sharḥ|La Dilatation\nAt-Tîn|Le Figuier\nAl-ʿAlaq|L’Adhérence\nAl-Qadr|La Destinée\nAl-Bayyina|La Preuve\nAz-Zalzala|La Secousse\nAl-ʿÂdiyât|Les Coursiers\nAl-Qâriʿa|Le Fracas\nAt-Takâthur|La Course aux richesses\nAl-ʿAṣr|Le Temps\nAl-Humaza|Les Calomniateurs\nAl-Fîl|L’Éléphant\nQuraysh|Quraysh\nAl-Mâʿûn|L’Ustensile\nAl-Kawthar|L’Abondance\nAl-Kâfirûn|Les Infidèles\nAn-Naṣr|Le Secours\nAl-Masad|Les Fibres\nAl-Ikhlâṣ|Le Monothéisme pur\nAl-Falaq|L’Aube naissante\nAn-Nâs|Les Hommes".split("\n").map(function(s){return s.split("|")});
 
 var FOI=[
@@ -726,10 +839,10 @@ function vr(r){return r[0]+":"+r[1]+(r[2]>r[1]?"-"+r[2]:"")}
 function vcard(r){return '<div class="card vc"><div class="vq" data-r="'+r.join(":")+'"><p class="sub">Chargement du verset…</p></div><div class="vfoot"><span>Coran '+vr(r)+' · trad. Hamidullah</span><button onclick="qopen('+r.join(",")+')">Lire dans le Coran</button></div></div>'}
 function vfill(){Array.prototype.forEach.call(document.querySelectorAll(".vq[data-r]"),function(el){var p=el.getAttribute("data-r").split(":").map(Number),ls=[];for(var a=p[1];a<=p[2];a++)ls.push(loadV(p[0],a));el.removeAttribute("data-r");
 Promise.all(ls).then(function(v){el.innerHTML='<div class="qa">'+v.map(function(x){return esc(x.a)}).join(" ۝ ")+'</div><div class="f">'+v.map(function(x){return esc(x.f)}).join(" ")+'</div>'}).catch(function(){el.innerHTML='<p class="sub">Connexion nécessaire pour afficher ce verset.</p>'})})}
-function snap(){return{tab:tab,cur:cur,qs:qs,qh:qh,ft:ft,pp:pp,pe:pe,y:window.scrollY}}
-function clr(){cur=null;qs=null;qh=null;ft=null;pp=null;pe=0;qj=false}
-function nav(o){stopA();VS.push(snap());clr();if(o.tab!==undefined)tab=o.tab;cur=o.cur||null;qs=o.qs||null;qh=o.qh||null;ft=o.ft===undefined?null:o.ft;pp=o.pp||null;if(cur)cnt=0;if(qs){qj=!!qh;S.lr={s:qs,a:qh?qh[0]:1};save()}render();if(!qj)window.scrollTo(0,0)}
-function doBack(){stopA();var s=VS.pop();if(s){tab=s.tab;cur=s.cur;qs=s.qs;qh=s.qh;ft=s.ft;pp=s.pp;pe=s.pe;qj=false;render();window.scrollTo(0,s.y||0)}else{var sub=cur||qs||pp||ft!==null;clr();if(!sub)tab=[2,3,5,8,9,10,12].indexOf(tab)>=0?7:0;render();window.scrollTo(0,0)}}
+function snap(){return{tab:tab,cur:cur,qs:qs,qh:qh,ft:ft,pp:pp,pe:pe,nm:nmi,y:window.scrollY}}
+function clr(){cur=null;qs=null;qh=null;ft=null;pp=null;pe=0;qj=false;nmi=null}
+function nav(o){stopA();VS.push(snap());clr();if(o.tab!==undefined)tab=o.tab;cur=o.cur||null;qs=o.qs||null;qh=o.qh||null;ft=o.ft===undefined?null:o.ft;pp=o.pp||null;nmi=o.nm===undefined?null:o.nm;if(cur)cnt=0;if(qs){qj=!!qh;S.lr={s:qs,a:qh?qh[0]:1};save()}render();if(!qj)window.scrollTo(0,0)}
+function doBack(){stopA();var s=VS.pop();if(s){tab=s.tab;cur=s.cur;qs=s.qs;qh=s.qh;ft=s.ft;pp=s.pp;pe=s.pe;nmi=s.nm===undefined?null:s.nm;qj=false;render();window.scrollTo(0,s.y||0)}else{var sub=cur||qs||pp||ft!==null||nmi!==null;clr();if(!sub)tab=[2,3,5,8,9,10,12].indexOf(tab)>=0?7:0;render();window.scrollTo(0,0)}}
 function go(t){stopA();VS=[];clr();tab=t;render();window.scrollTo(0,0)}
 function openItem(id){nav({tab:tab,cur:id})}
 function qopen(s,a1,a2){nav({tab:6,qs:s,qh:a1?[a1,a2||a1]:null})}
@@ -784,7 +897,7 @@ function dhikrHtml(){return '<h1>Dhikr</h1><p class="sub">Touche le cercle à ch
 function tiles(){var l=S.lr&&QN[S.lr.s-1];return '<div class="tiles"><button onclick="'+(l?'qopen('+S.lr.s+','+S.lr.a+')':'go(6)')+'"><span class="ti" aria-hidden="true">قُرْآن</span><b>Coran</b><small>'+(l?'Reprendre '+QN[S.lr.s-1][0]:'Lire et écouter')+'</small></button><button onclick="nav({tab:8})"><span class="ti" aria-hidden="true">إِيمَان</span><b>Foi</b><small>Se rapprocher d’Allah</small></button><button onclick="nav({tab:9})"><span class="ti" aria-hidden="true">أَنْبِيَاء</span><b>Prophètes</b><small>Leurs histoires</small></button></div>'}
 function render(){document.documentElement.style.setProperty("--k",S.kid?Math.max(S.fs,1.15):S.fs);
 var nt={2:7,3:7,5:7,8:7,9:7,10:7,12:7,11:-1}[tab];if(nt===undefined)nt=tab;NL.forEach(function(n){var b=$("n"+n[0]);if(b)b.className=n[0]===nt?"on":""});
-var h,home=false;if(cur)h=detail();else if(qs)h=surahHtml();else if(pp)h=prophetHtml();else if(ft!==null)h=themeHtml();
+var h,home=false;if(cur)h=detail();else if(qs)h=surahHtml();else if(pp)h=prophetHtml();else if(ft!==null)h=themeHtml();else if(nmi!==null)h=nameHtml();
 else if(tab===0){h=homeHtml();home=true}else if(tab===6)h=quranHtml();else if(tab===1)h=learnHtml();else if(tab===4)h=dhikrHtml();else if(tab===7)h=hubHtml();else if(tab===8)h=foiHtml();else if(tab===9)h=prophetsHtml();else if(tab===10)h=bk("Découvrir")+favHtml();else if(tab===11)h=bk()+srchHtml();else if(tab===12)h=bk()+setHtml();
 else if(tab===5)h=bk("Découvrir")+calme();else if(tab===2)h=bk("Découvrir")+namesHtml();else h=bk("Découvrir")+progres();
 var a=$("app");a.className="";a.innerHTML=h;void a.offsetWidth;a.className="fade";if(home)hero();vfill();if(tab===11&&!cur&&!qs&&!pp&&ft===null){var gi=$("gs");if(gi&&!gq)gi.focus()}
@@ -823,6 +936,7 @@ var I=g("i:").map(item).filter(Boolean);if(I.length)h+='<h2>Invocations</h2>'+I.
 var Q=g("s:");if(Q.length)h+='<h2>Sourates</h2>'+Q.map(function(n){n=+n;return '<button class="row srow" onclick="qopen('+n+')"><span class="sn"><i>'+n+'</i></span><span class="rt"><b>'+QN[n-1][0]+'</b><small>'+QN[n-1][1]+'</small></span></button>'}).join("");
 var V=g("v:");if(V.length)h+='<h2>Versets</h2>'+V.map(function(x){var p=x.split(":").map(Number);return vcard([p[0],p[1],p[1]])}).join("");
 var P=g("p:").map(function(id){return PR.filter(function(x){return x.id===id})[0]}).filter(Boolean);if(P.length)h+='<h2>Prophètes</h2><div class="pgrid">'+P.map(function(p){return '<button class="pcard" onclick="nav({tab:9,pp:\''+p.id+'\'})"><span class="ar">'+p.ar+'</span><b>'+p.n+'</b><small>'+p.tag+'</small></button>'}).join("")+'</div>';
+var NN=g("n:").map(Number);if(NN.length)h+='<h2>Noms d’Allah</h2><div class="g">'+NN.map(function(i){var p=N[i].split("|");return '<button class="nm" onclick="nav({tab:2,nm:'+i+'})"><small>'+(i+1)+'</small><div class="a">'+p[0]+'</div><div class="t">'+p[1]+'</div><div class="f">'+p[2]+'</div></button>'}).join("")+'</div>';
 var T=g("t:").map(Number);if(T.length)h+='<h2>Thèmes</h2>'+T.map(function(i){var t=FOI[i];return '<button class="row trow" onclick="nav({tab:8,ft:'+i+'})"><span class="tic" aria-hidden="true">'+t.ic+'</span><span class="rt"><b>'+t.t+'</b><small>'+t.d+'</small></span></button>'}).join("");
 return h+'<p class="sub" style="font-size:13px;margin-top:14px">Touche à nouveau l’étoile pour retirer un favori.</p>'}
 var RUB=[["Calme",5,"stress angoisse anxiete tristesse respiration apaiser"],["Dhikr",4,"tasbih compteur chapelet"],["Mes progrès",3,"rappels notifications regularite"],["Réglages",12,"theme sombre clair enfant prenom mosquee taille texte"],["Mes favoris",10,"etoile favoris"],["Les 99 noms",2,"noms asma"],["Grandir dans la foi",8,"foi priere repentir gratitude"],["Les prophètes",9,"prophetes histoires"]];
@@ -832,7 +946,7 @@ f("Invocations",D.filter(function(x){return m(x.t+" "+(x.s||"")+" "+x.v.map(func
 var SR=[];for(var i=1;i<=114;i++)if(String(i)===gq.trim()||m(QN[i-1][0]+" "+QN[i-1][1]))SR.push('<button class="row srow" onclick="qopen('+i+')"><span class="sn"><i>'+i+'</i></span><span class="rt"><b>'+QN[i-1][0]+'</b><small>'+QN[i-1][1]+' · '+SU[i-1]+' versets</small></span></button>');f("Sourates",SR);
 f("Prophètes",PR.filter(function(p){return m(p.n+" "+p.fr+" "+p.tag+" "+p.ep.map(function(e){return e[0]+" "+e[1]}).join(" "))}).map(function(p){return '<button class="row trow" onclick="nav({tab:9,pp:\''+p.id+'\'})"><span class="tic" aria-hidden="true" style="font-size:20px">'+p.ar.split(" ")[0]+'</span><span class="rt"><b>'+p.n+'</b><small>'+p.fr+' · '+p.tag+'</small></span></button>'}));
 f("Grandir dans la foi",FOI.map(function(t,i){return[t,i]}).filter(function(a){return m(a[0].t+" "+a[0].d+" "+a[0].intro)}).map(function(a){return '<button class="row trow" onclick="nav({tab:8,ft:'+a[1]+'})"><span class="tic" aria-hidden="true">'+a[0].ic+'</span><span class="rt"><b>'+a[0].t+'</b><small>'+a[0].d+'</small></span></button>'}));
-f("Noms d’Allah",N.filter(function(s){var p=s.split("|");return m(p[1]+" "+p[2])}).map(function(s){var p=s.split("|");return '<button class="row" onclick="say(\''+p[0]+'\')"><span class="rt"><b>'+p[1]+'</b><small>'+p[2]+'</small></span><span class="ar">'+p[0]+'</span></button>'}));
+f("Noms d’Allah",N.map(function(s,i){return[s,i]}).filter(function(a){var p=a[0].split("|");return m(p[1]+" "+p[2])}).map(function(a){var p=a[0].split("|");return '<button class="row" onclick="nav({tab:2,nm:'+a[1]+'})"><span class="rt"><b>'+p[1]+'</b><small>'+p[2]+'</small></span><span class="ar">'+p[0]+'</span></button>'}));
 f("Rubriques",RUB.filter(function(r){return m(r[0]+" "+r[2])}).map(function(r){return '<button class="row" onclick="nav({tab:'+r[1]+'})"><span class="rt"><b>'+r[0]+'</b></span></button>'}));
 return n?h:'<p class="sub">Aucun résultat pour « '+esc(gq)+' ». Vérifie l’orthographe ou essaie un mot plus court.</p>'}
 function srchHtml(){return '<h1>Rechercher</h1><input id="gs" class="srch" type="search" autocomplete="off" aria-label="Rechercher dans l’appli" placeholder="Invocation, sourate, prophète, thème…" value="'+esc(gq)+'" oninput="gq=this.value;$(\'gr\').innerHTML=gres()"><div id="gr">'+gres()+'</div>'}
@@ -846,7 +960,7 @@ h+='<h2>Profil</h2><div class="card"><label class="ct" for="nm">Prénom</label><
 h+='<h2>Horaires de prière</h2><div class="card"><div class="chips"><button class="chip'+(S.hs!=="pos"?' on':'')+'" onclick="setHs(\'mq\')">Mosquée CMI d’Issy (Mawaqit)</button><button class="chip'+(S.hs==="pos"?' on':'')+'" onclick="setHs(\'pos\')">Calcul selon ma position</button></div><p class="sub" style="margin:4px 0 0;font-size:13px">'+(S.hs==="pos"?(S.loc.m?"Position enregistrée.":"Autorise la localisation pour un calcul précis."):"Horaires publiés par la mosquée, avec l’iqâma.")+'</p></div>';
 var ok=window.Notification&&Notification.permission==="granted"&&S.rem;h+='<h2>Rappels</h2><div class="card">Prières et invocations du matin et du soir.<button class="btn'+(ok?' o':'')+'" onclick="rem()">'+(ok?'Désactiver les rappels':'Activer les rappels')+'</button></div>';
 h+='<h2>Aide</h2><button class="btn o" onclick="obShow()">Revoir le guide de démarrage</button>';
-return h+'<p class="sub" style="font-size:13px;margin-top:18px">Coran : Al Quran Cloud · traduction de Muhammad Hamidullah · récitation de Mishary Rashid Alafasy · horaires : Mawaqit · vidéos : cheikh Nabil al-Awadi.<br>Version du 1er novembre 2026 (3)</p>'}
+return h+'<p class="sub" style="font-size:13px;margin-top:18px">Coran : Al Quran Cloud · traduction de Muhammad Hamidullah · récitation de Mishary Rashid Alafasy · horaires : Mawaqit · vidéos : cheikh Nabil al-Awadi.<br>Version du 1er novembre 2026 (4)</p>'}
 function standalone(){return (window.matchMedia&&matchMedia("(display-mode: standalone)").matches)||navigator.standalone===true}
 function ios(){return /iphone|ipad|ipod/i.test(navigator.userAgent)}
 window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();BIP=e});
@@ -868,7 +982,7 @@ var SKIP=false,LPOP=0;
 function onS(){return !!(history.state&&history.state.s)}
 function ensureS(){if(!onS())try{history.pushState({s:1},"")}catch(e){}}
 function dropS(){if(onS()){SKIP=true;try{history.back()}catch(e){SKIP=false}}}
-function canBack(){return VS.length||cur||qs||pp||ft!==null||tab!==0}
+function canBack(){return VS.length||cur||qs||pp||ft!==null||nmi!==null||tab!==0}
 function back(){doBack();if(!canBack())dropS()}
 var _nav=nav;nav=function(o){_nav(o);ensureS()};
 var _go=go;go=function(t){_go(t);if(t!==0)ensureS();else dropS()};
