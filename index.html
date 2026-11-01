@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Amiri+Quran&family=Lora:ital,wght@0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#f7f2e7;--card:#fffcf5;--ink:#1c2a26;--mut:#62766e;--acc:#0f5b4d;--accbg:#dff0e8;--line:#e8dfc9;--gold:#b98a2b;--goldbg:#f6ebd0;--cs:#0f5b4d;--cd:#1f6f8b;--ca:#c0841f;--ct:#b24a6b;--k:1;color-scheme:light}
-@media(prefers-color-scheme:dark){:root{--bg:#0b1613;--card:#12201c;--ink:#efe9d8;--mut:#9bb0a7;--acc:#6fd3b0;--accbg:#193a31;--line:#223630;--gold:#e3b95a;--goldbg:#2a2412;--cs:#6fd3b0;--cd:#7cc4e0;--ca:#f0b45a;--ct:#ef8aa8;color-scheme:dark}}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0b1613;--card:#12201c;--ink:#efe9d8;--mut:#9bb0a7;--acc:#6fd3b0;--accbg:#193a31;--line:#223630;--gold:#e3b95a;--goldbg:#2a2412;--cs:#6fd3b0;--cd:#7cc4e0;--ca:#f0b45a;--ct:#ef8aa8;color-scheme:dark}}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{margin:0;min-height:100vh;background:radial-gradient(900px 420px at 50% -120px,color-mix(in srgb,var(--gold) 16%,transparent),transparent),var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;padding-bottom:120px}
 main{max-width:560px;margin:0 auto;padding:calc(16px + env(safe-area-inset-top,0px)) 16px 24px}
@@ -130,6 +130,43 @@ body.mpon{padding-bottom:190px}body.mpon .toast{bottom:180px}
 .ytp{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:62px;height:62px;border-radius:50%;background:rgba(255,255,255,.92);color:#0f5b4d;display:grid;place-items:center;box-shadow:0 10px 24px -8px rgba(0,0,0,.5)}.ytp svg{width:28px;height:28px;margin-left:3px}
 .ytf{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:16px;background:#000}
 a.lnk{text-decoration:none}
+:root[data-theme=dark]{--bg:#0b1613;--card:#12201c;--ink:#efe9d8;--mut:#9bb0a7;--acc:#6fd3b0;--accbg:#193a31;--line:#223630;--gold:#e3b95a;--goldbg:#2a2412;--cs:#6fd3b0;--cd:#7cc4e0;--ca:#f0b45a;--ct:#ef8aa8;color-scheme:dark}
+.kid body{font-size:17.5px}.kid .sub{font-size:1.04em}
+.hrow{display:flex;align-items:center;gap:8px}.hrow h1{flex:1;min-width:0}
+.ibtn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);display:grid;place-items:center;flex:none}
+.ibtn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.today{margin-top:16px}.tdh{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.tdn{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;padding:4px}.tdn i{width:100%;height:100%;border-radius:50%;background:var(--card);display:grid;place-items:center;font:600 13px Inter,sans-serif;font-style:normal;color:var(--acc)}
+.prs{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:8px}
+.prb{border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:8px 2px;font-size:12px;font-weight:500;color:var(--mut)}
+.prb.on{background:var(--acc);border-color:var(--acc);color:var(--card)}
+.tdr{display:flex;align-items:center;gap:12px;padding:8px 0;border-top:1px dashed var(--line)}
+.ck{width:28px;height:28px;border-radius:50%;border:2px solid var(--line);background:none;flex:none;display:grid;place-items:center;font-size:14px;color:var(--card);font-weight:700}
+.ck.on{background:var(--acc);border-color:var(--acc)}
+.tdl{flex:1;min-width:0;text-align:left;border:0;background:none;padding:2px 0}.tdl b{display:block;font-weight:600}.tdl small{color:var(--mut);font-size:12px}
+.tdok{margin:10px 0 0;text-align:center;font:italic 15px Lora,serif;color:var(--acc)}
+.kstar{margin:-4px 0 10px;font-weight:600;color:var(--gold)}
+.fav{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--mut);display:grid;place-items:center;flex:none}
+.fav svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linejoin:round}
+.fav.on{color:var(--gold);border-color:color-mix(in srgb,var(--gold) 50%,var(--line))}.fav.on svg{fill:currentColor}
+.vh .fav{width:30px;height:30px;margin-left:auto;border:0;background:none}.vh .fav svg{width:17px;height:17px}
+.ttl{display:flex;align-items:flex-start;gap:10px}.ttl h1{flex:1;min-width:0}
+.phead .fav,.shead .fav{margin:0 auto 6px}
+.empty{text-align:center;padding:26px 18px}.emi svg{width:44px;height:44px;fill:none;stroke:var(--gold);stroke-width:1.4}
+.mus{font:calc(30px*var(--k))/2.35 "Amiri Quran",Amiri,serif;direction:rtl;text-align:justify;padding:20px 18px}
+.v.vs{display:inline;padding:2px 3px;border:0;border-radius:8px;transition:background .3s}
+.vnum{color:var(--gold);font-size:.78em;white-space:nowrap}
+.swt{display:flex;align-items:center;justify-content:space-between;width:100%;border:0;background:none;padding:14px 0 4px;font-weight:600;text-align:left}
+.swt i{width:46px;height:28px;border-radius:14px;background:var(--line);position:relative;transition:background .2s;flex:none}
+.swt i::after{content:"";position:absolute;left:3px;top:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.swt.on i{background:var(--acc)}.swt.on i::after{transform:translateX(18px)}
+.fzr{display:flex;align-items:center;gap:10px}.fzs{flex:1;text-align:center;padding:4px 0}
+#ob{position:fixed;inset:0;z-index:30;background:var(--bg);display:none;overflow-y:auto}#ob.on{display:block}
+.obi{max-width:520px;margin:0 auto;padding:calc(40px + env(safe-area-inset-top,0px)) 20px 40px}
+.obar{font:52px/1.5 Amiri,serif;color:var(--gold);text-align:center;margin-bottom:8px}.obi h1{text-align:center}.obi>.sub{text-align:center}
+.obc{display:block;width:100%;text-align:left;background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:14px 16px;margin:10px 0}.obc b{display:block;font:600 16px Lora,serif}.obc small{color:var(--mut)}
+.obc.on{border-color:var(--acc);background:var(--accbg)}
+.obl{font-size:16px;line-height:1.7;padding-left:22px}
 </style></head><body><main id="app"></main><nav id="nv"></nav><script>
 var D=[
 {id:"fatiha",c:"s",t:"Al-Fātiḥa",n:1,v:[
@@ -243,7 +280,7 @@ function hm(d){return d.toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-dig
 var $=function(i){return document.getElementById(i)};
 var MQ=null,PN=["Fajr","Lever du soleil","Dhuhr","Asr","Maghrib","Isha"];
 function iso(d){return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2)}
-function mq(d){var v=MQ&&MQ.days&&MQ.days[iso(d)];if(!v)return null;return v.t.map(function(x,i){var p=x.split(":");return [PN[i],new Date(d.getFullYear(),d.getMonth(),d.getDate(),+p[0],+p[1])]})}
+function mq(d){if(S.hs==="pos")return null;var v=MQ&&MQ.days&&MQ.days[iso(d)];if(!v)return null;return v.t.map(function(x,i){var p=x.split(":");return [PN[i],new Date(d.getFullYear(),d.getMonth(),d.getDate(),+p[0],+p[1])]})}
 function P(d){return mq(d)||Pcalc(d)}
 var SU=[7,286,200,176,120,165,206,75,129,109,123,111,43,52,99,128,111,110,98,135,112,78,118,64,77,227,93,88,69,60,34,30,73,54,45,83,182,88,75,85,54,53,89,59,37,35,38,29,18,45,60,49,62,55,78,96,29,22,24,13,14,11,11,18,12,12,30,52,52,44,28,28,20,56,40,31,50,40,46,42,29,19,36,25,22,17,19,26,30,20,15,21,11,8,8,19,5,8,8,11,11,8,3,9,5,4,7,3,6,3,5,4,5,6];
 var AQ={fatiha:[1,1,7],ikhlas:[112,1,4],falaq:[113,1,5],nas:[114,1,6],kawthar:[108,1,3],kursi:[2,255,255],duha:[93,1,11],sharh:[94,1,8],asr:[103,1,3],nasr:[110,1,3],kafirun:[109,1,6],baqara:[2,285,286],salat:[14,40,40]};
@@ -263,7 +300,7 @@ mark(PM?PB+PI:-1);AU.onended=function(){PI++;nxt(0)};AU.onerror=function(){nxt(s
 function vtx(){return item(cur).v.map(function(v){return v[0]})}
 function vplay(i){playQ(refs(cur),i,true,vtx(),true)}
 function playItem(){if(PQ.length){stopA();return}var r=refs(cur),t=vtx(),al=r&&r.length===t.length;if(r)playQ(r,0,false,al?t:[t.join(" ")],al);else say(t.join(" . "))}
-function detail(){var x=item(cur),r=refs(cur),al=!!(r&&r.length===x.v.length),L=r?"▶ Écouter la récitation":"▶ Écouter (voix de synthèse)",h=bk()+'<h1>'+x.t+'</h1>'+chips();
+function detail(){var x=item(cur),r=refs(cur),al=!!(r&&r.length===x.v.length),L=r?"▶ Écouter la récitation":"▶ Écouter (voix de synthèse)",h=bk()+'<div class="ttl"><h1>'+x.t+'</h1>'+favBtn("i:"+x.id)+'</div>'+chips();
 h+='<button class="btn" id="pb" data-l="'+L+'" onclick="playItem()">'+(PQ.length?'■ Arrêter':L)+'</button>'+(r?'<p class="sub" style="margin:-4px 0 6px;font-size:13px">Récitation de Mishary Rashid Alafasy</p>':'');
 h+='<div class="card q">';x.v.forEach(function(v,i){h+='<div class="v" data-i="'+i+'"><div class="vh"><span class="vn">'+(i+1)+'</span>'+(al?'<button class="hear" onclick="vplay('+i+')" aria-label="Écouter">▶</button>':'')+'</div><div class="a">'+v[0]+'</div>'+(S.tr?'<div class="t">'+v[1]+'</div>':'')+(S.fr?'<div class="f">'+v[2]+'</div>':'')+'</div>'});
 h+='</div>'+(x.s?'<p class="sub">'+x.s+'</p>':'');if(AQ[cur]){var q=AQ[cur];h+='<button class="lnk" onclick="qopen('+q.join(",")+')">Lire dans le Coran, avec la traduction</button>'}
@@ -284,7 +321,7 @@ function streak(){var d=new Date(),k=0;if(!nd(d))d.setDate(d.getDate()-1);while(
 function dzt(){return (S.dh||{})[ds(new Date())]||0}
 function per(){var n=new Date(),t=P(n),k=5;for(var i=0;i<6;i++)if(n>=t[i][1])k=i;return k}
 function evening(){var n=new Date(),t=P(n);return n>=t[4][1]||n<t[0][1]}
-function tap(){var x=item(cur);cnt=Math.min(cnt+1,x.n);try{navigator.vibrate(15)}catch(e){}if(cnt>=x.n){var k=ds(new Date());S.done[k]=S.done[k]||{};S.done[k][cur]=true;save()}render()}
+function tap(){var x=item(cur);cnt=Math.min(cnt+1,x.n);try{navigator.vibrate(15)}catch(e){}if(cnt>=x.n){var k=ds(new Date());S.done[k]=S.done[k]||{};if(!S.done[k][cur])cheer();S.done[k][cur]=true;save()}render()}
 function learn(){S.learned[cur]=!S.learned[cur];save();render()}
 function tog(k){S[k]=!S[k];save();render()}
 function fz(d){S.fs=Math.max(.8,Math.min(1.5,Math.round((S.fs+d)*10)/10));save();render()}
@@ -295,12 +332,12 @@ var m=Math.max(0,Math.round((nx[1]-n)/6e4)),c=(m>=60?Math.floor(m/60)+" h ":"")+
 try{hj=new Intl.DateTimeFormat("fr-FR-u-ca-islamic-umalqura",{day:"numeric",month:"long",year:"numeric"}).format(n)}catch(e){}
 el.innerHTML='<div class="hero" style="background-image:linear-gradient(160deg,'+g[0]+','+g[1]+')"><div class="pat"></div><div class="hd">'+n.toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"})+'<br>'+hj+'</div><div class="nxl">Prochaine prière dans '+c+'</div><div class="nx">'+nx[0]+'</div><div class="nxt">'+hm(nx[1])+iq(nx)+'</div><div class="pl">'+t.map(function(x){return '<div'+(x[0]===nx[0]?' class="on"':'')+'>'+x[0]+'<b>'+hm(x[1])+'</b></div>'}).join("")+'</div><div class="loc">'+src()+'</div></div>'}
 function geo(){try{navigator.geolocation.getCurrentPosition(function(p){S.loc={lat:p.coords.latitude,lng:p.coords.longitude,m:1};save();sched();hero()},function(){alert("Position indisponible : Issy-les-Moulineaux reste utilisée.")})}catch(e){}}
-function homeHtml(){var t=today(),tot=0,ok=0;R.forEach(function(r){r[1].forEach(function(i){tot++;if(t[i])ok++})});var k=per(),h='<h1>Salām</h1><p class="sub">Un petit moment, chaque jour. La régularité compte plus que la durée.</p><div id="hero"></div>'+tiles();
+function homeHtml(){var t=today(),tot=0,ok=0;R.forEach(function(r){r[1].forEach(function(i){tot++;if(t[i])ok++})});var k=per(),h='<div class="hrow"><h1>Salām'+(S.name?' '+esc(S.name):'')+'</h1><button class="ibtn" onclick="nav({tab:11})" aria-label="Rechercher">'+SVQ+'</button><button class="ibtn" onclick="nav({tab:12})" aria-label="Réglages">'+SVG2+'</button></div><p class="sub">Un petit moment, chaque jour. La régularité compte plus que la durée.</p><div id="hero"></div>'+todayHtml()+tiles();
 h+='<h2>Maintenant · '+NW[k][0]+'</h2>'+NW[k][1].map(item).filter(Boolean).map(row).join("");
 h+='<div class="card"><span class="big">'+streak()+'</span> jour'+(streak()>1?'s':'')+' de suite<div class="bar"><i style="width:'+Math.round(ok/tot*100)+'%"></i></div><span class="sub">'+ok+' sur '+tot+' invocations faites aujourd’hui</span></div>';
 [evening()?2:0,1].forEach(function(j){h+='<h2>'+(j===1?'Dans la journée':(j?'Le soir':'Le matin'))+'</h2>'+R[j][1].map(item).filter(Boolean).map(row).join("")});return h}
 function zhtml(){var z=Z[S.z||0],p=Math.round(zc/z[3]*100);return '<div class="za">'+z[0]+'</div>'+(S.tr?'<div style="text-align:center;color:var(--acc);font-style:italic">'+z[1]+'</div>':'')+(S.fr?'<div class="sub" style="text-align:center">'+z[2]+'</div>':'')+'<div class="ring" style="background:conic-gradient(var(--acc) '+p+'%,var(--line) 0)"><button class="zbtn" onclick="zt()"><span class="big">'+zc+'</span><small>sur '+z[3]+(zc>=z[3]?' · terminé ✓':'')+'</small></button></div><p class="sub" style="text-align:center">Aujourd’hui : '+dzt()+' récitations</p>'}
-function zt(){var z=Z[S.z||0];if(zc>=z[3]){zc=0}else{zc++;var k=ds(new Date());S.dh[k]=(S.dh[k]||0)+1;if(zc>=z[3]){S.done[k]=S.done[k]||{};S.done[k].dhikr=true;try{navigator.vibrate(200)}catch(e){}}else{try{navigator.vibrate(12)}catch(e){}}save()}$("zb").innerHTML=zhtml()}
+function zt(){var z=Z[S.z||0];if(zc>=z[3]){zc=0}else{zc++;var k=ds(new Date());S.dh[k]=(S.dh[k]||0)+1;if(zc>=z[3]){S.done[k]=S.done[k]||{};if(!S.done[k].dhikr)cheer();S.done[k].dhikr=true;try{navigator.vibrate(200)}catch(e){}}else{try{navigator.vibrate(12)}catch(e){}}save()}$("zb").innerHTML=zhtml()}
 function zr(){zc=0;$("zb").innerHTML=zhtml()}
 function zs(i){S.z=i;zc=0;save();render()}
 function calme(){var h='<h1>Calme</h1><p class="sub">Quand le cœur est lourd : une invocation, un geste, puis respire.</p><h2>Invocations</h2>';
@@ -659,7 +696,7 @@ CA.addEventListener("error",function(){if(!CP.on||!CA.src)return;if(CP.b){CP.b=f
 if(navigator.onLine!==false&&CP.si<2){cpLoad(CP.s,0,CP.si+1);return}var n=nextOff(CP.s+1);if(navigator.onLine===false&&n){toast("Sourate non téléchargée : passage à "+QN[n-1][0]);cpLoad(n,0,0)}else{CA.pause();toast(navigator.onLine===false?"Hors connexion : télécharge des sourates pour continuer l’écoute":"Cette sourate n’a pas pu être lue");mpUpd()}});
 var CPS=0;CA.addEventListener("timeupdate",function(){var i=$("mpi");if(i&&CA.duration)i.style.width=(CA.currentTime/CA.duration*100)+"%";if(CP.on&&Date.now()-CPS>8000){CPS=Date.now();S.cp={s:CP.s,t:Math.floor(CA.currentTime)};save()}});
 function nextOff(s){for(var k=s;k<=114;k++)if(DLS[k])return k;return 0}
-function cpStart(s,t){stopA();if(navigator.onLine===false&&!DLS[s]){var n=nextOff(s)||nextOff(1);if(!n){toast("Hors connexion : aucune sourate téléchargée");return}s=n;t=0}cpLoad(s,t||0,0)}
+function cpStart(s,t){stopA();markQ();if(navigator.onLine===false&&!DLS[s]){var n=nextOff(s)||nextOff(1);if(!n){toast("Hors connexion : aucune sourate téléchargée");return}s=n;t=0}cpLoad(s,t||0,0)}
 function cpTog(){if(!CP.on)return;if(CA.paused){stopA();var p=CA.play();if(p&&p.catch)p.catch(function(){})}else CA.pause()}
 function cpPause(){if(CP.on&&!CA.paused)CA.pause()}
 function cpNext(auto){var n=CP.rep&&auto?CP.s:CP.s+1;if(navigator.onLine===false){n=nextOff(n);if(!n){cpStop();toast("Fin des sourates téléchargées");return}}
@@ -692,14 +729,14 @@ Promise.all(ls).then(function(v){el.innerHTML='<div class="qa">'+v.map(function(
 function snap(){return{tab:tab,cur:cur,qs:qs,qh:qh,ft:ft,pp:pp,pe:pe,y:window.scrollY}}
 function clr(){cur=null;qs=null;qh=null;ft=null;pp=null;pe=0;qj=false}
 function nav(o){stopA();VS.push(snap());clr();if(o.tab!==undefined)tab=o.tab;cur=o.cur||null;qs=o.qs||null;qh=o.qh||null;ft=o.ft===undefined?null:o.ft;pp=o.pp||null;if(cur)cnt=0;if(qs){qj=!!qh;S.lr={s:qs,a:qh?qh[0]:1};save()}render();if(!qj)window.scrollTo(0,0)}
-function back(){stopA();var s=VS.pop();if(s){tab=s.tab;cur=s.cur;qs=s.qs;qh=s.qh;ft=s.ft;pp=s.pp;pe=s.pe;qj=false;render();window.scrollTo(0,s.y||0)}else{var sub=cur||qs||pp||ft!==null;clr();if(!sub&&[2,3,5,8,9].indexOf(tab)>=0)tab=7;render();window.scrollTo(0,0)}}
+function doBack(){stopA();var s=VS.pop();if(s){tab=s.tab;cur=s.cur;qs=s.qs;qh=s.qh;ft=s.ft;pp=s.pp;pe=s.pe;qj=false;render();window.scrollTo(0,s.y||0)}else{var sub=cur||qs||pp||ft!==null;clr();if(!sub)tab=[2,3,5,8,9,10,12].indexOf(tab)>=0?7:0;render();window.scrollTo(0,0)}}
 function go(t){stopA();VS=[];clr();tab=t;render();window.scrollTo(0,0)}
 function openItem(id){nav({tab:tab,cur:id})}
 function qopen(s,a1,a2){nav({tab:6,qs:s,qh:a1?[a1,a2||a1]:null})}
 function qgo(n){stopA();qs=n;qh=null;qj=false;S.lr={s:n,a:1};save();render();window.scrollTo(0,0)}
 function bm(a){S.lr={s:qs,a:a};save();toast("Marque-page placé au verset "+a)}
 function bk(l){return '<button class="back" onclick="back()">‹ '+(l||"Retour")+'</button>'}
-function chips(){return '<div class="chips"><button class="chip'+(S.tr?' on':'')+'" onclick="tog(\'tr\')">Phonétique</button><button class="chip'+(S.fr?' on':'')+'" onclick="tog(\'fr\')">Traduction</button><button class="chip" onclick="fz(-.1)" aria-label="Réduire le texte">A−</button><button class="chip" onclick="fz(.1)" aria-label="Agrandir le texte">A+</button></div>'}
+function chips(x){return '<div class="chips"><button class="chip'+(S.tr?' on':'')+'" onclick="tog(\'tr\')">Phonétique</button><button class="chip'+(S.fr?' on':'')+'" onclick="tog(\'fr\')">Traduction</button><button class="chip" onclick="fz(-.1)" aria-label="Réduire le texte">A−</button><button class="chip" onclick="fz(.1)" aria-label="Agrandir le texte">A+</button>'+(x||'')+'</div>'}
 function norm(s){return String(s).normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[ʿʾ’'\-\s]/g,"").toLowerCase()}
 function qlist(){var q=norm(qq),h="";for(var n=1;n<=114;n++){var m=QN[n-1];if(q&&String(n)!==qq.trim()&&norm(m[0]+m[1]).indexOf(q)<0)continue;
 h+='<button class="row srow" onclick="qopen('+n+')"><span class="sn"><i>'+n+'</i></span><span class="rt"><b>'+m[0]+'</b><small>'+m[1]+' · '+SU[n-1]+' versets'+(DLS[n]?'<span class="dlk">✓ hors ligne</span>':'')+'</small></span><span class="ar">'+(QM&&QM[n-1]?esc(QM[n-1]):"")+'</span></button>'}
@@ -709,15 +746,15 @@ if(S.lr&&QN[S.lr.s-1])h+='<button class="cont" onclick="qopen('+S.lr.s+','+S.lr.
 var c=S.cp&&QN[S.cp.s-1];h+='<div class="card"><b class="ct">Écoute continue</b><p class="sub" style="margin:2px 0 10px">Les sourates s’enchaînent, même écran verrouillé.</p><button class="btn" onclick="cpStart('+(c?S.cp.s+','+S.cp.t:'1,0')+')">'+(c?'▶ Reprendre : '+QN[S.cp.s-1][0]:'▶ Écouter depuis Al-Fâtiḥa')+'</button>'+(c?'<button class="lnk" onclick="cpStart(1,0)">Recommencer depuis Al-Fâtiḥa</button>':'')+'</div><div class="card" id="offc">'+offHtml()+'</div><h2>Les 114 sourates</h2>';
 return h+'<input class="srch" type="search" aria-label="Chercher une sourate" placeholder="Chercher une sourate : nom ou numéro" value="'+esc(qq)+'" oninput="qq=this.value;$(\'ql\').innerHTML=qlist()"><div id="ql">'+qlist()+'</div>'}
 function qplay(i,only){if(!only&&!PQ.length&&navigator.onLine===false&&DLS[qs]){cpStart(qs,0);return}if(!only&&PQ.length){stopA();return}var l=[];for(var a=1;a<=SU[qs-1];a++)l.push([qs,a]);playQ(l,i,only,QC[qs].map(function(x){return x.a}),true)}
-function surahHtml(){var n=qs,m=QN[n-1],v=QC[n],h=bk()+'<div class="shead"><span class="sn lg"><i>'+n+'</i></span><h1>'+m[0]+'</h1><p class="sub">'+m[1]+' · '+SU[n-1]+' versets'+(QM&&QM[n-1]?' · <span class="arn">'+esc(QM[n-1])+'</span>':'')+'</p></div>'+chips();
+function surahHtml(){var n=qs,m=QN[n-1],v=QC[n],h=bk()+'<div class="shead"><span class="sn lg"><i>'+n+'</i></span><h1>'+m[0]+'</h1><p class="sub">'+m[1]+' · '+SU[n-1]+' versets'+(QM&&QM[n-1]?' · <span class="arn">'+esc(QM[n-1])+'</span>':'')+'</p>'+favBtn("s:"+n)+'</div>'+chips('<button class="chip'+(S.rm?' on':'')+'" onclick="tog(\'rm\')">Mode lecture</button>');
 if(!v){if(!QE[n])loadS(n).then(function(){if(qs===n)render()}).catch(function(){QE[n]=1;if(qs===n)render()});
 return h+(QE[n]?'<div class="card"><b>La sourate n’a pas pu être chargée.</b><p class="sub">Vérifie ta connexion internet puis réessaie. Une sourate déjà ouverte reste disponible hors connexion.</p><button class="btn" onclick="QE['+n+']=0;render()">Réessayer</button></div>':'<div class="card q"><p class="sub" style="text-align:center;margin:20px 0">Chargement de la sourate…</p></div>')}
 h+='<button class="btn" id="pb" data-l="▶ Écouter verset par verset" onclick="qplay(0,false)">'+(PQ.length?'■ Arrêter':'▶ Écouter verset par verset')+'</button><div class="row2"><button class="btn o" onclick="cpStart('+n+',0)">En continu, sourate après sourate</button></div>'+dlBtn(n);
 if(n!==1&&n!==9)h+='<div class="bsm">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>';
-h+='<div class="card q">';v.forEach(function(x,i){var a=i+1,hl=qh&&a>=qh[0]&&a<=qh[1];h+='<div class="v'+(hl?' hl':'')+'" data-i="'+i+'"><div class="vh"><button class="vn" onclick="bm('+a+')" aria-label="Placer le marque-page au verset '+a+'">'+a+'</button><button class="hear" onclick="qplay('+i+',true)" aria-label="Écouter le verset '+a+'">▶</button></div><div class="a qa">'+esc(x.a)+'</div>'+(S.tr&&x.t?'<div class="t">'+esc(x.t)+'</div>':'')+(S.fr?'<div class="f">'+esc(x.f)+'</div>':'')+'</div>'});
-h+='</div><p class="sub" style="font-size:13px">Traduction du sens par Muhammad Hamidullah. Texte et traduction : Al Quran Cloud. Touche le numéro d’un verset pour y placer ton marque-page.</p><div class="pn">'+(n>1?'<button class="btn o" onclick="qgo('+(n-1)+')">‹ '+QN[n-2][0]+'</button>':'')+(n<114?'<button class="btn o" onclick="qgo('+(n+1)+')">'+QN[n][0]+' ›</button>':'')+'</div>';return h}
-function hubHtml(){var L=[[8,"Grandir dans la foi","Connaître Allah, prier avec le cœur, revenir vers Lui","إِيمَان","#0f5b4d","#2a8c78"],[9,"Les prophètes","Leurs histoires, leurs épreuves et leurs leçons","أَنْبِيَاء","#262b5e","#4a4590"],[5,"Calme","Invocations et gestes contre le stress","سَكِينَة","#0d5c63","#3a8f9c"],[2,"Les 99 noms","Écouter et apprendre les noms d’Allah","أَسْمَاء","#6e4420","#c08a2c"],[3,"Mes progrès","Régularité, rappels et notifications","تَقَدُّم","#4f2250","#9a4a6e"]];
-return '<h1>Découvrir</h1><p class="sub">Pour nourrir le cœur, un thème à la fois.</p>'+L.map(function(x){return '<button class="hub" style="--h1:'+x[4]+';--h2:'+x[5]+'" onclick="nav({tab:'+x[0]+'})"><span class="hubar" aria-hidden="true">'+x[3]+'</span><b>'+x[1]+'</b><small>'+x[2]+'</small></button>'}).join("")+'<p class="sub" style="text-align:center;font-size:12px;margin-top:18px">Version du 1er novembre 2026</p>'}
+markQ();if(S.rm){h+='<div class="card q mus">'+v.map(function(x,i){var a=i+1,hl=qh&&a>=qh[0]&&a<=qh[1];return '<span class="v vs'+(hl?' hl':'')+'" data-i="'+i+'">'+esc(x.a)+' <span class="vnum">﴿'+arn(a)+'﴾</span></span> '}).join("")+'</div>'}else{h+='<div class="card q">';v.forEach(function(x,i){var a=i+1,hl=qh&&a>=qh[0]&&a<=qh[1];h+='<div class="v'+(hl?' hl':'')+'" data-i="'+i+'"><div class="vh"><button class="vn" onclick="bm('+a+')" aria-label="Placer le marque-page au verset '+a+'">'+a+'</button><button class="hear" onclick="qplay('+i+',true)" aria-label="Écouter le verset '+a+'">▶</button>'+favBtn("v:"+n+":"+a)+'</div><div class="a qa">'+esc(x.a)+'</div>'+(S.tr&&x.t?'<div class="t">'+esc(x.t)+'</div>':'')+(S.fr?'<div class="f">'+esc(x.f)+'</div>':'')+'</div>'});
+h+='</div>'}h+='<p class="sub" style="font-size:13px">Traduction du sens par Muhammad Hamidullah. Texte et traduction : Al Quran Cloud. Touche le numéro d’un verset pour y placer ton marque-page.</p><div class="pn">'+(n>1?'<button class="btn o" onclick="qgo('+(n-1)+')">‹ '+QN[n-2][0]+'</button>':'')+(n<114?'<button class="btn o" onclick="qgo('+(n+1)+')">'+QN[n][0]+' ›</button>':'')+'</div>';return h}
+function hubHtml(){var L=[[8,"Grandir dans la foi","Connaître Allah, prier avec le cœur, revenir vers Lui","إِيمَان","#0f5b4d","#2a8c78"],[9,"Les prophètes","Leurs histoires, leurs épreuves et leurs leçons","أَنْبِيَاء","#262b5e","#4a4590"],[5,"Calme","Invocations et gestes contre le stress","سَكِينَة","#0d5c63","#3a8f9c"],[2,"Les 99 noms","Écouter et apprendre les noms d’Allah","أَسْمَاء","#6e4420","#c08a2c"],[10,"Mes favoris","Ce que tu as gardé de côté","مَحْفُوظ","#7a5a12","#c9a043"],[3,"Mes progrès","Régularité, rappels et notifications","تَقَدُّم","#4f2250","#9a4a6e"],[12,"Réglages","Thème, taille du texte, mode enfant, horaires","إِعْدَادَات","#33424a","#5d7480"]];
+return '<h1>Découvrir</h1><p class="sub">Pour nourrir le cœur, un thème à la fois.</p>'+L.map(function(x){return '<button class="hub" style="--h1:'+x[4]+';--h2:'+x[5]+'" onclick="nav({tab:'+x[0]+'})"><span class="hubar" aria-hidden="true">'+x[3]+'</span><b>'+x[1]+'</b><small>'+x[2]+'</small></button>'}).join("")}
 function foiHtml(){return bk("Découvrir")+'<h1>Grandir dans la foi</h1><p class="sub">Six chemins pour se rapprocher d’Allah. Choisis celui qui te parle aujourd’hui.</p>'+FOI.map(function(t,i){return '<button class="row trow" onclick="nav({tab:8,ft:'+i+'})"><span class="tic" aria-hidden="true">'+t.ic+'</span><span class="rt"><b>'+t.t+'</b><small>'+t.d+'</small></span></button>'}).join("")}
 function exo(k){S.ex=S.ex||{};S.ex[k]=!S.ex[k];save()}
 function blk(b,bi){var k=b.k;
@@ -730,11 +767,11 @@ if(k==="t")return '<div class="card"><ul class="li">'+b.i.map(function(x){return
 if(k==="l")return '<h2>'+b.t+'</h2>'+b.ids.map(item).filter(Boolean).map(row).join("");
 if(k==="x")return '<div class="card gold ex"><b class="ct">'+b.t+'</b>'+b.i.map(function(x,i){var key="f"+ft+"-"+bi+"-"+i;return '<label><input type="checkbox"'+(S.ex&&S.ex[key]?' checked':'')+' onchange="exo(\''+key+'\')"><span>'+x+'</span></label>'}).join("")+'</div>';
 if(k==="b")return '<button class="btn o" onclick="'+b.on+'">'+b.t+'</button>';return ""}
-function themeHtml(){var T=FOI[ft];return bk("Grandir dans la foi")+'<div class="thead"><span class="tic lg" aria-hidden="true">'+T.ic+'</span><h1>'+T.t+'</h1></div><p class="sub">'+T.intro+'</p>'+T.b.map(blk).join("")+(ft<FOI.length-1?'<button class="lnk" onclick="ft++;render();window.scrollTo(0,0)">Thème suivant : '+FOI[ft+1].t+'</button>':'')}
+function themeHtml(){var T=FOI[ft];return bk("Grandir dans la foi")+'<div class="thead"><span class="tic lg" aria-hidden="true">'+T.ic+'</span><div class="ttl"><h1>'+T.t+'</h1>'+favBtn("t:"+ft)+'</div></div><p class="sub">'+T.intro+'</p>'+T.b.map(blk).join("")+(ft<FOI.length-1?'<button class="lnk" onclick="ft++;render();window.scrollTo(0,0)">Thème suivant : '+FOI[ft+1].t+'</button>':'')}
 function prophetsHtml(){return bk("Découvrir")+'<h1>Les prophètes</h1><p class="sub">Leurs histoires racontées simplement, avec les passages du Coran et ce qu’elles nous enseignent.</p><div class="pgrid">'+PR.map(function(p){return '<button class="pcard" onclick="nav({tab:9,pp:\''+p.id+'\'})"><span class="ar">'+p.ar+'</span><b>'+p.n+'</b><small>'+p.fr+' · '+p.tag+'</small></button>'}).join("")+'</div><p class="sub" style="font-size:13px;margin-top:16px">Les vingt-cinq prophètes cités par leur nom dans le Coran, du premier au dernier.</p>'}
 function epHtml(p){var e=p.ep[pe];return '<div class="epn">Épisode '+(pe+1)+' sur '+p.ep.length+'</div><h3>'+e[0]+'</h3><p class="epx">'+e[1]+'</p>'+(e[2]?'<button class="lnk" onclick="qopen('+e[2].join(",")+')">Lire le passage '+vr(e[2])+'</button>':'')+'<div class="dots">'+p.ep.map(function(_,i){return '<i'+(i===pe?' class="on"':'')+'></i>'}).join("")+'</div><div class="pn"><button class="btn o" onclick="pgo(-1)"'+(pe?'':' disabled')+'>Précédent</button><button class="btn" onclick="pgo(1)"'+(pe<p.ep.length-1?'':' disabled')+'>Suivant</button></div>'}
 function pgo(d){var p=PR.filter(function(x){return x.id===pp})[0];pe=Math.max(0,Math.min(p.ep.length-1,pe+d));$("ep").innerHTML=epHtml(p)}
-function prophetHtml(){var p=PR.filter(function(x){return x.id===pp})[0],h=bk("Les prophètes")+'<div class="phead"><div class="par">'+p.ar+'</div><h1>'+p.n+'</h1><p class="sub" style="margin-top:2px">'+p.fr+' · '+p.tag+'</p></div>';
+function prophetHtml(){var p=PR.filter(function(x){return x.id===pp})[0],h=bk("Les prophètes")+'<div class="phead"><div class="par">'+p.ar+'</div><h1>'+p.n+'</h1>'+favBtn("p:"+p.id)+'<p class="sub" style="margin-top:2px">'+p.fr+' · '+p.tag+'</p></div>';
 h+='<h2>Découvrir son histoire</h2><div class="card" id="ep">'+epHtml(p)+'</div>';
 h+=vidHtml(p);h+='<h2>Les moments marquants</h2><div class="card"><ul class="tl">'+p.mo.map(function(m){return '<li>'+m+'</li>'}).join("")+'</ul></div>';
 h+='<h2>Ce que son histoire nous enseigne</h2>'+p.le.map(function(l){return '<div class="card"><b class="ct">'+l[0]+'</b><p style="margin:4px 0 0">'+l[1]+'</p></div>'}).join("");
@@ -745,15 +782,101 @@ var i=PR.indexOf(p);if(i<PR.length-1)h+='<button class="lnk" onclick="pp=\''+PR[
 function learnHtml(){var h='<h1>Invocations et sourates</h1><p class="sub">Commence par une seule, répète-la quelques jours, puis ajoute la suivante.</p><div class="chips">';[["all","Tout"],["s","Sourates"],["d","Invocations"],["a","Matin &amp; soir"],["t","Apaisement"]].forEach(function(f){h+='<button class="chip'+(filt===f[0]?' on':'')+'" onclick="setF(\''+f[0]+'\')">'+f[1]+'</button>'});return h+'</div>'+D.filter(function(x){return filt==="all"||x.c===filt}).map(row).join("")}
 function dhikrHtml(){return '<h1>Dhikr</h1><p class="sub">Touche le cercle à chaque récitation. Il se remplit jusqu’à l’objectif.</p><div class="chips">'+Z.map(function(z,i){return '<button class="chip'+((S.z||0)===i?' on':'')+'" onclick="zs('+i+')">'+z[1]+'</button>'}).join("")+'</div><div id="zb">'+zhtml()+'</div><button class="btn o" onclick="zr()">Remettre à zéro</button>'}
 function tiles(){var l=S.lr&&QN[S.lr.s-1];return '<div class="tiles"><button onclick="'+(l?'qopen('+S.lr.s+','+S.lr.a+')':'go(6)')+'"><span class="ti" aria-hidden="true">قُرْآن</span><b>Coran</b><small>'+(l?'Reprendre '+QN[S.lr.s-1][0]:'Lire et écouter')+'</small></button><button onclick="nav({tab:8})"><span class="ti" aria-hidden="true">إِيمَان</span><b>Foi</b><small>Se rapprocher d’Allah</small></button><button onclick="nav({tab:9})"><span class="ti" aria-hidden="true">أَنْبِيَاء</span><b>Prophètes</b><small>Leurs histoires</small></button></div>'}
-function render(){document.documentElement.style.setProperty("--k",S.fs);
-var nt={2:7,3:7,5:7,8:7,9:7}[tab];if(nt===undefined)nt=tab;NL.forEach(function(n){var b=$("n"+n[0]);if(b)b.className=n[0]===nt?"on":""});
+function render(){document.documentElement.style.setProperty("--k",S.kid?Math.max(S.fs,1.15):S.fs);
+var nt={2:7,3:7,5:7,8:7,9:7,10:7,12:7,11:-1}[tab];if(nt===undefined)nt=tab;NL.forEach(function(n){var b=$("n"+n[0]);if(b)b.className=n[0]===nt?"on":""});
 var h,home=false;if(cur)h=detail();else if(qs)h=surahHtml();else if(pp)h=prophetHtml();else if(ft!==null)h=themeHtml();
-else if(tab===0){h=homeHtml();home=true}else if(tab===6)h=quranHtml();else if(tab===1)h=learnHtml();else if(tab===4)h=dhikrHtml();else if(tab===7)h=hubHtml();else if(tab===8)h=foiHtml();else if(tab===9)h=prophetsHtml();
+else if(tab===0){h=homeHtml();home=true}else if(tab===6)h=quranHtml();else if(tab===1)h=learnHtml();else if(tab===4)h=dhikrHtml();else if(tab===7)h=hubHtml();else if(tab===8)h=foiHtml();else if(tab===9)h=prophetsHtml();else if(tab===10)h=bk("Découvrir")+favHtml();else if(tab===11)h=bk()+srchHtml();else if(tab===12)h=bk()+setHtml();
 else if(tab===5)h=bk("Découvrir")+calme();else if(tab===2)h=bk("Découvrir")+namesHtml();else h=bk("Découvrir")+progres();
-var a=$("app");a.className="";a.innerHTML=h;void a.offsetWidth;a.className="fade";if(home)hero();vfill();
+var a=$("app");a.className="";a.innerHTML=h;void a.offsetWidth;a.className="fade";if(home)hero();vfill();if(tab===11&&!cur&&!qs&&!pp&&ft===null){var gi=$("gs");if(gi&&!gq)gi.focus()}
 if(qs&&qj&&qh&&QC[qs]){qj=false;var e=document.querySelector('.v[data-i="'+(qh[0]-1)+'"]');if(e)window.scrollTo(0,e.getBoundingClientRect().top+window.scrollY-80)}}
 
-render();sched();fetch('horaires.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(j){if(j&&j.days){MQ=j;sched();render()}}).catch(function(){});setInterval(function(){if(tab===0&&!cur&&!qs&&!pp&&ft===null)hero()},30000);
+
+var gq="",OBI=0,BIP=null;
+S.fav=S.fav||{};S.td=S.td||{};S.pr=S.pr||{};S.qd=S.qd||{};
+var SVS='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>';
+var SVQ='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>';
+var SVG2='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>';
+function dk(){return ds(new Date())}
+function applyTheme(){var r=document.documentElement;if(S.th==="light"||S.th==="dark")r.setAttribute("data-theme",S.th);else r.removeAttribute("data-theme");r.classList.toggle("kid",!!S.kid);
+var dark=S.th==="dark"||(S.th!=="light"&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches),m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",dark?"#0b1613":"#f7f2e7")}
+function setTheme(t){S.th=t;save();applyTheme();render()}
+function cheer(){if(!S.kid)return;var M=["MashaAllah ! Une étoile de plus ⭐","Bravo ! ⭐","Continue comme ça ! ⭐","Qu’Allah te récompense ! ⭐"];toast(M[Math.floor(Math.random()*M.length)]);try{navigator.vibrate([30,40,30])}catch(e){}}
+function tasks(k){var d=S.done[k]||{},m=S.td[k]||{},p=S.pr[k]||[],np=p.filter(Boolean).length,nm=R[0][1].filter(function(i){return d[i]}).length,ns=R[2][1].filter(function(i){return d[i]}).length;
+return[{id:"pr",t:"Les cinq prières",ok:np===5,s:np+" sur 5"},{id:"m",t:"Invocations du matin",ok:!!m.m||nm===R[0][1].length,s:nm+" sur "+R[0][1].length,go:"todo(0)"},{id:"q",t:"Lire ou écouter le Coran",ok:!!m.q||!!S.qd[k],s:S.lr?"Reprendre "+QN[S.lr.s-1][0]:"Une sourate, même courte",go:S.lr?"qopen("+S.lr.s+","+S.lr.a+")":"go(6)"},{id:"z",t:"Un moment de dhikr",ok:!!m.z||!!d.dhikr,s:"Le compteur de tasbīḥ",go:"go(4)"},{id:"s",t:"Invocations du soir",ok:!!m.s||ns===R[2][1].length,s:ns+" sur "+R[2][1].length,go:"todo(2)"}]}
+function todo(j){var d=today(),n=R[j][1].filter(function(i){return !d[i]})[0];if(n)openItem(n);else nav({tab:1})}
+function stars(){var keys={};[S.done,S.td,S.pr,S.qd].forEach(function(o){Object.keys(o||{}).forEach(function(k){keys[k]=1})});var t=0;Object.keys(keys).forEach(function(k){t+=tasks(k).filter(function(x){return x.ok}).length});return t}
+function prTog(i){var k=dk(),p=S.pr[k]=S.pr[k]||[0,0,0,0,0];p[i]=p[i]?0:1;save();if(p[i])cheer();$("tdc").outerHTML=todayHtml()}
+function tdTog(id){if(id==="pr")return;var k=dk(),m=S.td[k]=S.td[k]||{},t=tasks(k).filter(function(x){return x.id===id})[0];if(t.ok&&!m[id]){toast("Déjà fait aujourd’hui ✓");return}m[id]=!m[id];save();if(m[id])cheer();$("tdc").outerHTML=todayHtml()}
+function todayHtml(){var T=tasks(dk()),n=T.filter(function(x){return x.ok}).length,p=S.pr[dk()]||[],P=["Fajr","Dhuhr","Asr","Maghrib","Isha"];
+var h='<div class="card today" id="tdc"><div class="tdh"><b class="ct" style="margin:0">Aujourd’hui</b><span class="tdn" style="background:conic-gradient(var(--acc) '+(n/5*100)+'%,var(--line) 0)"><i>'+n+'/5</i></span></div>';
+if(S.kid){var st=stars();h+='<p class="kstar">⭐ '+n+' aujourd’hui · '+st+' étoile'+(st>1?'s':'')+' en tout</p>'}
+h+='<div class="prs" role="group" aria-label="Prières faites aujourd’hui">'+P.map(function(x,i){return '<button class="prb'+(p[i]?' on':'')+'" onclick="prTog('+i+')" aria-pressed="'+!!p[i]+'">'+(p[i]?'✓ ':'')+x+'</button>'}).join("")+'</div>';
+T.slice(1).forEach(function(t){h+='<div class="tdr"><button class="ck'+(t.ok?' on':'')+'" onclick="tdTog(\''+t.id+'\')" aria-label="'+t.t+(t.ok?' : fait':' : à faire')+'">'+(t.ok?'✓':'')+'</button><button class="tdl" onclick="'+t.go+'"><b>'+t.t+'</b><small>'+t.s+'</small></button></div>'});
+return h+(n===5?'<p class="tdok">'+(S.kid?'Journée complète, MashaAllah ! 🌟':'Journée complète. Qu’Allah l’accepte.')+'</p>':'')+'</div>'}
+function markQ(){var k=dk();if(!S.qd[k]){S.qd[k]=1;save();cheer()}}
+function isFav(k){return !!S.fav[k]}
+function favBtn(k){var on=isFav(k);return '<button class="fav'+(on?' on':'')+'" onclick="fav(\''+k+'\',this)" aria-pressed="'+on+'" aria-label="Favori">'+SVS+'</button>'}
+function fav(k,el){if(S.fav[k])delete S.fav[k];else S.fav[k]=Date.now();save();var on=!!S.fav[k];if(el){el.classList.toggle("on",on);el.setAttribute("aria-pressed",on)}toast(on?"Ajouté à tes favoris":"Retiré de tes favoris")}
+function favHtml(){var K=Object.keys(S.fav).sort(function(a,b){return S.fav[b]-S.fav[a]}),g=function(p){return K.filter(function(k){return k.indexOf(p)===0}).map(function(k){return k.slice(p.length)})},h='<h1>Mes favoris</h1>';
+if(!K.length)return h+'<div class="card empty"><div class="emi">'+SVS+'</div><p>Touche l’étoile sur une invocation, une sourate, un verset, un prophète ou un thème pour le retrouver ici.</p><button class="btn o" onclick="go(1)">Parcourir les invocations</button></div>';
+var I=g("i:").map(item).filter(Boolean);if(I.length)h+='<h2>Invocations</h2>'+I.map(row).join("");
+var Q=g("s:");if(Q.length)h+='<h2>Sourates</h2>'+Q.map(function(n){n=+n;return '<button class="row srow" onclick="qopen('+n+')"><span class="sn"><i>'+n+'</i></span><span class="rt"><b>'+QN[n-1][0]+'</b><small>'+QN[n-1][1]+'</small></span></button>'}).join("");
+var V=g("v:");if(V.length)h+='<h2>Versets</h2>'+V.map(function(x){var p=x.split(":").map(Number);return vcard([p[0],p[1],p[1]])}).join("");
+var P=g("p:").map(function(id){return PR.filter(function(x){return x.id===id})[0]}).filter(Boolean);if(P.length)h+='<h2>Prophètes</h2><div class="pgrid">'+P.map(function(p){return '<button class="pcard" onclick="nav({tab:9,pp:\''+p.id+'\'})"><span class="ar">'+p.ar+'</span><b>'+p.n+'</b><small>'+p.tag+'</small></button>'}).join("")+'</div>';
+var T=g("t:").map(Number);if(T.length)h+='<h2>Thèmes</h2>'+T.map(function(i){var t=FOI[i];return '<button class="row trow" onclick="nav({tab:8,ft:'+i+'})"><span class="tic" aria-hidden="true">'+t.ic+'</span><span class="rt"><b>'+t.t+'</b><small>'+t.d+'</small></span></button>'}).join("");
+return h+'<p class="sub" style="font-size:13px;margin-top:14px">Touche à nouveau l’étoile pour retirer un favori.</p>'}
+var RUB=[["Calme",5,"stress angoisse anxiete tristesse respiration apaiser"],["Dhikr",4,"tasbih compteur chapelet"],["Mes progrès",3,"rappels notifications regularite"],["Réglages",12,"theme sombre clair enfant prenom mosquee taille texte"],["Mes favoris",10,"etoile favoris"],["Les 99 noms",2,"noms asma"],["Grandir dans la foi",8,"foi priere repentir gratitude"],["Les prophètes",9,"prophetes histoires"]];
+function gres(){var q=norm(gq);if(q.length<2)return '<p class="sub">Essaie par exemple :</p><div class="chips">'+["angoisse","sommeil","pardon","Yûsuf","Al-Kahf","gratitude","Mûsâ"].map(function(s){return '<button class="chip" onclick="gq=\''+s+'\';$(\'gs\').value=gq;$(\'gr\').innerHTML=gres()">'+s+'</button>'}).join("")+'</div>';
+var h="",n=0,f=function(t,a){a=a.slice(0,6);if(a.length){n+=a.length;h+='<h2>'+t+'</h2>'+a.join("")}},m=function(s){return norm(s).indexOf(q)>=0};
+f("Invocations",D.filter(function(x){return m(x.t+" "+(x.s||"")+" "+x.v.map(function(v){return v[1]+" "+v[2]}).join(" "))}).map(row));
+var SR=[];for(var i=1;i<=114;i++)if(String(i)===gq.trim()||m(QN[i-1][0]+" "+QN[i-1][1]))SR.push('<button class="row srow" onclick="qopen('+i+')"><span class="sn"><i>'+i+'</i></span><span class="rt"><b>'+QN[i-1][0]+'</b><small>'+QN[i-1][1]+' · '+SU[i-1]+' versets</small></span></button>');f("Sourates",SR);
+f("Prophètes",PR.filter(function(p){return m(p.n+" "+p.fr+" "+p.tag+" "+p.ep.map(function(e){return e[0]+" "+e[1]}).join(" "))}).map(function(p){return '<button class="row trow" onclick="nav({tab:9,pp:\''+p.id+'\'})"><span class="tic" aria-hidden="true" style="font-size:20px">'+p.ar.split(" ")[0]+'</span><span class="rt"><b>'+p.n+'</b><small>'+p.fr+' · '+p.tag+'</small></span></button>'}));
+f("Grandir dans la foi",FOI.map(function(t,i){return[t,i]}).filter(function(a){return m(a[0].t+" "+a[0].d+" "+a[0].intro)}).map(function(a){return '<button class="row trow" onclick="nav({tab:8,ft:'+a[1]+'})"><span class="tic" aria-hidden="true">'+a[0].ic+'</span><span class="rt"><b>'+a[0].t+'</b><small>'+a[0].d+'</small></span></button>'}));
+f("Noms d’Allah",N.filter(function(s){var p=s.split("|");return m(p[1]+" "+p[2])}).map(function(s){var p=s.split("|");return '<button class="row" onclick="say(\''+p[0]+'\')"><span class="rt"><b>'+p[1]+'</b><small>'+p[2]+'</small></span><span class="ar">'+p[0]+'</span></button>'}));
+f("Rubriques",RUB.filter(function(r){return m(r[0]+" "+r[2])}).map(function(r){return '<button class="row" onclick="nav({tab:'+r[1]+'})"><span class="rt"><b>'+r[0]+'</b></span></button>'}));
+return n?h:'<p class="sub">Aucun résultat pour « '+esc(gq)+' ». Vérifie l’orthographe ou essaie un mot plus court.</p>'}
+function srchHtml(){return '<h1>Rechercher</h1><input id="gs" class="srch" type="search" autocomplete="off" aria-label="Rechercher dans l’appli" placeholder="Invocation, sourate, prophète, thème…" value="'+esc(gq)+'" oninput="gq=this.value;$(\'gr\').innerHTML=gres()"><div id="gr">'+gres()+'</div>'}
+function sw(on,js,lab){return '<button class="swt'+(on?' on':'')+'" role="switch" aria-checked="'+!!on+'" onclick="'+js+'"><span>'+lab+'</span><i></i></button>'}
+function setName(v){S.name=v.trim().slice(0,30);save();toast(S.name?"Prénom enregistré":"Prénom effacé")}
+function setKid(){S.kid=!S.kid;if(S.kid&&S.fs<1.15)S.fs=1.15;save();applyTheme();render();toast(S.kid?"Mode enfant activé ⭐":"Mode enfant désactivé")}
+function setHs(v){S.hs=v;save();if(v==="pos")geo();sched();render()}
+function setHtml(){var th=S.th||"auto",h='<h1>Réglages</h1>';
+h+='<h2>Apparence</h2><div class="card"><b class="ct">Thème</b><div class="chips">'+[["auto","Automatique"],["light","Clair"],["dark","Sombre"]].map(function(t){return '<button class="chip'+(th===t[0]?' on':'')+'" onclick="setTheme(\''+t[0]+'\')">'+t[1]+'</button>'}).join("")+'</div><b class="ct" style="margin-top:10px">Taille du texte</b><div class="fzr"><button class="chip" onclick="fz(-.1)" aria-label="Réduire le texte">A−</button><div class="fzs"><div class="a" style="font:calc(28px*var(--k))/1.8 Amiri,serif;direction:rtl">سُبْحَانَ اللَّهِ</div><div style="font:calc(16px*var(--k))/1.5 Lora,serif">Gloire à Allah</div></div><button class="chip" onclick="fz(.1)" aria-label="Agrandir le texte">A+</button></div></div>';
+h+='<h2>Profil</h2><div class="card"><label class="ct" for="nm">Prénom</label><input id="nm" class="srch" style="margin-top:6px" value="'+esc(S.name||"")+'" placeholder="Pour être accueilli par son prénom" onchange="setName(this.value)">'+sw(S.kid,"setKid()","Mode enfant")+'<p class="sub" style="margin:6px 0 0;font-size:13px">Textes plus grands, étoiles pour chaque tâche accomplie et petits encouragements. À activer sur le téléphone de chaque enfant.</p></div>';
+h+='<h2>Horaires de prière</h2><div class="card"><div class="chips"><button class="chip'+(S.hs!=="pos"?' on':'')+'" onclick="setHs(\'mq\')">Mosquée CMI d’Issy (Mawaqit)</button><button class="chip'+(S.hs==="pos"?' on':'')+'" onclick="setHs(\'pos\')">Calcul selon ma position</button></div><p class="sub" style="margin:4px 0 0;font-size:13px">'+(S.hs==="pos"?(S.loc.m?"Position enregistrée.":"Autorise la localisation pour un calcul précis."):"Horaires publiés par la mosquée, avec l’iqâma.")+'</p></div>';
+var ok=window.Notification&&Notification.permission==="granted"&&S.rem;h+='<h2>Rappels</h2><div class="card">Prières et invocations du matin et du soir.<button class="btn'+(ok?' o':'')+'" onclick="rem()">'+(ok?'Désactiver les rappels':'Activer les rappels')+'</button></div>';
+h+='<h2>Aide</h2><button class="btn o" onclick="obShow()">Revoir le guide de démarrage</button>';
+return h+'<p class="sub" style="font-size:13px;margin-top:18px">Coran : Al Quran Cloud · traduction de Muhammad Hamidullah · récitation de Mishary Rashid Alafasy · horaires : Mawaqit · vidéos : cheikh Nabil al-Awadi.<br>Version du 1er novembre 2026 (3)</p>'}
+function standalone(){return (window.matchMedia&&matchMedia("(display-mode: standalone)").matches)||navigator.standalone===true}
+function ios(){return /iphone|ipad|ipod/i.test(navigator.userAgent)}
+window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();BIP=e});
+function obShow(){OBI=0;var o=$("ob");if(!o){o=document.createElement("div");o.id="ob";o.setAttribute("role","dialog");o.setAttribute("aria-modal","true");o.setAttribute("aria-label","Guide de démarrage");document.body.appendChild(o)}o.className="on";obR()}
+function obEnd(){S.ob=1;save();var o=$("ob");if(o)o.className="";render()}
+function obGo(d){OBI=Math.max(0,Math.min(3,OBI+d));obR()}
+function obR(){var o=$("ob"),h="";
+if(OBI===0)h='<div class="obar">بِسْمِ اللَّهِ</div><h1>Bienvenue</h1><p class="sub">Une appli pour garder un lien avec Allah tout au long de la journée : prières, invocations, Coran et histoires des prophètes.</p><label class="ct" for="obn">Ton prénom</label><input id="obn" class="srch" value="'+esc(S.name||"")+'" placeholder="Facultatif" onchange="S.name=this.value.trim().slice(0,30);save()"><b class="ct" style="margin-top:14px">L’appli est pour…</b><div class="chips"><button class="chip'+(!S.kid?' on':'')+'" onclick="S.kid=false;save();applyTheme();obR()">Un adulte</button><button class="chip'+(S.kid?' on':'')+'" onclick="S.kid=true;if(S.fs<1.15)S.fs=1.15;save();applyTheme();obR()">Un enfant</button></div>';
+else if(OBI===1){var ok=window.Notification&&Notification.permission==="granted"&&S.rem;h='<div class="obar">تَذْكِير</div><h1>Les rappels</h1><p class="sub">Un rappel à l’heure de chaque prière, et pour les invocations du matin et du soir.</p>'+(ios()&&!standalone()?'<div class="card gold"><b class="ct">Sur iPhone</b>Installe d’abord l’appli sur l’écran d’accueil (étape 4), puis active les rappels depuis Réglages.</div>':'<button class="btn'+(ok?' o':'')+'" onclick="rem();setTimeout(obR,1500)">'+(ok?'✓ Rappels activés':'Activer les rappels')+'</button>')}
+else if(OBI===2)h='<div class="obar">مَوَاقِيت</div><h1>Les horaires de prière</h1><p class="sub">D’où viennent les horaires affichés ?</p><button class="obc'+(S.hs!=="pos"?' on':'')+'" onclick="S.hs=\'mq\';save();obR()"><b>Mosquée CMI d’Issy-les-Moulineaux</b><small>Horaires publiés sur Mawaqit, avec l’iqâma</small></button><button class="obc'+(S.hs==="pos"?' on':'')+'" onclick="S.hs=\'pos\';save();geo();obR()"><b>Calcul selon ma position</b><small>Pour un autre quartier ou en voyage</small></button>';
+else{h='<div class="obar">قَرِيب</div><h1>Installer l’appli</h1>';if(standalone())h+='<p class="sub">C’est déjà fait : l’appli est sur ton écran d’accueil ✓</p>';else if(BIP)h+='<p class="sub">Ajoute l’appli à ton écran d’accueil pour l’ouvrir en un geste.</p><button class="btn" onclick="BIP.prompt();BIP=null">Installer l’appli</button>';
+else if(ios())h+='<ol class="obl"><li>Ouvre cette page dans <b>Safari</b></li><li>Touche le bouton <b>Partager</b> (carré avec une flèche)</li><li>Choisis <b>Sur l’écran d’accueil</b>, puis <b>Ajouter</b></li></ol>';else h+='<ol class="obl"><li>Ouvre le menu <b>⋮</b> du navigateur</li><li>Choisis <b>Ajouter à l’écran d’accueil</b> ou <b>Installer l’application</b></li></ol>'}
+h+='<div class="dots">'+[0,1,2,3].map(function(i){return '<i'+(i===OBI?' class="on"':'')+'></i>'}).join("")+'</div><div class="pn">'+(OBI?'<button class="btn o" onclick="obGo(-1)">Précédent</button>':'<button class="btn o" onclick="obEnd()">Passer</button>')+(OBI<3?'<button class="btn" onclick="obGo(1)">Continuer</button>':'<button class="btn" onclick="obEnd()">Commencer</button>')+'</div>';
+o.innerHTML='<div class="obi">'+h+'</div>';o.scrollTop=0}
+function arn(n){return String(n).replace(/\d/g,function(d){return "٠١٢٣٤٥٦٧٨٩"[d]})}
+applyTheme();
+
+var SKIP=false,LPOP=0;
+function onS(){return !!(history.state&&history.state.s)}
+function ensureS(){if(!onS())try{history.pushState({s:1},"")}catch(e){}}
+function dropS(){if(onS()){SKIP=true;try{history.back()}catch(e){SKIP=false}}}
+function canBack(){return VS.length||cur||qs||pp||ft!==null||tab!==0}
+function back(){doBack();if(!canBack())dropS()}
+var _nav=nav;nav=function(o){_nav(o);ensureS()};
+var _go=go;go=function(t){_go(t);if(t!==0)ensureS();else dropS()};
+window.addEventListener("popstate",function(){LPOP=Date.now();if(SKIP){SKIP=false;if(canBack())ensureS();return}if(canBack())doBack();if(canBack())ensureS()});
+var TX=null;
+document.addEventListener("touchstart",function(e){var t=e.touches[0];TX=t.clientX<28&&canBack()?[t.clientX,t.clientY]:null},{passive:true});
+document.addEventListener("touchend",function(e){if(!TX)return;var t=e.changedTouches[0],a=TX;TX=null;if(t.clientX-a[0]>70&&Math.abs(t.clientY-a[1])<60)setTimeout(function(){if(Date.now()-LPOP>600)back()},300)},{passive:true});
+render();sched();if(!S.ob)obShow();fetch('horaires.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(j){if(j&&j.days){MQ=j;sched();render()}}).catch(function(){});setInterval(function(){if(tab===0&&!cur&&!qs&&!pp&&ft===null)hero()},30000);
 document.addEventListener("visibilitychange",function(){if(!document.hidden)sched()});
 if("serviceWorker" in navigator&&navigator.serviceWorker.controller)navigator.serviceWorker.addEventListener("controllerchange",function(){if(!window.__rl){window.__rl=1;location.reload()}});
 if("serviceWorker" in navigator)window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).then(function(r){try{r.update()}catch(e){}}).catch(function(){})});
