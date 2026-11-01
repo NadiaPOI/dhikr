@@ -4,7 +4,7 @@
 <title>Dhikr · Rappels du cœur</title>
 <meta name="theme-color" content="#0f1630"><link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Lora:ital,wght@0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Amiri+Quran&family=Lora:ital,wght@0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#f7f2e7;--card:#fffcf5;--ink:#1c2a26;--mut:#62766e;--acc:#0f5b4d;--accbg:#dff0e8;--line:#e8dfc9;--gold:#b98a2b;--goldbg:#f6ebd0;--cs:#0f5b4d;--cd:#1f6f8b;--ca:#c0841f;--ct:#b24a6b;--k:1;color-scheme:light}
 @media(prefers-color-scheme:dark){:root{--bg:#0b1613;--card:#12201c;--ink:#efe9d8;--mut:#9bb0a7;--acc:#6fd3b0;--accbg:#193a31;--line:#223630;--gold:#e3b95a;--goldbg:#2a2412;--cs:#6fd3b0;--cd:#7cc4e0;--ca:#f0b45a;--ct:#ef8aa8;color-scheme:dark}}
@@ -68,6 +68,53 @@ nav button.on{background:var(--acc);color:var(--card)}
 .toast{position:fixed;left:50%;bottom:110px;transform:translate(-50%,20px);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:14px;font-size:14px;opacity:0;pointer-events:none;transition:.3s;z-index:9}.toast.show{opacity:1;transform:translate(-50%,0)}
 .fade{animation:f .4s ease}@keyframes f{from{opacity:0;transform:translateY(8px)}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.v .a.qa{font-family:"Amiri Quran",Amiri,serif}
+.vn{background:none;cursor:pointer;padding:0}
+.v.hl{background:color-mix(in srgb,var(--goldbg) 85%,transparent)}
+.v.hl.on,.v.on{background:color-mix(in srgb,var(--accbg) 85%,transparent)}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0 4px}
+.tiles button{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:12px 10px 14px;text-align:left;display:flex;flex-direction:column;gap:1px;box-shadow:0 8px 22px -18px rgba(20,40,34,.55);transition:transform .15s}
+.tiles button:active{transform:scale(.97)}
+.ti{font:24px/1.6 Amiri,serif;color:var(--gold);direction:rtl;text-align:right}
+.tiles b{font:600 16px Lora,serif}.tiles small{color:var(--mut);font-size:12px;line-height:1.35}
+.srch{width:100%;padding:13px 16px;border-radius:16px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;margin:4px 0 6px;-webkit-appearance:none}
+.srch:focus{outline:2px solid var(--acc);outline-offset:1px}
+.sn{display:grid;place-items:center;width:30px;height:30px;flex:none;border:1.5px solid var(--gold);color:var(--gold);border-radius:8px;transform:rotate(45deg);margin:0 4px}
+.sn i{transform:rotate(-45deg);font:600 12px Inter,sans-serif}
+.sn.lg{width:44px;height:44px;margin:4px auto 14px;border-radius:12px}.sn.lg i{font-size:16px}
+.srow .ar{font-size:20px;color:var(--gold)}
+.shead{text-align:center}.shead .sub{margin-top:2px}.arn{font-family:Amiri,serif;font-size:18px;color:var(--gold)}
+.cont{display:block;width:100%;text-align:left;border:0;border-radius:22px;padding:16px 18px;color:#fff;background:linear-gradient(135deg,#0f5b4d,#b88a2e);margin:8px 0 14px;box-shadow:0 14px 28px -18px #0f5b4d}
+.cont small{display:block;opacity:.85;font-size:12px;text-transform:uppercase;letter-spacing:.08em}.cont b{display:block;font:600 24px Lora,serif;margin:2px 0}.cont span{opacity:.9;font-size:14px}
+.bsm{font:28px/2.2 "Amiri Quran",Amiri,serif;text-align:center;color:var(--acc);margin:8px 0 0}
+.pn{display:flex;gap:10px}.pn .btn{flex:1;font-size:14px;padding:13px 8px}.btn:disabled{opacity:.35;box-shadow:none}
+.hub{display:block;position:relative;overflow:hidden;width:100%;text-align:left;border:0;border-radius:24px;padding:20px 18px;margin:12px 0;color:#fff;background:linear-gradient(140deg,var(--h1),var(--h2));box-shadow:0 16px 30px -20px rgba(0,0,0,.6);transition:transform .15s}
+.hub:active{transform:scale(.98)}.hub b{display:block;font:600 21px Lora,serif;position:relative}.hub small{display:block;opacity:.9;font-size:14px;max-width:72%;position:relative}
+.hubar{position:absolute;right:14px;bottom:-4px;font:50px/1.5 Amiri,serif;opacity:.24}
+.tic{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--accbg);color:var(--acc);font:17px/1 Amiri,serif;flex:none}
+.tic.lg{width:60px;height:60px;border-radius:18px;font-size:22px;margin-bottom:10px}
+.thead{margin-top:4px}
+.ct{display:block;font:600 17px Lora,serif;margin-bottom:4px}
+.hq{font:italic 17px/1.7 Lora,serif;margin:0}.src{color:var(--gold);font-size:13px;font-weight:600;margin-top:10px}
+.vc .qa{font:28px/2.15 "Amiri Quran",Amiri,serif;direction:rtl;text-align:right}.vc .f{font:16px/1.7 Lora,serif;margin-top:8px}
+.vfoot{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:12px;padding-top:10px;border-top:1px dashed var(--line);font-size:12px;color:var(--mut)}
+.vfoot button{border:1px solid var(--acc);color:var(--acc);background:none;border-radius:20px;padding:5px 12px;font-size:13px;white-space:nowrap}
+.nar{font:36px/1.6 Amiri,serif;color:var(--gold);direction:rtl;text-align:right}
+.lnk{display:block;border:0;background:none;color:var(--acc);font-weight:600;padding:10px 0 2px;font-size:14px;text-align:left}
+.gold{background:linear-gradient(135deg,var(--goldbg),var(--card));border-color:color-mix(in srgb,var(--gold) 45%,var(--line))}
+.ex label{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px dashed color-mix(in srgb,var(--gold) 35%,var(--line));cursor:pointer}.ex label:last-child{border-bottom:0}
+.ex input{accent-color:var(--acc);width:20px;height:20px;margin-top:2px;flex:none}.ex input:checked+span{color:var(--mut);text-decoration:line-through}
+.li{margin:0;padding-left:20px}.li li{margin:4px 0}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:12px 14px 14px;text-align:left;display:flex;flex-direction:column;gap:1px;box-shadow:0 8px 22px -18px rgba(20,40,34,.55);transition:transform .15s}
+.pcard:active{transform:scale(.97)}.pcard .ar{font:30px/1.6 Amiri,serif;color:var(--gold);direction:rtl;text-align:right}.pcard b{font:600 17px Lora,serif}.pcard small{color:var(--mut);font-size:12.5px;line-height:1.4}
+.phead{text-align:center;margin:0 0 4px}.par{font:58px/1.5 Amiri,serif;color:var(--gold)}
+.epn{font-size:12px;color:var(--gold);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+#ep h3{font:600 21px Lora,serif;margin:4px 0 6px}.epx{font:17px/1.75 Lora,serif;margin:0}
+.dots{display:flex;gap:6px;justify-content:center;margin:14px 0 8px}.dots i{width:7px;height:7px;border-radius:4px;background:var(--line);transition:width .2s}.dots i.on{background:var(--acc);width:20px}
+.tl{list-style:none;padding:0;margin:0}.tl li{position:relative;padding:0 0 14px 24px}.tl li:last-child{padding-bottom:0}
+.tl li::before{content:"";position:absolute;left:4px;top:8px;width:9px;height:9px;border-radius:50%;background:var(--gold)}
+.tl li::after{content:"";position:absolute;left:8px;top:20px;bottom:-2px;width:1px;background:color-mix(in srgb,var(--gold) 40%,var(--line))}.tl li:last-child::after{display:none}
 </style></head><body><main id="app"></main><nav id="nv"></nav><script>
 var D=[
 {id:"fatiha",c:"s",t:"Al-Fātiḥa",n:1,v:[
@@ -185,26 +232,33 @@ function mq(d){var v=MQ&&MQ.days&&MQ.days[iso(d)];if(!v)return null;return v.t.m
 function P(d){return mq(d)||Pcalc(d)}
 var SU=[7,286,200,176,120,165,206,75,129,109,123,111,43,52,99,128,111,110,98,135,112,78,118,64,77,227,93,88,69,60,34,30,73,54,45,83,182,88,75,85,54,53,89,59,37,35,38,29,18,45,60,49,62,55,78,96,29,22,24,13,14,11,11,18,12,12,30,52,52,44,28,28,20,56,40,31,50,40,46,42,29,19,36,25,22,17,19,26,30,20,15,21,11,8,8,19,5,8,8,11,11,8,3,9,5,4,7,3,6,3,5,4,5,6];
 var AQ={fatiha:[1,1,7],ikhlas:[112,1,4],falaq:[113,1,5],nas:[114,1,6],kawthar:[108,1,3],kursi:[2,255,255],duha:[93,1,11],sharh:[94,1,8],asr:[103,1,3],nasr:[110,1,3],kafirun:[109,1,6],baqara:[2,285,286],salat:[14,40,40]};
-var AU=new Audio(),PQ=[],PX=[],PI=0,PB=0,AL=false;
+var AU=new Audio(),PQ=[],PX=[],PI=0,PB=0,PM=false;
 function refs(id){var a=AQ[id];if(!a)return null;var r=[];for(var i=a[1];i<=a[2];i++)r.push([a[0],i]);return r}
 function gnum(s,a){var n=0;for(var i=0;i<s-1;i++)n+=SU[i];return n+a}
 function pad(n,l){return ("000"+n).slice(-l)}
 function srcs(r){var k=pad(r[0],3)+pad(r[1],3);return["https://cdn.islamic.network/quran/audio/128/ar.alafasy/"+gnum(r[0],r[1])+".mp3","https://everyayah.com/data/Alafasy_128kbps/"+k+".mp3","https://verses.quran.com/Alafasy/mp3/"+k+".mp3"]}
-function toast(m){var t=$("ts");if(!t){t=document.createElement("div");t.id="ts";t.className="toast";document.body.appendChild(t)}t.textContent=m;t.classList.add("show");clearTimeout(t._h);t._h=setTimeout(function(){t.classList.remove("show")},3200)}
-function mark(i){var e=document.querySelectorAll(".v");for(var k=0;k<e.length;k++)e[k].classList.toggle("on",k===i);if(i>=0&&e[i]&&e[i].scrollIntoView)e[i].scrollIntoView({block:"center",behavior:"smooth"})}
-function setBtn(){var b=$("pb");if(b)b.textContent=PQ.length?"■ Arrêter":(refs(cur)?"▶ Écouter la récitation":"▶ Écouter (voix de synthèse)")}
+function toast(m){var t=$("ts");if(!t){t=document.createElement("div");t.id="ts";t.className="toast";t.setAttribute("role","status");document.body.appendChild(t)}t.textContent=m;t.classList.add("show");clearTimeout(t._h);t._h=setTimeout(function(){t.classList.remove("show")},3200)}
+function mark(i){var e=document.querySelectorAll(".v[data-i]");for(var k=0;k<e.length;k++)e[k].classList.toggle("on",+e[k].getAttribute("data-i")===i);if(i>=0){var x=document.querySelector('.v[data-i="'+i+'"]');if(x&&x.scrollIntoView)x.scrollIntoView({block:"center",behavior:"smooth"})}}
+function setBtn(){var b=$("pb");if(b)b.textContent=PQ.length?"■ Arrêter":b.getAttribute("data-l")}
 function stopA(){AU.onended=AU.onerror=null;try{AU.pause()}catch(e){}PQ=[];try{speechSynthesis.cancel()}catch(e){}mark(-1);setBtn()}
-function playR(list,start,only){stopA();var x=item(cur);AL=list.length===x.v.length;PB=start;PQ=only?[list[start]]:list.slice(start);PX=PQ.map(function(_,k){return AL?x.v[PB+k][0]:x.v.map(function(v){return v[0]}).join(" ")});PI=0;setBtn();nxt(0)}
+function playQ(list,start,only,texts,mk){stopA();PB=start;PM=!!mk;PQ=only?[list[start]]:list.slice(start);PX=PQ.map(function(_,k){return texts[Math.min(texts.length-1,PB+k)]||""});PI=0;setBtn();nxt(0)}
 function nxt(si){if(PI>=PQ.length){PQ=[];mark(-1);setBtn();return}var u=srcs(PQ[PI]);
 if(si>=u.length){toast("Audio indisponible : voix de synthèse");var t=PX[PI];PQ=[];mark(-1);setBtn();say(t);return}
-mark(AL?PB+PI:-1);AU.onended=function(){PI++;nxt(0)};AU.onerror=function(){nxt(si+1)};AU.src=u[si];var p=AU.play();if(p&&p.catch)p.catch(function(){})}
-function playItem(){if(PQ.length){stopA();return}var r=refs(cur);if(r)playR(r,0,false);else say(item(cur).v.map(function(v){return v[0]}).join(" . "))}
+mark(PM?PB+PI:-1);AU.onended=function(){PI++;nxt(0)};AU.onerror=function(){nxt(si+1)};AU.src=u[si];var p=AU.play();if(p&&p.catch)p.catch(function(){})}
+function vtx(){return item(cur).v.map(function(v){return v[0]})}
+function vplay(i){playQ(refs(cur),i,true,vtx(),true)}
+function playItem(){if(PQ.length){stopA();return}var r=refs(cur),t=vtx(),al=r&&r.length===t.length;if(r)playQ(r,0,false,al?t:[t.join(" ")],al);else say(t.join(" . "))}
+function detail(){var x=item(cur),r=refs(cur),al=!!(r&&r.length===x.v.length),L=r?"▶ Écouter la récitation":"▶ Écouter (voix de synthèse)",h=bk()+'<h1>'+x.t+'</h1>'+chips();
+h+='<button class="btn" id="pb" data-l="'+L+'" onclick="playItem()">'+(PQ.length?'■ Arrêter':L)+'</button>'+(r?'<p class="sub" style="margin:-4px 0 6px;font-size:13px">Récitation de Mishary Rashid Alafasy</p>':'');
+h+='<div class="card q">';x.v.forEach(function(v,i){h+='<div class="v" data-i="'+i+'"><div class="vh"><span class="vn">'+(i+1)+'</span>'+(al?'<button class="hear" onclick="vplay('+i+')" aria-label="Écouter">▶</button>':'')+'</div><div class="a">'+v[0]+'</div>'+(S.tr?'<div class="t">'+v[1]+'</div>':'')+(S.fr?'<div class="f">'+v[2]+'</div>':'')+'</div>'});
+h+='</div>'+(x.s?'<p class="sub">'+x.s+'</p>':'');if(AQ[cur]){var q=AQ[cur];h+='<button class="lnk" onclick="qopen('+q.join(",")+')">Lire dans le Coran, avec la traduction</button>'}
+var done=!!today()[x.id];h+='<button class="btn" onclick="tap()">'+(done&&cnt===0?'Fait aujourd’hui ✓ · recommencer':(cnt>=x.n?'Terminé ✓':'Je récite : '+cnt+' / '+x.n))+'</button><button class="btn o" onclick="learn()">'+(S.learned[x.id]?'Je l’ai apprise ✓':'Marquer comme apprise')+'</button>';return h}
 
 function iq(x){var v=MQ&&MQ.days&&MQ.days[iso(x[1])],j=PN.indexOf(x[0]);if(!v||!v.i||!v.i[j])return"";return " · iqama "+hm(new Date(x[1].getTime()+v.i[j]*6e4))}
 function src(){var d=new Date(),j=mq(d)?"Horaires de la mosquée CMI d’Issy · Mawaqit":(S.loc.m?"Calcul selon ta position":"Calcul pour Issy-les-Moulineaux")+" · angle 12°<button onclick=\"geo()\">Utiliser ma position</button>";if(MQ&&MQ.jumua&&MQ.jumua.length&&d.getDay()===5)j+="<br>Jumu’a : "+MQ.jumua.join(" · ");return j}
 var HG=[["#262b5e","#b4604a"],["#0f5b4d","#b88a2e"],["#0d5c63","#2a8c78"],["#6e4420","#c08a2c"],["#4f2250","#c2563b"],["#0c1230","#3b3374"]];
-var IC={0:'<path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',1:'<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM4 19a2 2 0 0 1 2-2h13"/>',5:'<path d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11z"/>',4:'<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3"/>',2:'<path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.5l-5.4 3 1.2-6L3.3 9.3l6.1-.7z"/>',3:'<path d="M5 20V11M12 20V4M19 20v-6"/>'};
-var NL=[[0,"Accueil"],[1,"Apprendre"],[5,"Calme"],[4,"Dhikr"],[2,"99 noms"],[3,"Progrès"]];
+var IC={6:'<path d="M12 6.5C10 5 7 4.5 3.5 5v13.5C7 18 10 18.5 12 20c2-1.5 5-2 8.5-1.5V5C17 4.5 14 5 12 6.5zM12 6.5V20"/>',7:'<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>',0:'<path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',1:'<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM4 19a2 2 0 0 1 2-2h13"/>',5:'<path d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11z"/>',4:'<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3"/>',2:'<path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.5l-5.4 3 1.2-6L3.3 9.3l6.1-.7z"/>',3:'<path d="M5 20V11M12 20V4M19 20v-6"/>'};
+var NL=[[0,"Accueil"],[6,"Coran"],[1,"Invocations"],[4,"Dhikr"],[7,"Découvrir"]];
 $("nv").innerHTML=NL.map(function(n){return '<button id="n'+n[0]+'" onclick="go('+n[0]+')"><svg viewBox="0 0 24 24">'+IC[n[0]]+'</svg>'+n[1]+'</button>'}).join("");
 function save(){try{localStorage.setItem("dhikr2",JSON.stringify(S))}catch(e){}}
 function ds(d){return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()}
@@ -215,8 +269,6 @@ function streak(){var d=new Date(),k=0;if(!nd(d))d.setDate(d.getDate()-1);while(
 function dzt(){return (S.dh||{})[ds(new Date())]||0}
 function per(){var n=new Date(),t=P(n),k=5;for(var i=0;i<6;i++)if(n>=t[i][1])k=i;return k}
 function evening(){var n=new Date(),t=P(n);return n>=t[4][1]||n<t[0][1]}
-function go(t){stopA();tab=t;cur=null;render();window.scrollTo(0,0)}
-function openItem(id){stopA();cur=id;cnt=0;render();window.scrollTo(0,0)}
 function tap(){var x=item(cur);cnt=Math.min(cnt+1,x.n);try{navigator.vibrate(15)}catch(e){}if(cnt>=x.n){var k=ds(new Date());S.done[k]=S.done[k]||{};S.done[k][cur]=true;save()}render()}
 function learn(){S.learned[cur]=!S.learned[cur];save();render()}
 function tog(k){S[k]=!S[k];save();render()}
@@ -228,16 +280,10 @@ var m=Math.max(0,Math.round((nx[1]-n)/6e4)),c=(m>=60?Math.floor(m/60)+" h ":"")+
 try{hj=new Intl.DateTimeFormat("fr-FR-u-ca-islamic-umalqura",{day:"numeric",month:"long",year:"numeric"}).format(n)}catch(e){}
 el.innerHTML='<div class="hero" style="background-image:linear-gradient(160deg,'+g[0]+','+g[1]+')"><div class="pat"></div><div class="hd">'+n.toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"})+'<br>'+hj+'</div><div class="nxl">Prochaine prière dans '+c+'</div><div class="nx">'+nx[0]+'</div><div class="nxt">'+hm(nx[1])+iq(nx)+'</div><div class="pl">'+t.map(function(x){return '<div'+(x[0]===nx[0]?' class="on"':'')+'>'+x[0]+'<b>'+hm(x[1])+'</b></div>'}).join("")+'</div><div class="loc">'+src()+'</div></div>'}
 function geo(){try{navigator.geolocation.getCurrentPosition(function(p){S.loc={lat:p.coords.latitude,lng:p.coords.longitude,m:1};save();sched();hero()},function(){alert("Position indisponible : Issy-les-Moulineaux reste utilisée.")})}catch(e){}}
-function homeHtml(){var t=today(),tot=0,ok=0;R.forEach(function(r){r[1].forEach(function(i){tot++;if(t[i])ok++})});var k=per(),h='<h1>Salām</h1><p class="sub">Un petit moment, chaque jour. La régularité compte plus que la durée.</p><div id="hero"></div>';
+function homeHtml(){var t=today(),tot=0,ok=0;R.forEach(function(r){r[1].forEach(function(i){tot++;if(t[i])ok++})});var k=per(),h='<h1>Salām</h1><p class="sub">Un petit moment, chaque jour. La régularité compte plus que la durée.</p><div id="hero"></div>'+tiles();
 h+='<h2>Maintenant · '+NW[k][0]+'</h2>'+NW[k][1].map(item).filter(Boolean).map(row).join("");
 h+='<div class="card"><span class="big">'+streak()+'</span> jour'+(streak()>1?'s':'')+' de suite<div class="bar"><i style="width:'+Math.round(ok/tot*100)+'%"></i></div><span class="sub">'+ok+' sur '+tot+' invocations faites aujourd’hui</span></div>';
 [evening()?2:0,1].forEach(function(j){h+='<h2>'+(j===1?'Dans la journée':(j?'Le soir':'Le matin'))+'</h2>'+R[j][1].map(item).filter(Boolean).map(row).join("")});return h}
-function detail(){var x=item(cur),r=refs(cur),al=r&&r.length===x.v.length,h='<button class="back" onclick="stopA();cur=null;render()">‹ Retour</button><h1>'+x.t+'</h1><div class="chips"><button class="chip'+(S.tr?' on':'')+'" onclick="tog(\'tr\')">Phonétique</button><button class="chip'+(S.fr?' on':'')+'" onclick="tog(\'fr\')">Traduction</button><button class="chip" onclick="fz(-.1)">A−</button><button class="chip" onclick="fz(.1)">A+</button></div>';
-h+='<button class="btn" id="pb" onclick="playItem()">'+(PQ.length?'■ Arrêter':(r?'▶ Écouter la récitation':'▶ Écouter (voix de synthèse)'))+'</button>'+(r?'<p class="sub" style="margin:-4px 0 6px;font-size:13px">Récitation de Mishary Rashid Alafasy · Al Quran Cloud</p>':'');
-h+='<div class="card q">';
-x.v.forEach(function(v,i){h+='<div class="v"><div class="vh"><span class="vn">'+(i+1)+'</span>'+(al?'<button class="hear" onclick="playR(refs(cur),'+i+',true)">▶</button>':'')+'</div><div class="a">'+v[0]+'</div>'+(S.tr?'<div class="t">'+v[1]+'</div>':'')+(S.fr?'<div class="f">'+v[2]+'</div>':'')+'</div>'});
-h+='</div>'+(x.s?'<p class="sub">'+x.s+'</p>':'');var done=!!today()[x.id];
-h+='<button class="btn" onclick="tap()">'+(done&&cnt===0?'Fait aujourd’hui ✓ · recommencer':(cnt>=x.n?'Terminé ✓':'Je récite : '+cnt+' / '+x.n))+'</button><button class="btn o" onclick="learn()">'+(S.learned[x.id]?'Je l’ai apprise ✓':'Marquer comme apprise')+'</button>';return h}
 function zhtml(){var z=Z[S.z||0],p=Math.round(zc/z[3]*100);return '<div class="za">'+z[0]+'</div>'+(S.tr?'<div style="text-align:center;color:var(--acc);font-style:italic">'+z[1]+'</div>':'')+(S.fr?'<div class="sub" style="text-align:center">'+z[2]+'</div>':'')+'<div class="ring" style="background:conic-gradient(var(--acc) '+p+'%,var(--line) 0)"><button class="zbtn" onclick="zt()"><span class="big">'+zc+'</span><small>sur '+z[3]+(zc>=z[3]?' · terminé ✓':'')+'</small></button></div><p class="sub" style="text-align:center">Aujourd’hui : '+dzt()+' récitations</p>'}
 function zt(){var z=Z[S.z||0];if(zc>=z[3]){zc=0}else{zc++;var k=ds(new Date());S.dh[k]=(S.dh[k]||0)+1;if(zc>=z[3]){S.done[k]=S.done[k]||{};S.done[k].dhikr=true;try{navigator.vibrate(200)}catch(e){}}else{try{navigator.vibrate(12)}catch(e){}}save()}$("zb").innerHTML=zhtml()}
 function zr(){zc=0;$("zb").innerHTML=zhtml()}
@@ -254,16 +300,242 @@ var EV=[[0,"Prière du Fajr","Il est l’heure de prier.",0],[2,"Prière du Dhuh
 function notify(t,b){try{navigator.serviceWorker.ready.then(function(r){r.showNotification(t,{body:b,icon:"icon-192.png",tag:t})})}catch(e){}}
 function sched(){TM.forEach(clearTimeout);TM=[];if(!S.rem||!window.Notification||Notification.permission!=="granted")return;var now=Date.now();[0,1].forEach(function(o){var t=P(new Date(now+o*864e5));EV.forEach(function(e){var at=t[e[0]][1].getTime()+e[3];if(at>now)TM.push(setTimeout(function(){notify(e[1],e[2])},at-now))})})}
 function rem(){if(S.rem){S.rem=false;save();sched();render();return}if(!window.Notification){alert("Les notifications ne sont pas disponibles ici. Sur iPhone, installe d’abord l’appli sur l’écran d’accueil.");return}Notification.requestPermission().then(function(p){S.rem=p==="granted";save();sched();render()})}
+function namesHtml(){return '<h1>Les 99 noms d’Allah</h1><p class="sub">Touche un nom pour l’écouter, puis répète-le à voix haute.</p><div class="g">'+N.map(function(s,i){var p=s.split("|");return '<button class="nm" onclick="say(\''+p[0]+'\')"><small>'+(i+1)+'</small><div class="a">'+p[0]+'</div>'+(S.tr?'<div class="t">'+p[1]+'</div>':'')+(S.fr?'<div class="f">'+p[2]+'</div>':'')+'</button>'}).join("")+'</div>'}
+var QN="Al-Fâtiḥa|L’Ouverture\nAl-Baqara|La Vache\nÂl ʿImrân|La Famille d’Imrân\nAn-Nisâʾ|Les Femmes\nAl-Mâʾida|La Table servie\nAl-Anʿâm|Les Bestiaux\nAl-Aʿrâf|Les Murailles\nAl-Anfâl|Le Butin\nAt-Tawba|Le Repentir\nYûnus|Jonas\nHûd|Hûd\nYûsuf|Joseph\nAr-Raʿd|Le Tonnerre\nIbrâhîm|Abraham\nAl-Ḥijr|Al-Ḥijr\nAn-Naḥl|Les Abeilles\nAl-Isrâʾ|Le Voyage nocturne\nAl-Kahf|La Caverne\nMaryam|Marie\nṬâ-Hâ|Ṭâ-Hâ\nAl-Anbiyâʾ|Les Prophètes\nAl-Ḥajj|Le Pèlerinage\nAl-Muʾminûn|Les Croyants\nAn-Nûr|La Lumière\nAl-Furqân|Le Discernement\nAsh-Shuʿarâʾ|Les Poètes\nAn-Naml|Les Fourmis\nAl-Qaṣaṣ|Le Récit\nAl-ʿAnkabût|L’Araignée\nAr-Rûm|Les Romains\nLuqmân|Luqmân\nAs-Sajda|La Prosternation\nAl-Aḥzâb|Les Coalisés\nSabaʾ|Saba\nFâṭir|Le Créateur\nYâ-Sîn|Yâ-Sîn\nAṣ-Ṣâffât|Les Rangés\nṢâd|Ṣâd\nAz-Zumar|Les Groupes\nGhâfir|Le Pardonneur\nFuṣṣilat|Les Versets détaillés\nAsh-Shûrâ|La Consultation\nAz-Zukhruf|L’Ornement\nAd-Dukhân|La Fumée\nAl-Jâthiya|L’Agenouillée\nAl-Aḥqâf|Al-Aḥqâf\nMuḥammad|Muḥammad\nAl-Fatḥ|La Victoire éclatante\nAl-Ḥujurât|Les Appartements\nQâf|Qâf\nAdh-Dhâriyât|Qui éparpillent\nAṭ-Ṭûr|Le Mont\nAn-Najm|L’Étoile\nAl-Qamar|La Lune\nAr-Raḥmân|Le Tout Miséricordieux\nAl-Wâqiʿa|L’Événement\nAl-Ḥadîd|Le Fer\nAl-Mujâdala|La Discussion\nAl-Ḥashr|L’Exode\nAl-Mumtaḥana|L’Éprouvée\nAṣ-Ṣaff|Le Rang\nAl-Jumuʿa|Le Vendredi\nAl-Munâfiqûn|Les Hypocrites\nAt-Taghâbun|La Grande Perte\nAṭ-Ṭalâq|Le Divorce\nAt-Taḥrîm|L’Interdiction\nAl-Mulk|La Royauté\nAl-Qalam|La Plume\nAl-Ḥâqqa|Celle qui montre la vérité\nAl-Maʿârij|Les Voies d’ascension\nNûḥ|Noé\nAl-Jinn|Les Djinns\nAl-Muzzammil|L’Enveloppé\nAl-Muddaththir|Le Revêtu d’un manteau\nAl-Qiyâma|La Résurrection\nAl-Insân|L’Homme\nAl-Mursalât|Les Envoyés\nAn-Nabaʾ|La Nouvelle\nAn-Nâziʿât|Ceux qui arrachent\nʿAbasa|Il s’est renfrogné\nAt-Takwîr|L’Obscurcissement\nAl-Infiṭâr|La Rupture\nAl-Muṭaffifîn|Les Fraudeurs\nAl-Inshiqâq|La Déchirure\nAl-Burûj|Les Constellations\nAṭ-Ṭâriq|L’Astre nocturne\nAl-Aʿlâ|Le Très-Haut\nAl-Ghâshiya|L’Enveloppante\nAl-Fajr|L’Aube\nAl-Balad|La Cité\nAsh-Shams|Le Soleil\nAl-Layl|La Nuit\nAḍ-Ḍuḥâ|Le Jour montant\nAsh-Sharḥ|La Dilatation\nAt-Tîn|Le Figuier\nAl-ʿAlaq|L’Adhérence\nAl-Qadr|La Destinée\nAl-Bayyina|La Preuve\nAz-Zalzala|La Secousse\nAl-ʿÂdiyât|Les Coursiers\nAl-Qâriʿa|Le Fracas\nAt-Takâthur|La Course aux richesses\nAl-ʿAṣr|Le Temps\nAl-Humaza|Les Calomniateurs\nAl-Fîl|L’Éléphant\nQuraysh|Quraysh\nAl-Mâʿûn|L’Ustensile\nAl-Kawthar|L’Abondance\nAl-Kâfirûn|Les Infidèles\nAn-Naṣr|Le Secours\nAl-Masad|Les Fibres\nAl-Ikhlâṣ|Le Monothéisme pur\nAl-Falaq|L’Aube naissante\nAn-Nâs|Les Hommes".split("\n").map(function(s){return s.split("|")});
+
+var FOI=[
+{t:"Mieux connaître Allah",ic:"اللّٰه",d:"Ses noms et leurs sens, avec des pistes de réflexion",intro:"Plus on connaît Allah, plus on L’aime et plus on Lui fait confiance. Prends un nom à la fois : comprends son sens, puis cherche ses traces dans ta vie.",b:[
+{k:"h",x:"« Allah a quatre-vingt-dix-neuf noms. Celui qui les retient entrera au Paradis. » Les retenir, disent les savants, c’est les apprendre, les comprendre et vivre selon eux.",src:"Bukhârî 2736 · Muslim 2677"},
+{k:"s",t:"Six noms pour commencer"},
+{k:"n",ar:"الرَّحْمَٰن",tr:"Ar-Raḥmân",fr:"Le Tout Miséricordieux",r:[7,156,156],q:"Repense à une période difficile : où as-tu vu Sa miséricorde, même discrète ?"},
+{k:"n",ar:"الْوَدُود",tr:"Al-Wadûd",fr:"Le Très Affectueux",r:[85,14,14],q:"Allah aime ceux qui reviennent vers Lui, pas seulement ceux qui ne tombent jamais (Coran 2:222)."},
+{k:"n",ar:"اللَّطِيف",tr:"Al-Laṭîf",fr:"Le Doux, qui agit avec finesse",r:[42,19,19],q:"Ses bienfaits passent souvent par des chemins discrets. Lequel as-tu reçu cette semaine ?"},
+{k:"n",ar:"الْقَرِيب",tr:"Al-Qarîb",fr:"Le Proche",r:[2,186,186],q:"Tu n’as besoin d’aucun intermédiaire pour Lui parler. Dis-Lui une chose simple aujourd’hui."},
+{k:"n",ar:"التَّوَّاب",tr:"At-Tawwâb",fr:"Celui qui accueille sans cesse le repentir",r:[2,37,37],q:"Ce nom apparaît dans l’histoire d’Adam : la première faute humaine a été suivie du premier pardon."},
+{k:"n",ar:"الرَّزَّاق",tr:"Ar-Razzâq",fr:"Celui qui pourvoit à tout",r:[51,58,58],q:"Fais ta part avec sérieux, puis laisse ton cœur se reposer : ta subsistance est entre Ses mains."},
+{k:"x",t:"À essayer cette semaine",i:["Choisis un nom et glisse-le dans tes invocations, par exemple : « Yâ Laṭîf, sois doux envers moi ».","Le soir, note un moment où tu as senti ce nom à l’œuvre.","Écoute ce nom dans les 99 noms et apprends-le par cœur."]},
+{k:"b",t:"Voir les 99 noms",on:"nav({tab:2})"}]},
+{t:"Donner du sens à ma prière",ic:"صَلَاة",d:"Comprendre les paroles et préparer un moment de recueillement",intro:"La prière est un rendez-vous, pas une formalité. Comprendre ce que l’on dit change la manière de prier.",b:[
+{k:"v",r:[23,1,2]},
+{k:"s",t:"Ce que je dis, et ce que cela veut dire"},
+{k:"p",ar:"اللَّهُ أَكْبَرُ",tr:"Allâhu akbar",fr:"Allah est plus grand",x:"En levant les mains, je laisse derrière moi tout ce qui m’occupe : rien n’est plus important que ce moment."},
+{k:"p",ar:"الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",tr:"Al-ḥamdu lillâhi rabbi l-ʿâlamîn",fr:"Louange à Allah, Seigneur des mondes",x:"La Fâtiḥa est un dialogue : à chaque verset, Allah répond. Quand je dis « Louange à Allah, Seigneur des mondes », Il dit : « Mon serviteur M’a loué. »",src:"Muslim 395",l:"fatiha"},
+{k:"p",ar:"سُبْحَانَ رَبِّيَ الْعَظِيمِ",tr:"Subḥâna rabbiya l-ʿaẓîm",fr:"Gloire à mon Seigneur, l’Immense",x:"Dans l’inclinaison (rukûʿ), je me courbe devant Sa grandeur."},
+{k:"p",ar:"سَمِعَ اللَّهُ لِمَنْ حَمِدَهُ · رَبَّنَا وَلَكَ الْحَمْدُ",tr:"Samiʿa llâhu liman ḥamidah · Rabbanâ wa laka l-ḥamd",fr:"Allah entend celui qui Le loue · Notre Seigneur, à Toi la louange",x:"En me relevant, je me rappelle qu’Allah entend chaque parole qui Lui est adressée."},
+{k:"p",ar:"سُبْحَانَ رَبِّيَ الْأَعْلَى",tr:"Subḥâna rabbiya l-aʿlâ",fr:"Gloire à mon Seigneur, le Très-Haut",x:"Le front au sol, je suis au plus près d’Allah : « C’est en prosternation que le serviteur est le plus proche de son Seigneur : multipliez-y les invocations. »",src:"Muslim 482"},
+{k:"p",ar:"التَّحِيَّاتُ لِلَّهِ",tr:"At-taḥiyyâtu lillâh",fr:"Les salutations sont pour Allah",x:"Assise, je salue Allah, puis le Prophète ﷺ et tous les vertueux, avant de témoigner de ma foi."},
+{k:"x",t:"Préparer un moment de recueillement",i:["Fais tes ablutions lentement, en pensant à ce que tu laisses partir.","Avant de commencer, assieds-toi une minute : respire, et rappelle-toi devant Qui tu vas te tenir.","Récite une sourate dont tu connais le sens.","Prolonge un peu ta prosternation et confie-Lui une demande.","Après le salâm, reste une minute : astaghfiru llâh trois fois, puis tes adhkâr."]}]},
+{t:"Faire des invocations",ic:"دُعَاء",d:"Invocations sourcées, leur sens et leurs contextes",intro:"Le duʿâʾ est une conversation directe avec Allah. Il aime qu’on Lui demande, et aucune invocation sincère n’est perdue.",b:[
+{k:"v",r:[40,60,60]},
+{k:"s",t:"Comment invoquer"},
+{k:"h",t:"Commencer par Le louer",x:"Le Prophète ﷺ a entendu un homme invoquer sans louer Allah ni prier sur lui, et a dit : « Celui-ci s’est précipité. » Il a enseigné de commencer par la louange d’Allah, puis la prière sur le Prophète, avant de demander.",src:"Tirmidhî 3477 · Abû Dâwûd 1481"},
+{k:"h",t:"Demander avec certitude",x:"« Invoquez Allah en étant certains d’être exaucés. »",src:"Tirmidhî 3479"},
+{k:"h",t:"Ne pas s’impatienter",x:"« Chacun de vous est exaucé tant qu’il ne s’impatiente pas en disant : j’ai invoqué, et je n’ai pas été exaucé. »",src:"Bukhârî 6340 · Muslim 2735"},
+{k:"h",t:"Aucune invocation n’est perdue",x:"À celui qui L’invoque, Allah accorde l’une de trois choses : ce qu’il a demandé, ou une récompense gardée pour l’au-delà, ou un mal équivalent écarté de lui.",src:"Aḥmad 11133"},
+{k:"s",t:"Les moments privilégiés"},
+{k:"t",i:["Le dernier tiers de la nuit (Bukhârî 1145)","Entre l’appel à la prière et l’iqâma (Abû Dâwûd 521)","En prosternation (Muslim 482)","Un moment du vendredi (Bukhârî 935)","Pendant le jeûne, jusqu’à la rupture (Tirmidhî 3598)"]},
+{k:"l",t:"Des invocations pour commencer",ids:["hamm","karb","yunus","sayyid","afini","khayr_yawm"]},
+{k:"x",t:"À essayer cette semaine",i:["Écris trois demandes importantes : une pour toi, une pour ta famille, une pour quelqu’un d’autre.","Récite-les en prosternation, ou avant le Fajr.","Commence chaque invocation par « Al-ḥamdu lillâh » et la prière sur le Prophète ﷺ."]},
+{k:"b",t:"Toutes les invocations",on:"go(1)"}]},
+{t:"Cultiver la confiance et la gratitude",ic:"شُكْر",d:"Lectures et petits exercices de réflexion",intro:"La confiance (tawakkul) apaise l’inquiétude, la gratitude (shukr) ouvre les yeux sur ce que l’on a déjà. Les deux se travaillent, un peu chaque jour.",b:[
+{k:"v",r:[14,7,7]},
+{k:"h",t:"Tout est bien pour le croyant",x:"« Étonnante est l’affaire du croyant : tout est bien pour lui. S’il lui arrive une joie, il remercie, et c’est un bien pour lui. S’il lui arrive une épreuve, il patiente, et c’est un bien pour lui. »",src:"Muslim 2999"},
+{k:"h",t:"Comme les oiseaux",x:"« Si vous placiez vraiment votre confiance en Allah, Il vous nourrirait comme Il nourrit les oiseaux : ils partent le matin le ventre vide et reviennent le soir rassasiés. » Les oiseaux ne restent pas au nid : la confiance va avec l’effort.",src:"Tirmidhî 2344"},
+{k:"v",r:[65,3,3]},
+{k:"h",t:"Regarder ce que l’on a",x:"« Regardez ceux qui ont moins que vous, et non ceux qui ont plus : c’est plus juste pour ne pas mépriser les bienfaits d’Allah. »",src:"Muslim 2963"},
+{k:"l",t:"Pour les moments d’inquiétude",ids:["hasbi","hasbuna","hawla"]},
+{k:"x",t:"Petits exercices",i:["Chaque soir, note trois bienfaits précis de ta journée.","Quand un souci arrive, dis « Ḥasbiya Llâh », puis fais une seule action concrète.","Remercie quelqu’un aujourd’hui : « Celui qui ne remercie pas les gens ne remercie pas Allah » (Abû Dâwûd 4811).","Avant de dormir, dis « Al-ḥamdu lillâh » pour une chose que tu tiens pour acquise : ta vue, ton souffle, ton toit."]}]},
+{t:"Revenir vers Allah",ic:"تَوْبَة",d:"Repentir, pardon, espoir et reprise après un éloignement",intro:"Il n’est jamais trop tard. Se sentir loin et vouloir revenir, c’est déjà un pas vers Lui.",b:[
+{k:"v",r:[39,53,53]},
+{k:"h",t:"Allah se réjouit de ton retour",x:"« Allah se réjouit davantage du repentir de Son serviteur que l’un d’entre vous qui retrouve sa monture perdue dans le désert. »",src:"Bukhârî 6309 · Muslim 2747"},
+{k:"h",t:"Une porte toujours ouverte",x:"Allah dit : « Ô fils d’Adam, tant que tu M’invoques et que tu espères en Moi, Je te pardonne ce que tu as fait, et peu M’importe. »",src:"Tirmidhî 3540"},
+{k:"s",t:"Les étapes du repentir"},
+{k:"t",i:["Regretter sincèrement","Arrêter ce que l’on faisait","Décider de ne pas y revenir","Réparer le tort fait à quelqu’un, si c’est le cas"],n:"Les conditions retenues par les savants à partir du Coran et de la Sunna."},
+{k:"s",t:"Reprendre en douceur"},
+{k:"h",x:"« L’action la plus aimée d’Allah est la plus régulière, même si elle est petite. »",src:"Bukhârî 6464 · Muslim 783"},
+{k:"x",t:"Un pas à la fois",i:["Commence par une seule prière à l’heure, puis ajoute la suivante.","Dis « astaghfiru llâh » cent fois dans la journée, comme le faisait le Prophète ﷺ (Muslim 2702).","Écoute chaque jour une courte sourate que tu aimes.","Ne te compare pas : ton chemin avance à ton rythme."]},
+{k:"l",t:"Pour demander pardon",ids:["sayyid","istighfar","istighfar_long","yunus"]},
+{k:"b",t:"Lire l’histoire d’Adam, le premier repentir",on:"nav({tab:9,pp:'adam'})"}]},
+{t:"Vivre ma foi au quotidien",ic:"إِحْسَان",d:"Sincérité, patience, générosité et relations avec les autres",intro:"La foi se vit aussi en dehors du tapis de prière : dans une intention, un mot, un sourire.",b:[
+{k:"h",t:"La sincérité",x:"« Les actions ne valent que par les intentions. » Cuisiner, travailler, s’occuper des siens : tout peut devenir une adoration avec la bonne intention.",src:"Bukhârî 1 · Muslim 1907"},
+{k:"v",r:[2,153,153]},
+{k:"h",t:"La générosité",x:"« Ton sourire à ton frère est une aumône. »",src:"Tirmidhî 1956"},
+{k:"h",t:"Les relations",x:"« Aucun de vous ne croit vraiment tant qu’il n’aime pas pour son frère ce qu’il aime pour lui-même. »",src:"Bukhârî 13 · Muslim 45"},
+{k:"h",t:"Le bon caractère",x:"« Rien n’est plus lourd dans la balance du croyant, le Jour de la Résurrection, que le bon caractère. »",src:"Tirmidhî 2002"},
+{k:"x",t:"Un défi par semaine",i:["Une semaine sans plainte : remplace chaque plainte par « Al-ḥamdu lillâh ».","Une aumône discrète, même petite.","Prendre des nouvelles d’une personne perdue de vue.","Le matin, renouveler son intention pour la journée."]}]}];
+
+var PR=[
+{id:"adam",n:"Adam",ar:"آدَم",fr:"Adam",tag:"Le premier homme",
+ep:[["Une annonce aux anges","Allah annonce aux anges qu’Il va établir sur terre un successeur (khalîfa). Les anges s’interrogent ; Allah répond : « Je sais ce que vous ne savez pas. »",[2,30,30]],
+["Le savoir des noms","Allah enseigne à Adam le nom de toutes choses. Les anges reconnaissent : « Nous ne savons que ce que Tu nous as appris. »",[2,31,33]],
+["L’orgueil d’Iblîs","Allah ordonne de se prosterner devant Adam. Tous obéissent, sauf Iblîs, qui refuse par orgueil : « Je suis meilleur que lui. »",[7,11,12]],
+["Le jardin et l’arbre","Adam et son épouse habitent le Paradis, avec une seule interdiction : ne pas approcher d’un arbre. Satan les tente, et ils y goûtent.",[7,19,22]],
+["Le premier repentir","Ils regrettent aussitôt : « Notre Seigneur, nous nous sommes fait du tort. » Allah accepte leur repentir. Ils descendent sur terre avec la promesse d’une guidance.",[2,37,38]]],
+mo:["La création du premier homme","La prosternation des anges et le refus d’Iblîs","La tentation dans le jardin","Le repentir accepté","La descente sur terre"],
+le:[["Le repentir efface la faute","La faute d’Adam n’est pas devenue une fatalité : il l’a reconnue, et Allah l’a pardonné."],["L’orgueil éloigne d’Allah","Iblîs ne s’est pas perdu par ignorance, mais en se croyant supérieur."],["La valeur du savoir","Allah a honoré l’être humain par la connaissance."]],
+q:[[2,30,39,"Al-Baqara : la création d’Adam"],[7,11,25,"Al-Aʿrâf : Iblîs et le jardin"],[20,115,123,"Ṭâ-Hâ : l’oubli et le pardon"]],
+k:[7,23,23],dt:["Iblîs n’était pas un ange : le Coran précise qu’il faisait partie des djinns, créés de feu.","Coran 18:50 et 7:12"]},
+{id:"nuh",n:"Nûḥ",ar:"نُوح",fr:"Noé",tag:"Le prophète persévérant",
+ep:[["Un appel patient","Nûḥ appelle son peuple à n’adorer qu’Allah, de jour comme de nuit, en public et en privé. Beaucoup se bouchent les oreilles.",[71,5,9]],
+["La promesse de l’istighfâr","Il leur dit : « Demandez pardon à votre Seigneur. » Allah enverra la pluie et leur accordera biens et enfants.",[71,10,12]],
+["L’arche","Allah lui ordonne de construire une arche. Chaque fois que les notables passent, ils se moquent de lui.",[11,37,38]],
+["Le déluge","L’eau jaillit de la terre. Nûḥ fait monter les croyants et un couple de chaque espèce.",[11,40,41]],
+["L’appel au fils","Nûḥ supplie son fils de monter. Celui-ci refuse et croit trouver refuge sur une montagne. Les vagues les séparent.",[11,42,43]]],
+mo:["Neuf siècles et demi de prédication","La construction de l’arche","Le déluge","La séparation d’avec son fils","L’arche se pose sur le mont Jûdî"],
+le:[["Persévérer sans voir de résultat","Nûḥ a continué malgré le peu de réponses : son rôle était de transmettre, le résultat appartient à Allah."],["La force de l’istighfâr","Demander pardon ouvre les portes de la miséricorde et de la subsistance."],["La foi ne s’hérite pas","Même le fils d’un prophète fait son propre choix."]],
+q:[[71,1,28,"Sourate Nûḥ, en entier"],[11,25,49,"Hûd : l’arche et le déluge"],[23,23,30,"Al-Muʾminûn : son appel"]],
+k:[71,10,12],dt:["Nûḥ est resté parmi son peuple « mille ans moins cinquante ans », soit 950 ans.","Coran 29:14"]},
+{id:"ibrahim",n:"Ibrâhîm",ar:"إِبْرَاهِيم",fr:"Abraham",tag:"L’ami intime d’Allah",
+ep:[["À la recherche de la vérité","Ibrâhîm observe une étoile, la lune, puis le soleil : tous disparaissent. Il conclut que seul le Créateur des cieux et de la terre mérite d’être adoré.",[6,75,79]],
+["Les idoles brisées","Il brise les idoles de son peuple, sauf la plus grande, pour les amener à réfléchir.",[21,57,67]],
+["Le feu devenu paix","Jeté dans le feu, il s’en remet à Allah, qui dit : « Ô feu, sois fraîcheur et paix pour Ibrâhîm. »",[21,68,70]],
+["Hâjar et Ismâʿîl","Sur l’ordre d’Allah, il installe Hâjar et leur bébé dans une vallée aride. Hâjar répond : « Alors Il ne nous abandonnera pas. » L’eau de Zamzam jaillit.",[14,37,37]],
+["L’épreuve et la Kaaba","Ibrâhîm et Ismâʿîl acceptent l’épreuve du sacrifice, et Allah rachète Ismâʿîl. Plus tard, ils élèvent ensemble les fondations de la Kaaba.",[37,102,107]]],
+mo:["La quête de la vérité","Les idoles brisées","Le feu devenu fraîcheur","Hâjar, Ismâʿîl et Zamzam","La construction de la Kaaba"],
+le:[["Chercher la vérité","Ibrâhîm a réfléchi, observé et questionné avant d’affirmer sa foi."],["S’en remettre à Allah","« Ḥasbunâ Llâhu wa niʿma l-wakîl » : ce sont les paroles d’Ibrâhîm jeté dans le feu (Bukhârî 4563)."],["Faire sa part, puis faire confiance","Hâjar a couru entre Ṣafâ et Marwa pour trouver de l’eau, tout en sachant qu’Allah pourvoirait."]],
+q:[[6,74,83,"Al-Anʿâm : l’étoile, la lune, le soleil"],[21,51,73,"Al-Anbiyâʾ : les idoles et le feu"],[37,99,113,"Aṣ-Ṣâffât : l’épreuve du sacrifice"],[2,124,129,"Al-Baqara : la Kaaba"],[14,35,41,"Ibrâhîm : ses invocations"]],
+k:[2,127,127],dt:["Le saʿy, le parcours entre Ṣafâ et Marwa au Hajj et à la Omra, rappelle la course de Hâjar cherchant de l’eau pour son fils.","Bukhârî 3364"]},
+{id:"yusuf",n:"Yûsuf",ar:"يُوسُف",fr:"Joseph",tag:"La plus belle des histoires",
+ep:[["Le rêve","Enfant, Yûsuf voit en rêve onze astres, le soleil et la lune se prosterner devant lui. Son père Yaʿqûb lui conseille de ne pas le raconter à ses frères.",[12,4,6]],
+["Le puits","Jaloux, ses frères le jettent dans un puits et rapportent une chemise tachée d’un faux sang. Yaʿqûb répond : « Une belle patience ! »",[12,15,18]],
+["L’épreuve en Égypte","Vendu, il grandit chez un dignitaire. La femme de celui-ci tente de le séduire ; il refuse et préfère la prison.",[12,23,33]],
+["L’interprète des rêves","En prison, il appelle ses compagnons à Allah. Plus tard, il explique le rêve du roi : sept années d’abondance, puis sept de famine.",[12,43,49]],
+["Le pardon","Devenu responsable des réserves du pays, il voit arriver ses frères affamés. Il se fait reconnaître et leur dit : « Pas de reproche contre vous aujourd’hui. »",[12,89,92]]],
+mo:["Le rêve des onze astres","Le puits","La tentation et la prison","Le rêve du roi","Les retrouvailles avec son père"],
+le:[["Une belle patience","Yaʿqûb a confié sa peine à Allah seul : « Je ne me plains qu’à Allah de mon chagrin » (12:86)."],["La droiture face à la tentation","Yûsuf a préféré la prison à la désobéissance."],["Pardonner quand on a le pouvoir","Face à ceux qui l’avaient trahi, il a choisi le pardon."],["Allah prépare en silence","Le puits, la vente, la prison : chaque épreuve l’a mené à sa place."]],
+q:[[12,1,20,"Yûsuf : le rêve et le puits"],[12,21,42,"Yûsuf : l’épreuve et la prison"],[12,43,57,"Yûsuf : le rêve du roi"],[12,58,101,"Yûsuf : les retrouvailles"]],
+k:[12,86,86],dt:["Yaʿqûb avait perdu la vue à force de pleurer son fils. La chemise de Yûsuf, posée sur son visage, la lui a rendue.","Coran 12:84 et 12:93-96"]},
+{id:"ayyub",n:"Ayyûb",ar:"أَيُّوب",fr:"Job",tag:"Le modèle de patience",
+ep:[["L’épreuve","Ayyûb est longuement éprouvé. Le Coran raconte son histoire en quelques versets, les détails venant des commentateurs.",[38,41,41]],
+["Une invocation pleine de pudeur","Il ne se révolte pas. Il dit seulement : « Le mal m’a touché, et Tu es le plus miséricordieux des miséricordieux. »",[21,83,83]],
+["La source","Allah lui répond : « Frappe la terre de ton pied : voici une eau fraîche pour te laver et pour boire. » Il guérit.",[38,42,42]],
+["Tout lui est rendu","Allah lui rend sa famille, et autant avec elle, par miséricorde et comme rappel pour ceux qui réfléchissent.",[21,84,84]]],
+mo:["Une longue épreuve","L’invocation","La source de guérison","Le retour de sa famille"],
+le:[["Se plaindre à Allah, et non d’Allah","Ayyûb a dit sa douleur sans révolte, en mettant en avant la miséricorde d’Allah."],["L’épreuve n’est pas un abandon","Allah l’appelle « un excellent serviteur »."],["Le soulagement vient","« À côté de la difficulté est, certes, une facilité » (94:5)."]],
+q:[[21,83,84,"Al-Anbiyâʾ : son invocation"],[38,41,44,"Ṣâd : la guérison"]],
+k:[21,83,83],dt:["Le Coran le résume en deux phrases : « Nous l’avons trouvé endurant. Quel excellent serviteur ! »","Coran 38:44"]},
+{id:"musa",n:"Mûsâ",ar:"مُوسَى",fr:"Moïse",tag:"Celui à qui Allah a parlé",
+ep:[["Un bébé confié au fleuve","Pharaon fait tuer les garçons des Banû Isrâʾîl. Inspirée par Allah, la mère de Mûsâ le confie au fleuve. Il est recueilli dans le palais de Pharaon, puis rendu à sa mère pour être allaité.",[28,7,13]],
+["La fuite à Madyan","Après avoir tué un homme sans le vouloir, il fuit. Seul et démuni, il aide deux jeunes femmes à abreuver leur troupeau, puis invoque : « Seigneur, j’ai grand besoin du bien que Tu feras descendre vers moi. »",[28,22,24]],
+["Le feu sur le mont","Sur le chemin du retour, il aperçoit un feu. Allah lui parle et le charge d’aller vers Pharaon, avec son frère Hârûn pour l’aider.",[20,9,36]],
+["Face aux magiciens","Pharaon rassemble ses magiciens. Le bâton de Mûsâ engloutit leurs illusions ; les magiciens se prosternent et croient.",[20,65,70]],
+["La mer ouverte","Poursuivis par l’armée de Pharaon, les croyants sont bloqués face à la mer. Mûsâ dit : « Mon Seigneur est avec moi, Il va me guider. » La mer s’ouvre.",[26,61,66]]],
+mo:["Le coffre sur le fleuve","L’exil à Madyan","La parole d’Allah au mont Ṭûr","Les magiciens qui croient","La traversée de la mer"],
+le:[["Allah protège par des chemins inattendus","Le bébé que Pharaon voulait tuer a grandi dans son propre palais."],["Demander de l’aide est une force","Mûsâ a demandé que Hârûn l’accompagne, et que sa poitrine s’ouvre (20:25-32)."],["Garder espoir devant l’impasse","Face à la mer, Mûsâ savait qu’Allah ouvrirait un chemin."]],
+q:[[28,3,28,"Al-Qaṣaṣ : naissance et exil"],[20,9,98,"Ṭâ-Hâ : la mission"],[26,10,68,"Ash-Shuʿarâʾ : Pharaon et la mer"],[18,60,82,"Al-Kahf : Mûsâ et al-Khaḍir"]],
+k:[20,25,28],dt:["Mûsâ, à qui Allah avait parlé, a voyagé pour apprendre auprès d’un autre serviteur d’Allah, al-Khaḍir : même un grand prophète s’est fait élève.","Coran 18:60-82 · Bukhârî 122"]},
+{id:"yunus",n:"Yûnus",ar:"يُونُس",fr:"Jonas",tag:"L’homme du poisson",
+ep:[["Le départ","Yûnus quitte son peuple, irrité, sans attendre la permission d’Allah.",[21,87,87]],
+["Le navire","Il embarque sur un navire chargé. On tire au sort, il est désigné et jeté à la mer.",[37,140,141]],
+["Dans le ventre du poisson","Un grand poisson l’avale. Au fond des ténèbres, il invoque : « Il n’y a de divinité que Toi, gloire à Toi, j’ai été parmi les injustes. »",[37,142,144]],
+["Le rivage","Allah le sauve : il est rejeté sur la côte, affaibli, et Allah fait pousser une plante pour le protéger.",[37,145,146]],
+["Un peuple qui revient","Il retourne vers les siens, plus de cent mille personnes, qui croient.",[37,147,148]]],
+mo:["Le départ sans permission","Le tirage au sort","Le ventre du poisson","Le rivage et la plante","La foi de son peuple"],
+le:[["Aucune obscurité n’empêche d’invoquer","Au fond des ténèbres, sa voix a été entendue."],["Reconnaître sa part","Son invocation commence par l’unicité d’Allah et Sa louange, puis vient l’aveu."],["Ne pas désespérer des autres","Le peuple qu’il croyait perdu a fini par croire."]],
+q:[[37,139,148,"Aṣ-Ṣâffât : le poisson"],[21,87,88,"Al-Anbiyâʾ : son invocation"],[68,48,50,"Al-Qalam : la patience"],[10,98,98,"Yûnus : son peuple épargné"]],
+k:[21,87,88],dt:["Le peuple de Yûnus est le seul que le Coran cite comme épargné après avoir vu venir le châtiment, parce qu’il a cru à temps.","Coran 10:98"],l:"yunus"},
+{id:"isa",n:"ʿÎsâ",ar:"عِيسَى",fr:"Jésus",tag:"Le Messie, fils de Maryam",
+ep:[["Maryam","Maryam grandit dans la dévotion, sous la tutelle de Zakariyyâ, qui trouve auprès d’elle une nourriture venue d’Allah.",[3,37,37]],
+["L’annonce","Un ange lui annonce un fils, alors qu’aucun homme ne l’a touchée. « Cela M’est facile », dit Allah.",[19,16,21]],
+["Sous le palmier","Seule, dans la douleur de l’accouchement, elle est réconfortée : qu’elle secoue le tronc du palmier, des dattes fraîches tomberont.",[19,23,26]],
+["Le bébé qui parle","Face aux accusations, ʿÎsâ parle depuis le berceau : « Je suis le serviteur d’Allah. »",[19,27,33]],
+["Les miracles et l’élévation","Avec la permission d’Allah, il guérit les malades et rend la vie aux morts. Ses ennemis ne l’ont ni tué ni crucifié : Allah l’a élevé vers Lui.",[4,157,158]]],
+mo:["La jeunesse de Maryam","L’annonce de l’ange","La naissance sous le palmier","La parole au berceau","L’élévation vers Allah"],
+le:[["Allah console dans la solitude","Au moment le plus dur, Maryam a reçu de l’eau, des dattes et des mots apaisants."],["L’humilité","ʿÎsâ se présente d’abord comme « serviteur d’Allah »."],["Rien n’est impossible à Allah","« Quand Il décide une chose, Il lui dit seulement : Sois ! et elle est » (19:35)."]],
+q:[[19,16,36,"Maryam : la naissance"],[3,42,51,"Âl ʿImrân : l’annonce et les miracles"],[5,110,118,"Al-Mâʾida : la table servie"],[4,156,159,"An-Nisâʾ : l’élévation"]],
+k:[19,30,30],dt:["Maryam est la seule femme désignée par son nom dans le Coran, et une sourate entière porte son nom.","Sourate 19"]},
+{id:"muhammad",n:"Muḥammad ﷺ",ar:"مُحَمَّد ﷺ",fr:"Le dernier prophète",tag:"Le sceau des prophètes",
+ep:[["Orphelin","Il naît orphelin de père et perd sa mère enfant. Allah lui rappellera : « Ne t’a-t-Il pas trouvé orphelin, et ne t’a-t-Il pas donné refuge ? »",[93,6,8]],
+["La première révélation","Dans la grotte de Ḥirâʾ, l’ange Jibrîl lui dit : « Lis ! » Il rentre bouleversé ; Khadîja le rassure : « Allah ne t’humiliera jamais. »",[96,1,5]],
+["L’épreuve de Ṭâʾif","Repoussé et blessé à Ṭâʾif, il refuse que la ville soit châtiée et espère que leurs descendants adoreront Allah (Bukhârî 3231).",null],
+["L’Hégire","Caché dans une grotte avec Abû Bakr, poursuivi, il le rassure : « Ne t’afflige pas, Allah est avec nous. »",[9,40,40]],
+["La victoire","Allah lui accorde la victoire, et les gens entrent dans l’islam en foule. Il est invité à glorifier son Seigneur et à demander pardon.",[110,1,3]]],
+mo:["L’enfance d’un orphelin","La révélation dans la grotte de Ḥirâʾ","L’épreuve de Ṭâʾif","L’Hégire vers Médine","La victoire et le pèlerinage d’adieu"],
+le:[["Une miséricorde pour l’univers","Même blessé, il a choisi d’espérer pour ceux qui l’avaient rejeté."],["Le caractère avant tout","« Tu es certes d’un caractère éminent » (68:4)."],["Ne pas s’attrister seul","Dans la grotte, il a partagé sa confiance avec son compagnon."]],
+q:[[93,1,11,"Aḍ-Ḍuḥâ : le réconfort"],[96,1,5,"Al-ʿAlaq : la première révélation"],[94,1,8,"Ash-Sharḥ : la poitrine ouverte"],[9,40,40,"At-Tawba : la grotte"],[110,1,3,"An-Naṣr : la victoire"]],
+k:[21,107,107],dt:["Quand la révélation a commencé, Khadîja l’a réconforté en rappelant ses qualités : il entretenait les liens de parenté, aidait les plus faibles et accueillait ses hôtes.","Bukhârî 3"]}];
+
+var qs=null,qh=null,qj=false,ft=null,pp=null,pe=0,qq="",VS=[];
+var API="https://api.alquran.cloud/v1",QC={},QP={},QA={},QE={},QM=null;
+try{QM=JSON.parse(localStorage.getItem("qmeta")||"null")}catch(e){}
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function clean(s){return String(s||"").replace(/^﻿/,"").replace(/<[^>]*>/g,"").trim()}
+function nob(t,s,a,lat){if(s===1||a!==1)return t;var ok=lat?/^bismi/i.test(t):/^بِ?سْ?م/.test(t);return ok?t.split(/\s+/).slice(4).join(" "):t}
+function ed(d,id,k){return d.filter(function(x){return x.edition&&x.edition.identifier===id})[0]||d[k]}
+function loadS(n){if(QC[n])return Promise.resolve(QC[n]);if(QP[n])return QP[n];
+QP[n]=fetch(API+"/surah/"+n+"/editions/quran-uthmani,en.transliteration,fr.hamidullah").then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){var d=j.data,A=ed(d,"quran-uthmani",0),L=ed(d,"en.transliteration",1),F=ed(d,"fr.hamidullah",2);
+QC[n]=A.ayahs.map(function(y,i){var a=y.numberInSurah||i+1;return{a:nob(clean(y.text),n,a,0),t:L&&L.ayahs[i]?nob(clean(L.ayahs[i].text),n,a,1):"",f:F&&F.ayahs[i]?clean(F.ayahs[i].text):""}});delete QP[n];return QC[n]}).catch(function(e){delete QP[n];throw e});return QP[n]}
+function loadV(s,a){var k=s+":"+a;if(QC[s]&&QC[s][a-1])return Promise.resolve(QC[s][a-1]);if(QA[k])return Promise.resolve(QA[k]);
+return fetch(API+"/ayah/"+k+"/editions/quran-uthmani,fr.hamidullah").then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){var A=ed(j.data,"quran-uthmani",0),F=ed(j.data,"fr.hamidullah",1);return QA[k]={a:nob(clean(A.text),s,a,0),f:clean(F.text)}})}
+function loadM(){if(QM)return;fetch(API+"/surah").then(function(r){return r.json()}).then(function(j){QM=j.data.map(function(x){var w=clean(x.name).split(" ");if(w.length>1&&w[0].replace(/[ً-ْٰ]/g,"")==="سورة")w.shift();return w.join(" ")});try{localStorage.setItem("qmeta",JSON.stringify(QM))}catch(e){}if(tab===6&&!qs&&$("ql"))$("ql").innerHTML=qlist()}).catch(function(){})}
+function vr(r){return r[0]+":"+r[1]+(r[2]>r[1]?"-"+r[2]:"")}
+function vcard(r){return '<div class="card vc"><div class="vq" data-r="'+r.join(":")+'"><p class="sub">Chargement du verset…</p></div><div class="vfoot"><span>Coran '+vr(r)+' · trad. Hamidullah</span><button onclick="qopen('+r.join(",")+')">Lire dans le Coran</button></div></div>'}
+function vfill(){Array.prototype.forEach.call(document.querySelectorAll(".vq[data-r]"),function(el){var p=el.getAttribute("data-r").split(":").map(Number),ls=[];for(var a=p[1];a<=p[2];a++)ls.push(loadV(p[0],a));el.removeAttribute("data-r");
+Promise.all(ls).then(function(v){el.innerHTML='<div class="qa">'+v.map(function(x){return esc(x.a)}).join(" ۝ ")+'</div><div class="f">'+v.map(function(x){return esc(x.f)}).join(" ")+'</div>'}).catch(function(){el.innerHTML='<p class="sub">Connexion nécessaire pour afficher ce verset.</p>'})})}
+function snap(){return{tab:tab,cur:cur,qs:qs,qh:qh,ft:ft,pp:pp,pe:pe,y:window.scrollY}}
+function clr(){cur=null;qs=null;qh=null;ft=null;pp=null;pe=0;qj=false}
+function nav(o){stopA();VS.push(snap());clr();if(o.tab!==undefined)tab=o.tab;cur=o.cur||null;qs=o.qs||null;qh=o.qh||null;ft=o.ft===undefined?null:o.ft;pp=o.pp||null;if(cur)cnt=0;if(qs){qj=!!qh;S.lr={s:qs,a:qh?qh[0]:1};save()}render();if(!qj)window.scrollTo(0,0)}
+function back(){stopA();var s=VS.pop();if(s){tab=s.tab;cur=s.cur;qs=s.qs;qh=s.qh;ft=s.ft;pp=s.pp;pe=s.pe;qj=false;render();window.scrollTo(0,s.y||0)}else{var sub=cur||qs||pp||ft!==null;clr();if(!sub&&[2,3,5,8,9].indexOf(tab)>=0)tab=7;render();window.scrollTo(0,0)}}
+function go(t){stopA();VS=[];clr();tab=t;render();window.scrollTo(0,0)}
+function openItem(id){nav({tab:tab,cur:id})}
+function qopen(s,a1,a2){nav({tab:6,qs:s,qh:a1?[a1,a2||a1]:null})}
+function qgo(n){stopA();qs=n;qh=null;qj=false;S.lr={s:n,a:1};save();render();window.scrollTo(0,0)}
+function bm(a){S.lr={s:qs,a:a};save();toast("Marque-page placé au verset "+a)}
+function bk(l){return '<button class="back" onclick="back()">‹ '+(l||"Retour")+'</button>'}
+function chips(){return '<div class="chips"><button class="chip'+(S.tr?' on':'')+'" onclick="tog(\'tr\')">Phonétique</button><button class="chip'+(S.fr?' on':'')+'" onclick="tog(\'fr\')">Traduction</button><button class="chip" onclick="fz(-.1)" aria-label="Réduire le texte">A−</button><button class="chip" onclick="fz(.1)" aria-label="Agrandir le texte">A+</button></div>'}
+function norm(s){return String(s).normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[ʿʾ’'\-\s]/g,"").toLowerCase()}
+function qlist(){var q=norm(qq),h="";for(var n=1;n<=114;n++){var m=QN[n-1];if(q&&String(n)!==qq.trim()&&norm(m[0]+m[1]).indexOf(q)<0)continue;
+h+='<button class="row srow" onclick="qopen('+n+')"><span class="sn"><i>'+n+'</i></span><span class="rt"><b>'+m[0]+'</b><small>'+m[1]+' · '+SU[n-1]+' versets</small></span><span class="ar">'+(QM&&QM[n-1]?esc(QM[n-1]):"")+'</span></button>'}
+return h||'<p class="sub">Aucune sourate ne correspond. Essaie un numéro (1 à 114) ou un autre nom.</p>'}
+function quranHtml(){loadM();var h='<h1>Le Coran</h1><p class="sub">Texte arabe, phonétique et traduction du sens en français. Récitation de Mishary Rashid Alafasy.</p>';
+if(S.lr&&QN[S.lr.s-1])h+='<button class="cont" onclick="qopen('+S.lr.s+','+S.lr.a+')"><small>Reprendre ma lecture</small><b>'+QN[S.lr.s-1][0]+'</b><span>Verset '+S.lr.a+'</span></button>';
+return h+'<input class="srch" type="search" aria-label="Chercher une sourate" placeholder="Chercher une sourate : nom ou numéro" value="'+esc(qq)+'" oninput="qq=this.value;$(\'ql\').innerHTML=qlist()"><div id="ql">'+qlist()+'</div>'}
+function qplay(i,only){if(!only&&PQ.length){stopA();return}var l=[];for(var a=1;a<=SU[qs-1];a++)l.push([qs,a]);playQ(l,i,only,QC[qs].map(function(x){return x.a}),true)}
+function surahHtml(){var n=qs,m=QN[n-1],v=QC[n],h=bk()+'<div class="shead"><span class="sn lg"><i>'+n+'</i></span><h1>'+m[0]+'</h1><p class="sub">'+m[1]+' · '+SU[n-1]+' versets'+(QM&&QM[n-1]?' · <span class="arn">'+esc(QM[n-1])+'</span>':'')+'</p></div>'+chips();
+if(!v){if(!QE[n])loadS(n).then(function(){if(qs===n)render()}).catch(function(){QE[n]=1;if(qs===n)render()});
+return h+(QE[n]?'<div class="card"><b>La sourate n’a pas pu être chargée.</b><p class="sub">Vérifie ta connexion internet puis réessaie. Une sourate déjà ouverte reste disponible hors connexion.</p><button class="btn" onclick="QE['+n+']=0;render()">Réessayer</button></div>':'<div class="card q"><p class="sub" style="text-align:center;margin:20px 0">Chargement de la sourate…</p></div>')}
+h+='<button class="btn" id="pb" data-l="▶ Écouter la sourate" onclick="qplay(0,false)">'+(PQ.length?'■ Arrêter':'▶ Écouter la sourate')+'</button>';
+if(n!==1&&n!==9)h+='<div class="bsm">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>';
+h+='<div class="card q">';v.forEach(function(x,i){var a=i+1,hl=qh&&a>=qh[0]&&a<=qh[1];h+='<div class="v'+(hl?' hl':'')+'" data-i="'+i+'"><div class="vh"><button class="vn" onclick="bm('+a+')" aria-label="Placer le marque-page au verset '+a+'">'+a+'</button><button class="hear" onclick="qplay('+i+',true)" aria-label="Écouter le verset '+a+'">▶</button></div><div class="a qa">'+esc(x.a)+'</div>'+(S.tr&&x.t?'<div class="t">'+esc(x.t)+'</div>':'')+(S.fr?'<div class="f">'+esc(x.f)+'</div>':'')+'</div>'});
+h+='</div><p class="sub" style="font-size:13px">Traduction du sens par Muhammad Hamidullah. Texte et traduction : Al Quran Cloud. Touche le numéro d’un verset pour y placer ton marque-page.</p><div class="pn">'+(n>1?'<button class="btn o" onclick="qgo('+(n-1)+')">‹ '+QN[n-2][0]+'</button>':'')+(n<114?'<button class="btn o" onclick="qgo('+(n+1)+')">'+QN[n][0]+' ›</button>':'')+'</div>';return h}
+function hubHtml(){var L=[[8,"Grandir dans la foi","Connaître Allah, prier avec le cœur, revenir vers Lui","إِيمَان","#0f5b4d","#2a8c78"],[9,"Les prophètes","Leurs histoires, leurs épreuves et leurs leçons","أَنْبِيَاء","#262b5e","#4a4590"],[5,"Calme","Invocations et gestes contre le stress","سَكِينَة","#0d5c63","#3a8f9c"],[2,"Les 99 noms","Écouter et apprendre les noms d’Allah","أَسْمَاء","#6e4420","#c08a2c"],[3,"Mes progrès","Régularité, rappels et notifications","تَقَدُّم","#4f2250","#9a4a6e"]];
+return '<h1>Découvrir</h1><p class="sub">Pour nourrir le cœur, un thème à la fois.</p>'+L.map(function(x){return '<button class="hub" style="--h1:'+x[4]+';--h2:'+x[5]+'" onclick="nav({tab:'+x[0]+'})"><span class="hubar" aria-hidden="true">'+x[3]+'</span><b>'+x[1]+'</b><small>'+x[2]+'</small></button>'}).join("")}
+function foiHtml(){return bk("Découvrir")+'<h1>Grandir dans la foi</h1><p class="sub">Six chemins pour se rapprocher d’Allah. Choisis celui qui te parle aujourd’hui.</p>'+FOI.map(function(t,i){return '<button class="row trow" onclick="nav({tab:8,ft:'+i+'})"><span class="tic" aria-hidden="true">'+t.ic+'</span><span class="rt"><b>'+t.t+'</b><small>'+t.d+'</small></span></button>'}).join("")}
+function exo(k){S.ex=S.ex||{};S.ex[k]=!S.ex[k];save()}
+function blk(b,bi){var k=b.k;
+if(k==="s")return '<h2>'+b.t+'</h2>';
+if(k==="v")return vcard(b.r);
+if(k==="h")return '<div class="card">'+(b.t?'<b class="ct">'+b.t+'</b>':'')+'<div class="hq">'+b.x+'</div><div class="src">'+b.src+'</div></div>';
+if(k==="n")return '<div class="card nmc"><div class="nar">'+b.ar+'</div><b class="ct">'+b.tr+'</b><div class="sub" style="margin:2px 0 10px">'+b.fr+'</div><p class="hq" style="font-style:normal">'+b.q+'</p><button class="lnk" onclick="qopen('+b.r.join(",")+')">Lire le verset '+vr(b.r)+'</button></div>';
+if(k==="p")return '<div class="card"><div class="nar" style="font-size:30px">'+b.ar+'</div><div class="t" style="color:var(--acc);font-style:italic">'+b.tr+'</div><b class="ct" style="margin-top:4px">'+b.fr+'</b><p style="margin:6px 0 0">'+b.x+'</p>'+(b.src?'<div class="src">'+b.src+'</div>':'')+(b.l?'<button class="lnk" onclick="openItem(\''+b.l+'\')">Apprendre la Fâtiḥa</button>':'')+'</div>';
+if(k==="t")return '<div class="card"><ul class="li">'+b.i.map(function(x){return '<li>'+x+'</li>'}).join("")+'</ul>'+(b.n?'<p class="sub" style="margin:8px 0 0;font-size:13px">'+b.n+'</p>':'')+'</div>';
+if(k==="l")return '<h2>'+b.t+'</h2>'+b.ids.map(item).filter(Boolean).map(row).join("");
+if(k==="x")return '<div class="card gold ex"><b class="ct">'+b.t+'</b>'+b.i.map(function(x,i){var key="f"+ft+"-"+bi+"-"+i;return '<label><input type="checkbox"'+(S.ex&&S.ex[key]?' checked':'')+' onchange="exo(\''+key+'\')"><span>'+x+'</span></label>'}).join("")+'</div>';
+if(k==="b")return '<button class="btn o" onclick="'+b.on+'">'+b.t+'</button>';return ""}
+function themeHtml(){var T=FOI[ft];return bk("Grandir dans la foi")+'<div class="thead"><span class="tic lg" aria-hidden="true">'+T.ic+'</span><h1>'+T.t+'</h1></div><p class="sub">'+T.intro+'</p>'+T.b.map(blk).join("")+(ft<FOI.length-1?'<button class="lnk" onclick="ft++;render();window.scrollTo(0,0)">Thème suivant : '+FOI[ft+1].t+'</button>':'')}
+function prophetsHtml(){return bk("Découvrir")+'<h1>Les prophètes</h1><p class="sub">Leurs histoires racontées simplement, avec les passages du Coran et ce qu’elles nous enseignent.</p><div class="pgrid">'+PR.map(function(p){return '<button class="pcard" onclick="nav({tab:9,pp:\''+p.id+'\'})"><span class="ar">'+p.ar+'</span><b>'+p.n+'</b><small>'+p.fr+' · '+p.tag+'</small></button>'}).join("")+'</div><p class="sub" style="font-size:13px;margin-top:16px">D’autres prophètes viendront compléter cette liste.</p>'}
+function epHtml(p){var e=p.ep[pe];return '<div class="epn">Épisode '+(pe+1)+' sur '+p.ep.length+'</div><h3>'+e[0]+'</h3><p class="epx">'+e[1]+'</p>'+(e[2]?'<button class="lnk" onclick="qopen('+e[2].join(",")+')">Lire le passage '+vr(e[2])+'</button>':'')+'<div class="dots">'+p.ep.map(function(_,i){return '<i'+(i===pe?' class="on"':'')+'></i>'}).join("")+'</div><div class="pn"><button class="btn o" onclick="pgo(-1)"'+(pe?'':' disabled')+'>Précédent</button><button class="btn" onclick="pgo(1)"'+(pe<p.ep.length-1?'':' disabled')+'>Suivant</button></div>'}
+function pgo(d){var p=PR.filter(function(x){return x.id===pp})[0];pe=Math.max(0,Math.min(p.ep.length-1,pe+d));$("ep").innerHTML=epHtml(p)}
+function prophetHtml(){var p=PR.filter(function(x){return x.id===pp})[0],h=bk("Les prophètes")+'<div class="phead"><div class="par">'+p.ar+'</div><h1>'+p.n+'</h1><p class="sub" style="margin-top:2px">'+p.fr+' · '+p.tag+'</p></div>';
+h+='<h2>Découvrir son histoire</h2><div class="card" id="ep">'+epHtml(p)+'</div>';
+h+='<h2>Les moments marquants</h2><div class="card"><ul class="tl">'+p.mo.map(function(m){return '<li>'+m+'</li>'}).join("")+'</ul></div>';
+h+='<h2>Ce que son histoire nous enseigne</h2>'+p.le.map(function(l){return '<div class="card"><b class="ct">'+l[0]+'</b><p style="margin:4px 0 0">'+l[1]+'</p></div>'}).join("");
+h+='<h2>Un verset à méditer</h2>'+vcard(p.k)+(p.l?'<button class="lnk" onclick="openItem(\''+p.l+'\')">Apprendre son invocation</button>':'');
+h+='<h2>Lire les passages du Coran</h2>'+p.q.map(function(r){return '<button class="row srow" onclick="qopen('+r[0]+','+r[1]+','+r[2]+')"><span class="rt"><b>'+r[3]+'</b><small>Coran '+vr(r)+' · traduction et récitation</small></span></button>'}).join("");
+h+='<h2>Un détail à découvrir</h2><div class="card gold"><p class="hq" style="margin:0">'+p.dt[0]+'</p><div class="src">'+p.dt[1]+'</div></div>';
+var i=PR.indexOf(p);if(i<PR.length-1)h+='<button class="lnk" onclick="pp=\''+PR[i+1].id+'\';pe=0;render();window.scrollTo(0,0)">Prophète suivant : '+PR[i+1].n+'</button>';return h}
+function learnHtml(){var h='<h1>Invocations et sourates</h1><p class="sub">Commence par une seule, répète-la quelques jours, puis ajoute la suivante.</p><div class="chips">';[["all","Tout"],["s","Sourates"],["d","Invocations"],["a","Matin &amp; soir"],["t","Apaisement"]].forEach(function(f){h+='<button class="chip'+(filt===f[0]?' on':'')+'" onclick="setF(\''+f[0]+'\')">'+f[1]+'</button>'});return h+'</div>'+D.filter(function(x){return filt==="all"||x.c===filt}).map(row).join("")}
+function dhikrHtml(){return '<h1>Dhikr</h1><p class="sub">Touche le cercle à chaque récitation. Il se remplit jusqu’à l’objectif.</p><div class="chips">'+Z.map(function(z,i){return '<button class="chip'+((S.z||0)===i?' on':'')+'" onclick="zs('+i+')">'+z[1]+'</button>'}).join("")+'</div><div id="zb">'+zhtml()+'</div><button class="btn o" onclick="zr()">Remettre à zéro</button>'}
+function tiles(){var l=S.lr&&QN[S.lr.s-1];return '<div class="tiles"><button onclick="'+(l?'qopen('+S.lr.s+','+S.lr.a+')':'go(6)')+'"><span class="ti" aria-hidden="true">قُرْآن</span><b>Coran</b><small>'+(l?'Reprendre '+QN[S.lr.s-1][0]:'Lire et écouter')+'</small></button><button onclick="nav({tab:8})"><span class="ti" aria-hidden="true">إِيمَان</span><b>Foi</b><small>Se rapprocher d’Allah</small></button><button onclick="nav({tab:9})"><span class="ti" aria-hidden="true">أَنْبِيَاء</span><b>Prophètes</b><small>Leurs histoires</small></button></div>'}
 function render(){document.documentElement.style.setProperty("--k",S.fs);
-for(var i=0;i<6;i++){var b=$("n"+i);if(b)b.className=(i===tab&&!cur)?"on":""}
-var h="";if(cur)h=detail();else if(tab===0)h=homeHtml();
-else if(tab===1){h='<h1>Apprendre</h1><p class="sub">Commence par une seule, répète-la quelques jours, puis ajoute la suivante.</p><div class="chips">';[["all","Tout"],["s","Sourates"],["d","Invocations"],["a","Matin &amp; soir"],["t","Apaisement"]].forEach(function(f){h+='<button class="chip'+(filt===f[0]?' on':'')+'" onclick="setF(\''+f[0]+'\')">'+f[1]+'</button>'});h+='</div>'+D.filter(function(x){return filt==="all"||x.c===filt}).map(row).join("")}
-else if(tab===4)h='<h1>Dhikr</h1><p class="sub">Touche le cercle à chaque récitation. Il se remplit jusqu’à l’objectif.</p><div class="chips">'+Z.map(function(z,i){return '<button class="chip'+((S.z||0)===i?' on':'')+'" onclick="zs('+i+')">'+z[1]+'</button>'}).join("")+'</div><div id="zb">'+zhtml()+'</div><button class="btn o" onclick="zr()">Remettre à zéro</button>';
-else if(tab===5)h=calme();
-else if(tab===2)h='<h1>Les 99 noms d’Allah</h1><p class="sub">Touche un nom pour l’écouter, puis répète-le à voix haute.</p><div class="g">'+N.map(function(s,i){var p=s.split("|");return '<button class="nm" onclick="say(\''+p[0]+'\')"><small>'+(i+1)+'</small><div class="a">'+p[0]+'</div>'+(S.tr?'<div class="t">'+p[1]+'</div>':'')+(S.fr?'<div class="f">'+p[2]+'</div>':'')+'</button>'}).join("")+'</div>';
-else h=progres();
-var a=$("app");a.className="fade";a.innerHTML=h;void a.offsetWidth;if(tab===0&&!cur)hero()}
-render();sched();fetch('horaires.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(j){if(j&&j.days){MQ=j;sched();render()}}).catch(function(){});setInterval(function(){if(tab===0&&!cur)hero()},30000);
+var nt={2:7,3:7,5:7,8:7,9:7}[tab];if(nt===undefined)nt=tab;NL.forEach(function(n){var b=$("n"+n[0]);if(b)b.className=n[0]===nt?"on":""});
+var h,home=false;if(cur)h=detail();else if(qs)h=surahHtml();else if(pp)h=prophetHtml();else if(ft!==null)h=themeHtml();
+else if(tab===0){h=homeHtml();home=true}else if(tab===6)h=quranHtml();else if(tab===1)h=learnHtml();else if(tab===4)h=dhikrHtml();else if(tab===7)h=hubHtml();else if(tab===8)h=foiHtml();else if(tab===9)h=prophetsHtml();
+else if(tab===5)h=bk("Découvrir")+calme();else if(tab===2)h=bk("Découvrir")+namesHtml();else h=bk("Découvrir")+progres();
+var a=$("app");a.className="";a.innerHTML=h;void a.offsetWidth;a.className="fade";if(home)hero();vfill();
+if(qs&&qj&&qh&&QC[qs]){qj=false;var e=document.querySelector('.v[data-i="'+(qh[0]-1)+'"]');if(e)window.scrollTo(0,e.getBoundingClientRect().top+window.scrollY-80)}}
+
+render();sched();fetch('horaires.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(function(j){if(j&&j.days){MQ=j;sched();render()}}).catch(function(){});setInterval(function(){if(tab===0&&!cur&&!qs&&!pp&&ft===null)hero()},30000);
 document.addEventListener("visibilitychange",function(){if(!document.hidden)sched()});
 if("serviceWorker" in navigator)window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});
 </script></body></html>
